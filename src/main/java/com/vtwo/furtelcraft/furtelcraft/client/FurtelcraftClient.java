@@ -1,5 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.client;
 
+import com.vtwo.furtelcraft.furtelcraft.blocktrans.BlockTransInit;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,6 +9,6 @@ import net.fabricmc.api.Environment;
 public class FurtelcraftClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-
+        BlockTransInit.init();
     }
 }

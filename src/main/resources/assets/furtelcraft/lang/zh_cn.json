@@ -1,5 +1,6 @@
 {
   "itemGroup.furtelcraft.fc_item_group": "毛茸时代|物品",
+  "itemGroup.furtelcraft.fc_block_group": "毛茸时代|方块",
   "item.furtelcraft.guide_book": "毛绒手册",
   "item.furtelcraft.kit_knife": "菜刀",
   "item.furtelcraft.dirt_brush": "考古刷",
@@ -19,5 +20,6 @@
   "item.furtelcraft.dragon_dna_tube": "龙 DNA试剂",
   "item.furtelcraft.fox_dna_tube": "狐 DNA试剂",
   "item.furtelcraft.white_wolf_dna_tube": "白狼 DNA试剂",
-  "item.furtelcraft.gray_wolf_dna_tube": "灰狼 DNA试剂"
+  "item.furtelcraft.gray_wolf_dna_tube": "灰狼 DNA试剂",
+  "block.furtelcraft.magnetic_particle_processor": "磁珠式DNA提取机"
 }

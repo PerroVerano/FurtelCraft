@@ -1,5 +1,6 @@
 {
   "itemGroup.furtelcraft.fc_item_group": "FurtelCraft|Items",
+  "itemGroup.furtelcraft.fc_block_group": "FurtelCraft|Blocks",
   "item.furtelcraft.guide_book": "FC Guide Book",
   "item.furtelcraft.kit_knife": "Kitchen Knife",
   "item.furtelcraft.dirt_brush": "Dirt Brush",
@@ -19,5 +20,6 @@
   "item.furtelcraft.dragon_dna_tube": "Dragon DNA Tube",
   "item.furtelcraft.fox_dna_tube": "Fox DNA Tube",
   "item.furtelcraft.white_wolf_dna_tube": "White Wolf DNA Tube",
-  "item.furtelcraft.gray_wolf_dna_tube": "Gray Wolf DNA Tube"
+  "item.furtelcraft.gray_wolf_dna_tube": "Gray Wolf DNA Tube",
+  "block.furtelcraft.magnetic_particle_processor": "Magnetic Particle Processor"
 }
