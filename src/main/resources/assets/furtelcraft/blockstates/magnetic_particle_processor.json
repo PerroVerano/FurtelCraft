@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "furtelcraft:block/magnetic_particle_processor"
+    },
+    "facing=east": {
+      "model": "furtelcraft:block/magnetic_particle_processor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "furtelcraft:block/magnetic_particle_processor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "furtelcraft:block/magnetic_particle_processor",
+      "y": 270
+    }
+  }
+}
