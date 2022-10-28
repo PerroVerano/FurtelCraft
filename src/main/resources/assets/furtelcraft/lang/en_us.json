@@ -1,0 +1,23 @@
+{
+  "itemGroup.furtelcraft.fc_item_group": "FurtelCraft|Items",
+  "item.furtelcraft.guide_book": "FC Guide Book",
+  "item.furtelcraft.kit_knife": "Kitchen Knife",
+  "item.furtelcraft.dirt_brush": "Dirt Brush",
+  "item.furtelcraft.iron_trap": "Iron Trap",
+  "item.furtelcraft.empty_tube": "Empty Tube",
+  "item.furtelcraft.water_tube": "Water Tube",
+  "item.furtelcraft.wolf_meat": "Wolf Meat",
+  "item.furtelcraft.wolf_meat_piece": "Wolf Meat Piece",
+  "item.furtelcraft.cooked_wolf_meat": "Cooked Wolf Meat",
+  "item.furtelcraft.specimen_tube": "Specimen Tube",
+  "item.furtelcraft.proteinase_k_tube": "Proteinase K Tube",
+  "item.furtelcraft.splitting_dna_tube": "Splitted DNA Tube",
+  "item.furtelcraft.buffer_tube": "Buffer Tube",
+  "item.furtelcraft.combine_dna_tube": "Combined DNA Tube",
+  "item.furtelcraft.absolute_alcohol_tube": "Absolute Alcohol Tube",
+  "item.furtelcraft.sediment_dna_tube": "Sediment DNA Tube",
+  "item.furtelcraft.dragon_dna_tube": "Dragon DNA Tube",
+  "item.furtelcraft.fox_dna_tube": "Fox DNA Tube",
+  "item.furtelcraft.white_wolf_dna_tube": "White Wolf DNA Tube",
+  "item.furtelcraft.gray_wolf_dna_tube": "Gray Wolf DNA Tube"
+}

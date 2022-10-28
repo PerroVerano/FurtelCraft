@@ -2,8 +2,8 @@ package com.vtwo.furtelcraft.furtelcraft.items;
 
 import net.minecraft.item.Item;
 
-public class KitKnife extends Item {
-    public KitKnife(Settings settings) {
+public class CombineDNATube extends Item {
+    public CombineDNATube(Settings settings) {
         super(settings);
     }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "furtelcraft:item/absolute_alcohol_tube"
+  }
+}

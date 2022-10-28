@@ -2,8 +2,8 @@ package com.vtwo.furtelcraft.furtelcraft.items;
 
 import net.minecraft.item.Item;
 
-public class KitKnife extends Item {
-    public KitKnife(Settings settings) {
+public class BufferTube extends Item {
+    public BufferTube(Settings settings) {
         super(settings);
     }
 }

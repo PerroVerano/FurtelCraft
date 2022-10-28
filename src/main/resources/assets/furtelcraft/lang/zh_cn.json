@@ -5,5 +5,19 @@
   "item.furtelcraft.dirt_brush": "考古刷",
   "item.furtelcraft.iron_trap": "铁制捕兽夹",
   "item.furtelcraft.empty_tube": "空试管",
-  "item.furtelcraft.water_tube": "装水试管"
+  "item.furtelcraft.water_tube": "装水试管",
+  "item.furtelcraft.wolf_meat": "狼肉",
+  "item.furtelcraft.wolf_meat_piece": "狼肉块",
+  "item.furtelcraft.cooked_wolf_meat": "熟狼肉",
+  "item.furtelcraft.specimen_tube": "样本试管",
+  "item.furtelcraft.proteinase_k_tube": "蛋白酶K试剂",
+  "item.furtelcraft.splitting_dna_tube": "裂解DNA试剂",
+  "item.furtelcraft.buffer_tube": "磁珠试剂",
+  "item.furtelcraft.combine_dna_tube": "结合DNA试剂",
+  "item.furtelcraft.absolute_alcohol_tube": "无水乙醇",
+  "item.furtelcraft.sediment_dna_tube": "沉淀DNA试剂",
+  "item.furtelcraft.dragon_dna_tube": "龙 DNA试剂",
+  "item.furtelcraft.fox_dna_tube": "狐 DNA试剂",
+  "item.furtelcraft.white_wolf_dna_tube": "白狼 DNA试剂",
+  "item.furtelcraft.gray_wolf_dna_tube": "灰狼 DNA试剂"
 }
