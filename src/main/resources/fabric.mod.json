@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "furtelcraft",
+  "version": "${version}",
+  "name": "FurtelCraft",
+  "description": "A mod.",
+  "authors": [
+    "V2x5aHV2"
+  ],
+  "contact": {
+    "website": "no",
+    "repo": "no"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/furtelcraft/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.vtwo.furtelcraft.furtelcraft.client.FurtelcraftClient"
+    ],
+    "main": [
+      "com.vtwo.furtelcraft.furtelcraft.Furtelcraft"
+    ]
+  },
+  "mixins": [
+    "furtelcraft.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
