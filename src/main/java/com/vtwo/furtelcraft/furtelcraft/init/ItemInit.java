@@ -40,6 +40,10 @@ public class ItemInit {
     public static final FoxDNATube FOX_DNA_TUBE = new FoxDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
     public static final WhiteWolfDNATube WHITE_WOLF_DNA_TUBE = new WhiteWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
     public static final GrayWolfDNATube GRAY_WOLF_DNA_TUBE = new GrayWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
+    public static final Listener LISTENER = new Listener(new FabricItemSettings());
+    public static final Handler HANDLER = new Handler(new FabricItemSettings());
+    public static final CPU CPU = new CPU(new FabricItemSettings().rarity(Rarity.RARE));
+    public static final StorageCard STORAGE_CARD = new StorageCard(new FabricItemSettings());
 
 
     public static final ItemGroup FC_ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -66,6 +70,10 @@ public class ItemInit {
                 itemStacks.add(new ItemStack(ItemInit.FOX_DNA_TUBE));
                 itemStacks.add(new ItemStack(ItemInit.WHITE_WOLF_DNA_TUBE));
                 itemStacks.add(new ItemStack(ItemInit.GRAY_WOLF_DNA_TUBE));
+                itemStacks.add(new ItemStack(ItemInit.LISTENER));
+                itemStacks.add(new ItemStack(ItemInit.HANDLER));
+                itemStacks.add(new ItemStack(ItemInit.CPU));
+                itemStacks.add(new ItemStack(ItemInit.STORAGE_CARD));
             })
             .build();
 
@@ -90,5 +98,9 @@ public class ItemInit {
         Registry.register(Registry.ITEM,new Identifier("furtelcraft","fox_dna_tube"),FOX_DNA_TUBE);
         Registry.register(Registry.ITEM,new Identifier("furtelcraft","white_wolf_dna_tube"),WHITE_WOLF_DNA_TUBE);
         Registry.register(Registry.ITEM,new Identifier("furtelcraft","gray_wolf_dna_tube"),GRAY_WOLF_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier("furtelcraft","listener"),LISTENER);
+        Registry.register(Registry.ITEM,new Identifier("furtelcraft","handler"),HANDLER);
+        Registry.register(Registry.ITEM,new Identifier("furtelcraft","cpu"),CPU);
+        Registry.register(Registry.ITEM,new Identifier("furtelcraft","storage_card"),STORAGE_CARD);
     }
 }

@@ -22,5 +22,9 @@
   "item.furtelcraft.white_wolf_dna_tube": "白狼 DNA试剂",
   "item.furtelcraft.gray_wolf_dna_tube": "灰狼 DNA试剂",
   "block.furtelcraft.magnetic_particle_processor": "磁珠式DNA提取机",
-  "block.furtelcraft.centrifuge": "离心机"
+  "block.furtelcraft.centrifuge": "离心机",
+  "item.furtelcraft.listener": "监听器",
+  "item.furtelcraft.handler": "处理机",
+  "item.furtelcraft.cpu": "CPU",
+  "item.furtelcraft.storage_card": "储存卡"
 }

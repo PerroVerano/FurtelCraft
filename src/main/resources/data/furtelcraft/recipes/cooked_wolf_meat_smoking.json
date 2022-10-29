@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "experience": 5,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "furtelcraft:wolf_meat"
+  },
+  "result": "furtelcraft:cooked_wolf_meat"
+}

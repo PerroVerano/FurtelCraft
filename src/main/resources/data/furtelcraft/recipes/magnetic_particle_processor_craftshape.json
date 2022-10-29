@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "hcl",
+    "ipi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "h": {
+      "item": "furtelcraft:handler"
+    },
+    "c": {
+      "item": "furtelcraft:cpu"
+    },
+    "l": {
+      "item": "furtelcraft:listener"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    }
+  },
+  "result": {
+    "item": "furtelcraft:magnetic_particle_processor"
+  }
+}

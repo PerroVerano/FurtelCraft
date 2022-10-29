@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i i",
+    "gch",
+    "ipi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "g": {
+      "item": "minecraft:grindstone"
+    },
+    "c": {
+      "item": "furtelcraft:cpu"
+    },
+    "h": {
+      "item": "furtelcraft:handler"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    }
+  },
+  "result": {
+    "item": "furtelcraft:centrifuge"
+  }
+}

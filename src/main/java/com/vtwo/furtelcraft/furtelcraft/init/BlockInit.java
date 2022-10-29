@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -15,15 +14,15 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockInit {
     //nonOpaque:不完整方块渲染
-    public static final MagneticParticleProcessor MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticleProcessor(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool());
+    public static final MagneticParticleProcessor MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticleProcessor(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem MAGNETIC_PARTICLE_PROCESSOR_ITEM = new BlockItem(MAGNETIC_PARTICLE_PROCESSOR,new FabricItemSettings());
-    public static final Centrifuge CENTRIFUGE = new Centrifuge(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool());
+    public static final Centrifuge CENTRIFUGE = new Centrifuge(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem CENTRIFUGE_ITEM = new BlockItem(CENTRIFUGE,new FabricItemSettings());
 
 
     public static final ItemGroup FC_BLOCK_GROUP = FabricItemGroupBuilder.create(
             new Identifier("furtelcraft","fc_block_group"))
-            .icon(() -> new ItemStack(ItemInit.IRON_TRAP))
+            .icon(() -> new ItemStack(BlockInit.CENTRIFUGE_ITEM))
             .appendItems(itemStacks -> {
                 itemStacks.add(new ItemStack(BlockInit.MAGNETIC_PARTICLE_PROCESSOR_ITEM));
                 itemStacks.add(new ItemStack(BlockInit.CENTRIFUGE_ITEM));

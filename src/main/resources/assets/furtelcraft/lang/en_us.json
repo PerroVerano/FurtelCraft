@@ -22,5 +22,9 @@
   "item.furtelcraft.white_wolf_dna_tube": "White Wolf DNA Tube",
   "item.furtelcraft.gray_wolf_dna_tube": "Gray Wolf DNA Tube",
   "block.furtelcraft.magnetic_particle_processor": "Magnetic Particle Processor",
-  "block.furtelcraft.centrifuge": "Centrifuge"
+  "block.furtelcraft.centrifuge": "Centrifuge",
+  "item.furtelcraft.listener": "Listener",
+  "item.furtelcraft.handler": "Handler",
+  "item.furtelcraft.cpu": "CPU",
+  "item.furtelcraft.storage_card": "Storage Card"
 }

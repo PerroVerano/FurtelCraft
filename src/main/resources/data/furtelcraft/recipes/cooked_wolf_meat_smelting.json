@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 5,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "furtelcraft:wolf_meat"
+  },
+  "result": "furtelcraft:cooked_wolf_meat"
+}
