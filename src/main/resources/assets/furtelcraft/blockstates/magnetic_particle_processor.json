@@ -1,19 +1,12 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "furtelcraft:block/magnetic_particle_processor"
-    },
-    "facing=east": {
-      "model": "furtelcraft:block/magnetic_particle_processor",
-      "y": 90
-    },
-    "facing=south": {
-      "model": "furtelcraft:block/magnetic_particle_processor",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "furtelcraft:block/magnetic_particle_processor",
-      "y": 270
-    }
+    "facing=north,lit=false": { "model": "furtelcraft:block/magnetic_particle_processor" },
+    "facing=south,lit=false": { "model": "furtelcraft:block/magnetic_particle_processor", "y": 180 },
+    "facing=west,lit=false":  { "model": "furtelcraft:block/magnetic_particle_processor", "y": 270 },
+    "facing=east,lit=false":  { "model": "furtelcraft:block/magnetic_particle_processor", "y": 90 },
+    "facing=north,lit=true": { "model": "furtelcraft:block/magnetic_particle_processor" },
+    "facing=south,lit=true": { "model": "furtelcraft:block/magnetic_particle_processor", "y": 180 },
+    "facing=west,lit=true":  { "model": "furtelcraft:block/magnetic_particle_processor", "y": 270 },
+    "facing=east,lit=true":  { "model": "furtelcraft:block/magnetic_particle_processor", "y": 90 }
   }
 }

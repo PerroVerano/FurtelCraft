@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.init;
 
-import com.vtwo.furtelcraft.furtelcraft.blocks.MagneticParticalProcessor;
+import com.vtwo.furtelcraft.furtelcraft.blocks.MagneticParticleProcessor;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.AbstractBlock;
@@ -14,7 +14,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class BlockInit {
-    public static final Block MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticalProcessor(AbstractBlock.Settings.of(Material.METAL).hardness(4.0F));
+    //nonOpaque:不完整方块渲染
+    public static final Block MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticleProcessor(AbstractBlock.Settings.of(Material.METAL).hardness(2.0F).nonOpaque().requiresTool());
     public static final Item MAGNETIC_PARTICLE_PROCESSOR_ITEM = new BlockItem(MAGNETIC_PARTICLE_PROCESSOR,new FabricItemSettings());
 
 

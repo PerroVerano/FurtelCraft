@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "furtelcraft:magnetic_partical_processor"
+          "name": "furtelcraft:magnetic_particle_processor"
         }
       ],
       "conditions": [
