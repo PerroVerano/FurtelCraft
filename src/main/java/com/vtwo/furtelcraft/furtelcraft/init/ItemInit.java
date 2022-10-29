@@ -20,26 +20,26 @@ public class ItemInit {
 
     public static final Item WATERTUBEREMAIN = ItemInit.EMPTY_TUBE;
 
-    public static final Item GUIDE_BOOK = new GuideBook(new FabricItemSettings().maxCount(1));
-    public static final Item KIT_KNIFE = new KitKnife(new FabricItemSettings().maxCount(1).maxDamage(64));
-    public static final Item DIRT_BRUSH = new DirtBrush(new FabricItemSettings().maxCount(1).maxDamage(64));
-    public static final Item IRON_TRAP = new IronTrap(new FabricItemSettings().maxDamage(16));
-    public static final Item EMPTY_TUBE = new EmptyTube(new FabricItemSettings());
-    public static final Item WATER_TUBE = new WaterTube(new FabricItemSettings().food(WATERTUBEFOOD).recipeRemainder(WATERTUBEREMAIN));
-    public static final Item WOLF_MEAT = new WolfMeat(new FabricItemSettings().food(WOLFMEATFOOD));
-    public static final Item WOLF_MEAT_PIECE = new WolfMeatPiece(new FabricItemSettings().food(WOLFMEATPIECEFOOD));
-    public static final Item COOKED_WOLF_MEAT = new CookedWolfMeat(new FabricItemSettings().food(COOKEDWOLFMEATFOOD));
-    public static final Item SPECIMEN_TUBE = new SpecimenTube(new FabricItemSettings());
-    public static final Item PROTEINASE_K_TUBE = new ProteinaseKTube(new FabricItemSettings());
-    public static final Item SPLITTING_DNA_TUBE = new SplittingDNATube(new FabricItemSettings());
-    public static final Item BUFFER_TUBE = new BufferTube(new FabricItemSettings());
-    public static final Item COMBINE_DNA_TUBE = new CombineDNATube(new FabricItemSettings());
-    public static final Item ABSOLUTE_ALCOHOL_TUBE = new AbsoluteAlcoholTube(new FabricItemSettings());
-    public static final Item SEDIMENT_DNA_TUBE = new SedimentDNATube(new FabricItemSettings());
-    public static final Item DRAGON_DNA_TUBE = new DragonDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
-    public static final Item FOX_DNA_TUBE = new FoxDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
-    public static final Item WHITE_WOLF_DNA_TUBE = new WhiteWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
-    public static final Item GRAY_WOLF_DNA_TUBE = new GrayWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
+    public static final GuideBook GUIDE_BOOK = new GuideBook(new FabricItemSettings().maxCount(1));
+    public static final KitKnife KIT_KNIFE = new KitKnife(new FabricItemSettings().maxCount(1).maxDamage(64));
+    public static final DirtBrush DIRT_BRUSH = new DirtBrush(new FabricItemSettings().maxCount(1).maxDamage(64));
+    public static final IronTrap IRON_TRAP = new IronTrap(new FabricItemSettings().maxDamage(16));
+    public static final EmptyTube EMPTY_TUBE = new EmptyTube(new FabricItemSettings());
+    public static final WaterTube WATER_TUBE = new WaterTube(new FabricItemSettings().food(WATERTUBEFOOD).recipeRemainder(WATERTUBEREMAIN));
+    public static final WolfMeat WOLF_MEAT = new WolfMeat(new FabricItemSettings().food(WOLFMEATFOOD));
+    public static final WolfMeatPiece WOLF_MEAT_PIECE = new WolfMeatPiece(new FabricItemSettings().food(WOLFMEATPIECEFOOD));
+    public static final CookedWolfMeat COOKED_WOLF_MEAT = new CookedWolfMeat(new FabricItemSettings().food(COOKEDWOLFMEATFOOD));
+    public static final SpecimenTube SPECIMEN_TUBE = new SpecimenTube(new FabricItemSettings());
+    public static final ProteinaseKTube PROTEINASE_K_TUBE = new ProteinaseKTube(new FabricItemSettings());
+    public static final SplittingDNATube SPLITTING_DNA_TUBE = new SplittingDNATube(new FabricItemSettings());
+    public static final BufferTube BUFFER_TUBE = new BufferTube(new FabricItemSettings());
+    public static final CombineDNATube COMBINE_DNA_TUBE = new CombineDNATube(new FabricItemSettings());
+    public static final AbsoluteAlcoholTube ABSOLUTE_ALCOHOL_TUBE = new AbsoluteAlcoholTube(new FabricItemSettings());
+    public static final SedimentDNATube SEDIMENT_DNA_TUBE = new SedimentDNATube(new FabricItemSettings());
+    public static final DragonDNATube DRAGON_DNA_TUBE = new DragonDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
+    public static final FoxDNATube FOX_DNA_TUBE = new FoxDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
+    public static final WhiteWolfDNATube WHITE_WOLF_DNA_TUBE = new WhiteWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
+    public static final GrayWolfDNATube GRAY_WOLF_DNA_TUBE = new GrayWolfDNATube(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC));
 
 
     public static final ItemGroup FC_ITEM_GROUP = FabricItemGroupBuilder.create(
