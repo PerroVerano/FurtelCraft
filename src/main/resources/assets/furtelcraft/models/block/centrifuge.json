@@ -1,13 +1,15 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"0": "furtelcraft:block/ctf/CTF_bottom",
-		"1": "furtelcraft:block/ctf/CTF_panel",
-		"2": "furtelcraft:block/ctf/CTF_main",
-		"3": "furtelcraft:block/ctf/CTF_glass",
-		"4": "furtelcraft:block/ctf/CTF_slot1",
-		"5": "furtelcraft:block/ctf/CTF_slot2",
-		"6": "furtelcraft:block/ctf/CTF_slot3"
+		"all": "furtelcraft:block/ctf/ctf_main",
+		"particle": "furtelcraft:block/ctf/ctf_main",
+		"0": "furtelcraft:block/ctf/ctf_bottom",
+		"1": "furtelcraft:block/ctf/ctf_panel",
+		"2": "furtelcraft:block/ctf/ctf_main",
+		"3": "furtelcraft:block/ctf/ctf_glass",
+		"4": "furtelcraft:block/ctf/ctf_slot1",
+		"5": "furtelcraft:block/ctf/ctf_slot2",
+		"6": "furtelcraft:block/ctf/ctf_slot3"
 	},
 	"elements": [
 		{

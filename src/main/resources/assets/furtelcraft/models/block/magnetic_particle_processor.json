@@ -1,6 +1,8 @@
 {
 	"parent": "block/block",
 	"textures": {
+		"all": "furtelcraft:block/mpp/storage_texture",
+		"particle": "furtelcraft:block/mpp/storage_texture",
 		"0": "furtelcraft:block/mpp/right_texture",
 		"1": "furtelcraft:block/mpp/left_texture",
 		"2": "furtelcraft:block/mpp/back_texture",

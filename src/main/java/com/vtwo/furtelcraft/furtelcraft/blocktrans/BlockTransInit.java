@@ -7,5 +7,6 @@ import net.minecraft.client.render.RenderLayer;
 public class BlockTransInit {
     public static void init(){
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.MAGNETIC_PARTICLE_PROCESSOR, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.CENTRIFUGE,RenderLayer.getTranslucent());
     }
 }
