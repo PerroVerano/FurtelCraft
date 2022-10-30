@@ -1,4 +1,4 @@
-package com.vtwo.furtelcraft.furtelcraft.blocktrans;
+package com.vtwo.furtelcraft.furtelcraft.clientinit;
 
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

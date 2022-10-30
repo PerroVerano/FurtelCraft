@@ -1,6 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.client;
 
-import com.vtwo.furtelcraft.furtelcraft.blocktrans.BlockTransInit;
+import com.vtwo.furtelcraft.furtelcraft.clientinit.BlockTransInit;
+import com.vtwo.furtelcraft.furtelcraft.clientinit.ScreenClientInit;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,5 +11,6 @@ public class FurtelcraftClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockTransInit.init();
+        ScreenClientInit.init();
     }
 }

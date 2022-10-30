@@ -11,6 +11,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
+import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
+
 public class ItemInit {
     public static final FoodComponent WATERTUBEFOOD = new FoodComponent.Builder().hunger(0).saturationModifier(0f).alwaysEdible().build();
     public static final FoodComponent WOLFMEATFOOD = new FoodComponent.Builder().hunger(3).saturationModifier(2.0F).build();
@@ -78,29 +80,29 @@ public class ItemInit {
             .build();
 
     public static void init(){
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","guide_book"),GUIDE_BOOK);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","kit_knife"),KIT_KNIFE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","dirt_brush"),DIRT_BRUSH);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","iron_trap"),IRON_TRAP);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","empty_tube"),EMPTY_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","water_tube"),WATER_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","wolf_meat"),WOLF_MEAT);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","wolf_meat_piece"),WOLF_MEAT_PIECE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","cooked_wolf_meat"),COOKED_WOLF_MEAT);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","specimen_tube"),SPECIMEN_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","proteinase_k_tube"),PROTEINASE_K_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","splitting_dna_tube"),SPLITTING_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","buffer_tube"),BUFFER_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","combine_dna_tube"),COMBINE_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","absolute_alcohol_tube"),ABSOLUTE_ALCOHOL_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","sediment_dna_tube"),SEDIMENT_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","dragon_dna_tube"),DRAGON_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","fox_dna_tube"),FOX_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","white_wolf_dna_tube"),WHITE_WOLF_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","gray_wolf_dna_tube"),GRAY_WOLF_DNA_TUBE);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","listener"),LISTENER);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","handler"),HANDLER);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","cpu"),CPU);
-        Registry.register(Registry.ITEM,new Identifier("furtelcraft","storage_card"),STORAGE_CARD);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"guide_book"),GUIDE_BOOK);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"kit_knife"),KIT_KNIFE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"dirt_brush"),DIRT_BRUSH);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"iron_trap"),IRON_TRAP);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"empty_tube"),EMPTY_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"water_tube"),WATER_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"wolf_meat"),WOLF_MEAT);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"wolf_meat_piece"),WOLF_MEAT_PIECE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"cooked_wolf_meat"),COOKED_WOLF_MEAT);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"specimen_tube"),SPECIMEN_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"proteinase_k_tube"),PROTEINASE_K_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"splitting_dna_tube"),SPLITTING_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"buffer_tube"),BUFFER_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"combine_dna_tube"),COMBINE_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"absolute_alcohol_tube"),ABSOLUTE_ALCOHOL_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"sediment_dna_tube"),SEDIMENT_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"dragon_dna_tube"),DRAGON_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"fox_dna_tube"),FOX_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"white_wolf_dna_tube"),WHITE_WOLF_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"gray_wolf_dna_tube"),GRAY_WOLF_DNA_TUBE);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"listener"),LISTENER);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"handler"),HANDLER);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"cpu"),CPU);
+        Registry.register(Registry.ITEM,new Identifier(MOD_ID,"storage_card"),STORAGE_CARD);
     }
 }
