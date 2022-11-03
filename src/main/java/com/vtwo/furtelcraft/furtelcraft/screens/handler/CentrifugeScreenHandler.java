@@ -1,61 +1,50 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
+public class CentrifugeScreenHandler extends ScreenHandler {
     private final Inventory inventory;
 
-    // 服务器想要客户端开启 screenHandler 时，客户端调用这个构造器。
-    // 如有空的物品栏，客户端会调用其他构造器，screenHandler 将会自动
-    // 在客户端将空白物品栏同步给物品栏。
-    public MagneticParticleProcessorScreenHandler(int syncId, PlayerInventory playerInventory) {
+    public CentrifugeScreenHandler(int syncId,PlayerInventory playerInventory){
         this(syncId,playerInventory,new SimpleInventory(4));
     }
 
-    // 这个构造器是在服务器的 BlockEntity 中被调用的，无需先调用其他构造器，服务器知道容器的物品栏
-    // 并直接将其作为参数传入。然后物品栏在客户端完成同步。
-    public MagneticParticleProcessorScreenHandler(int synId, PlayerInventory playerInventory, Inventory inventory){
-        super(ScreenInit.MAGNETIC_PARTICLE_PROCESSOR_SCREEN_HANDLER,synId);
-        checkSize(inventory,4);//物品栏有4格
+    public CentrifugeScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+        super(ScreenInit.CENTRIFUGE_SCREEN_HANDLER,syncId);
+        checkSize(inventory,4);
         this.inventory = inventory;
-        // 玩家开启时，一些物品栏有自定义的逻辑
         inventory.onOpen(playerInventory.player);
-        //方块物品栏————开始
-        this.addSlot(new Slot(this.inventory,0,31,35){
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == ItemInit.SPLITTING_DNA_TUBE;
-            }
-        });
-        this.addSlot(new Slot(this.inventory,1,54,35){
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == ItemInit.BUFFER_TUBE;
-            }
-        });
-        this.addSlot(new Slot(this.inventory,2,109,35){
+        this.addSlot(new Slot(this.inventory,0,79,20){
             @Override
             public boolean canInsert(ItemStack stack) {
                 return false;
             }
         });
-        this.addSlot(new Slot(this.inventory,3,151,59){
+        this.addSlot(new Slot(this.inventory,1,52,62){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == Items.BLAZE_POWDER;
+                return false;
             }
         });
-        //方块物品栏————结束
-        //玩家物品栏————固定句式————开始
+        this.addSlot(new Slot(this.inventory,2,106,52){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
+        this.addSlot(new Slot(this.inventory,3,79,43){
+            @Override
+            public boolean canInsert(ItemStack stack) {
+                return false;
+            }
+        });
         int i;
         for(i = 0; i < 3; ++i) {
             for(int j = 0; j < 9; ++j) {
@@ -66,7 +55,6 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
         for(i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
-        //玩家物品栏————固定句式————结束
     }
 
     @Override

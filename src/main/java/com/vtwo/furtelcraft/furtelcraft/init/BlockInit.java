@@ -1,5 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.init;
 
+import com.vtwo.furtelcraft.furtelcraft.blockentities.CentrifugeEntity;
 import com.vtwo.furtelcraft.furtelcraft.blockentities.MagneticParticleProcessorEntity;
 import com.vtwo.furtelcraft.furtelcraft.blocks.Centrifuge;
 import com.vtwo.furtelcraft.furtelcraft.blocks.MagneticParticleProcessor;
@@ -28,6 +29,7 @@ public class BlockInit {
     //================//
     public static final Centrifuge CENTRIFUGE = new Centrifuge(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem CENTRIFUGE_ITEM = new BlockItem(CENTRIFUGE,new FabricItemSettings());
+    public static final BlockEntityType<CentrifugeEntity> CENTRIFUGE_ENTITY = FabricBlockEntityTypeBuilder.create(CentrifugeEntity::new,CENTRIFUGE).build(null);
 
 
     public static final ItemGroup FC_BLOCK_GROUP = FabricItemGroupBuilder.create(
@@ -46,5 +48,6 @@ public class BlockInit {
 
         Registry.register(Registry.BLOCK,CENTRIFUGE_ID,CENTRIFUGE);
         Registry.register(Registry.ITEM,CENTRIFUGE_ID,CENTRIFUGE_ITEM);
+        Registry.register(Registry.BLOCK_ENTITY_TYPE,CENTRIFUGE_ID,CENTRIFUGE_ENTITY);
     }
 }
