@@ -33,7 +33,7 @@ public class CentrifugeScreenHandler extends ScreenHandler {
                 return false;
             }
         });
-        this.addSlot(new Slot(this.inventory,2,106,52){
+        this.addSlot(new Slot(this.inventory,2,106,62){
             @Override
             public boolean canInsert(ItemStack stack) {
                 return false;

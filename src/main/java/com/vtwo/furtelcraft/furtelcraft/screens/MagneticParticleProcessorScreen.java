@@ -42,6 +42,6 @@ public class MagneticParticleProcessorScreen extends HandledScreen<MagneticParti
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title));
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 4;
     }
 }
