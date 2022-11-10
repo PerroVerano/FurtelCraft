@@ -8,25 +8,31 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    private final PropertyDelegate propertyDelegate;
 
     // 服务器想要客户端开启 screenHandler 时，客户端调用这个构造器。
     // 如有空的物品栏，客户端会调用其他构造器，screenHandler 将会自动
     // 在客户端将空白物品栏同步给物品栏。
     public MagneticParticleProcessorScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId,playerInventory,new SimpleInventory(4));
+        this(syncId,playerInventory,new SimpleInventory(4),new ArrayPropertyDelegate(2));
     }
 
     // 这个构造器是在服务器的 BlockEntity 中被调用的，无需先调用其他构造器，服务器知道容器的物品栏
     // 并直接将其作为参数传入。然后物品栏在客户端完成同步。
-    public MagneticParticleProcessorScreenHandler(int synId, PlayerInventory playerInventory, Inventory inventory){
+    public MagneticParticleProcessorScreenHandler(int synId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate){
         super(ScreenInit.MAGNETIC_PARTICLE_PROCESSOR_SCREEN_HANDLER,synId);
         checkSize(inventory,4);//物品栏有4格
         this.inventory = inventory;
+        this.propertyDelegate = propertyDelegate;
+        this.addProperties(propertyDelegate);
+        checkDataCount(propertyDelegate,1);
         // 玩家开启时，一些物品栏有自定义的逻辑
         inventory.onOpen(playerInventory.player);
         //方块物品栏————开始
@@ -72,6 +78,14 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
+    }
+
+    public int getTick(){
+        return propertyDelegate.get(0);
+    }
+
+    public int getEnergy(){
+        return propertyDelegate.get(1);
     }
 
     // Shift + 玩家物品栏槽位

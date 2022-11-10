@@ -1,21 +1,26 @@
 package com.vtwo.furtelcraft.furtelcraft.blockentities;
 
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
+import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.inventory.ImplementedInventory;
 import com.vtwo.furtelcraft.furtelcraft.screens.handler.MagneticParticleProcessorScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.util.ClientPlayerTickable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class MagneticParticleProcessorEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
@@ -47,21 +52,81 @@ public class MagneticParticleProcessorEntity extends BlockEntity implements Name
         // 因为我们的类实现 Inventory，所以将*这个*提供给 ScreenHandler
         // 一开始只有服务器拥有物品栏，然后在 ScreenHandler 中同步给客户端
         // SCREEN--5
-        return new MagneticParticleProcessorScreenHandler(syncId,inv,this);
+        return new MagneticParticleProcessorScreenHandler(syncId,inv,this,propertyDelegate);
     }
+
+
+
+    int tick = 0;
+    int energy;
+    protected final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return switch (index){
+                case 0 -> MagneticParticleProcessorEntity.this.tick;
+                case 1 -> MagneticParticleProcessorEntity.this.energy;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index){
+                case 0 -> MagneticParticleProcessorEntity.this.tick = value;
+                case 1 -> MagneticParticleProcessorEntity.this.energy = value;
+            }
+        }
+
+        @Override
+        public int size() {
+            return 2;
+        }
+    };
+
+    public static void tick(World world,BlockPos blockPos,BlockState blockState,MagneticParticleProcessorEntity entity){
+        if (entity.inventory.get(3).isOf(Items.BLAZE_POWDER)){
+            if (entity.energy < 12){
+                entity.inventory.get(3).decrement(1);
+                entity.energy++;
+            }
+        }
+        if (entity.energy != 0 && !entity.inventory.get(0).isEmpty() && !entity.inventory.get(1).isEmpty() && entity.inventory.get(2).getCount() < entity.inventory.get(2).getMaxCount()){
+            entity.tick++;
+            if (entity.tick == 20 * 10){
+                entity.tick = 0;
+                --entity.energy;
+                entity.inventory.get(0).decrement(1);
+                entity.inventory.get(1).decrement(1);
+                if (entity.inventory.get(2).isEmpty()){
+                    entity.inventory.set(2,new ItemStack(ItemInit.COMBINE_DNA_TUBE,1));
+                }
+                else {
+                    entity.inventory.get(2).increment(1);
+                }
+            }
+        }
+        if (entity.inventory.get(0).isEmpty() || entity.inventory.get(1).isEmpty()){
+            entity.tick = 0;
+        }
+    }
+
 
     //将容器内的物品进行保存（nbt）
     // SCREEN--6
     @Override
-    public void readNbt(NbtCompound nbt) {
+    public void readNbt(NbtCompound nbt) {//注意顺序！否则会出现进度自动归零的bug
         super.readNbt(nbt);
         Inventories.readNbt(nbt,this.inventory);
+        this.tick = nbt.getInt("trans");
+        this.energy = nbt.getInt("energy");
     }
 
     //SCREEN--7
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt) {//注意顺序！否则会出现进度自动归零的bug
         super.writeNbt(nbt);
+        nbt.putInt("trans",this.tick);
         Inventories.writeNbt(nbt,this.inventory);
+        nbt.putInt("energy",this.energy);
     }
 }

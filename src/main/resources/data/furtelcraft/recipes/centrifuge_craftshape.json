@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "i i",
+    "iai",
     "gch",
     "ipi"
   ],
@@ -20,6 +20,9 @@
     },
     "p": {
       "item": "minecraft:piston"
+    },
+    "a": {
+      "item": "minecraft:glass_pane"
     }
   },
   "result": {
