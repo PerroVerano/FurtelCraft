@@ -41,6 +41,6 @@ public class CentrifugeScreen extends HandledScreen<CentrifugeScreenHandler> {
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 4;
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
 }

@@ -73,6 +73,7 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
         //玩家物品栏————固定句式————结束
+        this.addProperties(propertyDelegate);
     }
 
     @Override
