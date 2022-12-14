@@ -27,10 +27,10 @@ public class EmptyTube extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        HitResult hitResult = raycast(world,user, RaycastContext.FluidHandling.SOURCE_ONLY);
+        BlockHitResult hitResult = raycast(world,user, RaycastContext.FluidHandling.SOURCE_ONLY);
         if (hand == Hand.MAIN_HAND && hitResult.getType() == HitResult.Type.BLOCK) {
             if (hitResult.getType() == HitResult.Type.BLOCK) {
-                BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
+                BlockPos blockPos = hitResult.getBlockPos();
                 if (world.getFluidState(blockPos).isIn(FluidTags.WATER)){
                     if (!user.getAbilities().creativeMode) {
                         user.getMainHandStack().setCount(user.getMainHandStack().getCount() - 1);

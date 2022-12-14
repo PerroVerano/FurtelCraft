@@ -16,7 +16,6 @@ import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class WaterTube extends Item {
@@ -44,10 +43,8 @@ public class WaterTube extends Item {
 
         if (!world.isClient) {
             List<StatusEffectInstance> list = PotionUtil.getPotionEffects(stack);
-            Iterator var6 = list.iterator();
 
-            while(var6.hasNext()) {
-                StatusEffectInstance statusEffectInstance = (StatusEffectInstance)var6.next();
+            for (StatusEffectInstance statusEffectInstance : list) {
                 if (statusEffectInstance.getEffectType().isInstant()) {
                     statusEffectInstance.getEffectType().applyInstantEffect(playerEntity, playerEntity, user, statusEffectInstance.getAmplifier(), 1.0);
                 } else {
@@ -82,5 +79,4 @@ public class WaterTube extends Item {
         world.emitGameEvent(user, GameEvent.DRINKING_FINISH, user.getCameraBlockPos());
         return stack;
     }
-
 }

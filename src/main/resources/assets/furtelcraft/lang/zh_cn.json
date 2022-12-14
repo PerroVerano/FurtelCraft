@@ -26,5 +26,9 @@
   "item.furtelcraft.listener": "监听器",
   "item.furtelcraft.handler": "处理机",
   "item.furtelcraft.cpu": "CPU",
-  "item.furtelcraft.storage_card": "储存卡"
+  "item.furtelcraft.storage_card": "储存卡",
+  "item.furtelcraft.fox_dna_tube.tooltip": "序列WFF8OZR",
+  "item.furtelcraft.dragon_dna_tube.tooltip": "序列GDS9LFW",
+  "item.furtelcraft.gray_wolf_dna_tube.tooltip": "序列 WWF7GFW",
+  "item.furtelcraft.white_wolf_dna_tube.tooltip": "序列 WWF7WPW"
 }
