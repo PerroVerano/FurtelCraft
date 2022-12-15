@@ -2,8 +2,10 @@ package com.vtwo.furtelcraft.furtelcraft.init;
 
 import com.vtwo.furtelcraft.furtelcraft.blockentities.CentrifugeEntity;
 import com.vtwo.furtelcraft.furtelcraft.blockentities.MagneticParticleProcessorEntity;
+import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
 import com.vtwo.furtelcraft.furtelcraft.blocks.Centrifuge;
 import com.vtwo.furtelcraft.furtelcraft.blocks.MagneticParticleProcessor;
+import com.vtwo.furtelcraft.furtelcraft.blocks.TubeHolder;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -22,6 +24,7 @@ public class BlockInit {
     //nonOpaque:不完整方块渲染
     public static final Identifier M_P_P = new Identifier(MOD_ID,"magnetic_particle_processor");
     public static final Identifier CENTRIFUGE_ID = new Identifier(MOD_ID,"centrifuge");
+    public static final Identifier TUBE_HOLDER_ID = new Identifier(MOD_ID,"tube_holder");
     //===============//
     public static final MagneticParticleProcessor MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticleProcessor(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem MAGNETIC_PARTICLE_PROCESSOR_ITEM = new BlockItem(MAGNETIC_PARTICLE_PROCESSOR,new FabricItemSettings());
@@ -30,6 +33,10 @@ public class BlockInit {
     public static final Centrifuge CENTRIFUGE = new Centrifuge(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem CENTRIFUGE_ITEM = new BlockItem(CENTRIFUGE,new FabricItemSettings());
     public static final BlockEntityType<CentrifugeEntity> CENTRIFUGE_ENTITY = FabricBlockEntityTypeBuilder.create(CentrifugeEntity::new,CENTRIFUGE).build(null);
+    //================//
+    public static final TubeHolder TUBE_HOLDER = new TubeHolder(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(4.0F,6.0F));
+    public static final BlockItem TUBE_HOLDER_ITEM = new BlockItem(TUBE_HOLDER,new FabricItemSettings());
+    public static final BlockEntityType<TubeHolderEntity> TUBE_HOLDER_ENTITY = FabricBlockEntityTypeBuilder.create(TubeHolderEntity::new,TUBE_HOLDER).build(null);
 
 
     public static final ItemGroup FC_BLOCK_GROUP = FabricItemGroupBuilder.create(
@@ -38,6 +45,7 @@ public class BlockInit {
             .appendItems(itemStacks -> {
                 itemStacks.add(new ItemStack(BlockInit.MAGNETIC_PARTICLE_PROCESSOR_ITEM));
                 itemStacks.add(new ItemStack(BlockInit.CENTRIFUGE_ITEM));
+                itemStacks.add(new ItemStack(BlockInit.TUBE_HOLDER_ITEM));
             })
             .build();
 
@@ -49,5 +57,9 @@ public class BlockInit {
         Registry.register(Registry.BLOCK,CENTRIFUGE_ID,CENTRIFUGE);
         Registry.register(Registry.ITEM,CENTRIFUGE_ID,CENTRIFUGE_ITEM);
         Registry.register(Registry.BLOCK_ENTITY_TYPE,CENTRIFUGE_ID,CENTRIFUGE_ENTITY);
+
+        Registry.register(Registry.BLOCK,TUBE_HOLDER_ID,TUBE_HOLDER);
+        Registry.register(Registry.ITEM,TUBE_HOLDER_ID,TUBE_HOLDER_ITEM);
+        Registry.register(Registry.BLOCK_ENTITY_TYPE,TUBE_HOLDER_ID,TUBE_HOLDER_ENTITY);
     }
 }

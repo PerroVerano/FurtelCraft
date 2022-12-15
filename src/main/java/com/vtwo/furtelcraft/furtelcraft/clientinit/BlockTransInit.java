@@ -8,5 +8,6 @@ public class BlockTransInit {
     public static void init(){
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.MAGNETIC_PARTICLE_PROCESSOR, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.CENTRIFUGE,RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.TUBE_HOLDER,RenderLayer.getTranslucent());
     }
 }

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,lit=false": { "model": "furtelcraft:block/tube_holder" },
+    "facing=south,lit=false": { "model": "furtelcraft:block/tube_holder", "y": 180 },
+    "facing=west,lit=false":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
+    "facing=east,lit=false":  { "model": "furtelcraft:block/tube_holder", "y": 90 },
+    "facing=north,lit=true": { "model": "furtelcraft:block/tube_holder" },
+    "facing=south,lit=true": { "model": "furtelcraft:block/tube_holder", "y": 180 },
+    "facing=west,lit=true":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
+    "facing=east,lit=true":  { "model": "furtelcraft:block/tube_holder", "y": 90 }
+  }
+}

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "furtelcraft:magnetic_particle_processor",
-    "furtelcraft:centrifuge"
+    "furtelcraft:centrifuge",
+    "furtelcraft:tube_holder"
   ]
 }
