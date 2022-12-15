@@ -42,22 +42,25 @@ public class SpecimenTubeRecipe extends SpecialCraftingRecipe {
         boolean hasWolfMeat = false;
         boolean hasWaterTube = false;
         ItemStack stack = new ItemStack(ItemInit.SPECIMEN_TUBE);
-        NbtCompound nbt = stack.getOrCreateSubNbt("Sequence");
+        NbtCompound nbt = new NbtCompound();
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack = inventory.getStack(i);
-            count++;
-            if (itemStack.getItem() == ItemInit.WOLF_MEAT) {
-                hasWolfMeat = true;
-            }
-            else if (itemStack.getItem() == ItemInit.WATER_TUBE) {
-                hasWaterTube = true;
+            if (!itemStack.isEmpty()) {
+                count++;
+                if (itemStack.getItem() == ItemInit.WOLF_MEAT) {
+                    hasWolfMeat = true;
+                }
+                else if (itemStack.getItem() == ItemInit.WATER_TUBE) {
+                    hasWaterTube = true;
+                }
             }
         }
         if (hasWolfMeat && hasWaterTube && count == 2) {
             nbt.putString("Sequence","WWF7");
+            stack.setNbt(nbt);
             return stack;
         }
-        return stack;
+        return ItemStack.EMPTY;
     }
 
     @Override
