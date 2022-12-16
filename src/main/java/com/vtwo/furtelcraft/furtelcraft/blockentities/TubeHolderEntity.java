@@ -59,8 +59,8 @@ public class TubeHolderEntity extends BlockEntity implements ImplementedInventor
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
-        Inventories.writeNbt(nbt,this.inventory);
         super.writeNbt(nbt);
+        Inventories.writeNbt(nbt,this.inventory);
     }
 
     @Override

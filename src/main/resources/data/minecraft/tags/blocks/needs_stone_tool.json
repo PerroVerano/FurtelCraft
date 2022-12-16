@@ -3,6 +3,7 @@
   "values": [
     "furtelcraft:magnetic_particle_processor",
     "furtelcraft:centrifuge",
-    "furtelcraft:tube_holder"
+    "furtelcraft:tube_holder",
+    "furtelcraft:dna_mixer"
   ]
 }
