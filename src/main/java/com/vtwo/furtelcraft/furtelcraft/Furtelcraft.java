@@ -1,9 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft;
 
-import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
-import com.vtwo.furtelcraft.furtelcraft.init.RecipeInit;
-import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
+import com.vtwo.furtelcraft.furtelcraft.init.*;
 import net.fabricmc.api.ModInitializer;
 
 public class Furtelcraft implements ModInitializer {
@@ -14,5 +11,6 @@ public class Furtelcraft implements ModInitializer {
         BlockInit.init();
         ScreenInit.init();
         RecipeInit.init();
+        TagInit.init();
     }
 }

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "furtelcraft:empty_tube",
+    "furtelcraft:absolute_alcohol_tube",
+    "furtelcraft:buffer_tube",
+    "furtelcraft:combine_dna_tube",
+    "furtelcraft:dragon_dna_tube",
+    "furtelcraft:fox_dna_tube",
+    "furtelcraft:gray_wolf_dna_tube",
+    "furtelcraft:proteinase_k_tube",
+    "furtelcraft:sediment_dna_tube",
+    "furtelcraft:specimen_tube",
+    "furtelcraft:splitting_dna_tube",
+    "furtelcraft:water_tube",
+    "furtelcraft:white_wolf_dna_tube"
+  ]
+}

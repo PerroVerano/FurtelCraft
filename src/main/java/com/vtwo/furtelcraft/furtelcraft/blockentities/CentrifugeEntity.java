@@ -50,7 +50,7 @@ public class CentrifugeEntity extends BlockEntity implements NamedScreenHandlerF
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
         Inventories.writeNbt(nbt,this.inventory);
+        super.writeNbt(nbt);
     }
 }

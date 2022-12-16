@@ -105,7 +105,7 @@ public interface ImplementedInventory extends Inventory {
 
     /**
      * 将方块状态标记为脏。
-     * 更改物品栏之后必须调用，所以游戏正确地储存物品栏内容并提取邻近方块物品栏改变。
+     * markDirty()方法会在栏位发生任何变化的时候调用，提醒游戏保存一下。
      */
     @Override
     default void markDirty() {

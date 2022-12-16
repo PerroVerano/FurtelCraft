@@ -1,17 +1,29 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
+import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
+import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class TubeHolder extends Block {
+public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     public static final VoxelShape NORTH_SHAPE;
     public static final VoxelShape EAST_SHAPE;
     static {
@@ -65,5 +77,39 @@ public class TubeHolder extends Block {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return getShape(state);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TubeHolderEntity(pos,state);
+    }
+
+
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof TubeHolderEntity) {
+                ItemScatterer.spawn(world,pos, (Inventory) blockEntity);
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state,world,pos,newState,moved);
+        }
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (world.getBlockEntity(pos) instanceof TubeHolderEntity tubeHolderEntity) {
+            tubeHolderEntity.use(player);
+            return ActionResult.SUCCESS;
+        }
+        return ActionResult.SUCCESS;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, BlockInit.TUBE_HOLDER_ENTITY,TubeHolderEntity::tick);
     }
 }

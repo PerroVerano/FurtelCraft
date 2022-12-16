@@ -2,6 +2,7 @@ package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
+import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -39,13 +40,13 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,0,31,35){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == ItemInit.SPLITTING_DNA_TUBE;
+                return stack.isIn(TagInit.TUBE_ITEM);
             }
         });
         this.addSlot(new Slot(this.inventory,1,54,35){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == ItemInit.BUFFER_TUBE;
+                return stack.isIn(TagInit.TUBE_ITEM);
             }
         });
         this.addSlot(new Slot(this.inventory,2,109,35){

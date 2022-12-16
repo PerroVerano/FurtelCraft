@@ -78,7 +78,7 @@ public class Centrifuge extends BlockWithEntity implements BlockEntityProvider{
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof MagneticParticleProcessorEntity) {
+            if (blockEntity instanceof CentrifugeEntity) {
                 ItemScatterer.spawn(world,pos, (Inventory) blockEntity);
                 world.updateComparators(pos,this);
             }
