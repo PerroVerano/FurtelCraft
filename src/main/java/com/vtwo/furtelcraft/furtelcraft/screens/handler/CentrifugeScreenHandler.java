@@ -7,43 +7,72 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class CentrifugeScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    private final PropertyDelegate propertyDelegate;
 
     public CentrifugeScreenHandler(int syncId,PlayerInventory playerInventory){
-        this(syncId,playerInventory,new SimpleInventory(4));
+        this(syncId,playerInventory,new SimpleInventory(4),new ArrayPropertyDelegate(1));
     }
 
-    public CentrifugeScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+    public CentrifugeScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory,PropertyDelegate propertyDelegate) {
         super(ScreenInit.CENTRIFUGE_SCREEN_HANDLER,syncId);
         checkSize(inventory,4);
         this.inventory = inventory;
+        this.propertyDelegate = propertyDelegate;
+        this.addProperties(propertyDelegate);
+        checkDataCount(propertyDelegate,1);
         inventory.onOpen(playerInventory.player);
         this.addSlot(new Slot(this.inventory,0,79,20){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return false;
+            }
+
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return false;
             }
         });
         this.addSlot(new Slot(this.inventory,1,52,62){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return false;
+            }
+
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return false;
             }
         });
         this.addSlot(new Slot(this.inventory,2,106,62){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return false;
+            }
+
+            @Override
+            public boolean canTakeItems(PlayerEntity playerEntity) {
+                return false;
             }
         });
         this.addSlot(new Slot(this.inventory,3,79,43){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return false;
+                if (propertyDelegate.get(0) != 0) {
+                    return false;
+                }
+                return stack.isIn(TagInit.TUBE_ITEM);
+            }
+
+            @Override
+            public int getMaxItemCount() {
+                return 1;
             }
         });
         int i;
@@ -87,5 +116,9 @@ public class CentrifugeScreenHandler extends ScreenHandler {
         }
 
         return newStack;
+    }
+
+    public int getTick() {
+        return propertyDelegate.get(0);
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 
 public class RecipeInit {
-    public static final SpecialRecipeSerializer<SpecimenTubeRecipe> SPECIMEN_TUBE_RECIPE = RecipeSerializer.register("recipe_specimen_tube",new SpecialRecipeSerializer<>(SpecimenTubeRecipe::new));
+    //public static final SpecialRecipeSerializer<SpecimenTubeRecipe> SPECIMEN_TUBE_RECIPE = RecipeSerializer.register("recipe_specimen_tube",new SpecialRecipeSerializer<>(SpecimenTubeRecipe::new));
 
     public static void init(){
 

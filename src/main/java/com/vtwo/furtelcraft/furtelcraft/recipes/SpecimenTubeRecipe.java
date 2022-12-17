@@ -2,7 +2,6 @@ package com.vtwo.furtelcraft.furtelcraft.recipes;
 
 import com.google.common.collect.Lists;
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
-import com.vtwo.furtelcraft.furtelcraft.init.RecipeInit;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -75,6 +74,6 @@ public class SpecimenTubeRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipeInit.SPECIMEN_TUBE_RECIPE;
+        return null;
     }
 }
