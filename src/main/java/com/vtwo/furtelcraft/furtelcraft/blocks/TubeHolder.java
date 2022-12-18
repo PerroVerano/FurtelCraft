@@ -2,6 +2,7 @@ package com.vtwo.furtelcraft.furtelcraft.blocks;
 
 import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
+import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -24,6 +26,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
+    public static final IntProperty LEVEL = IntProperty.of("level",0,3);
     public static final VoxelShape NORTH_SHAPE;
     public static final VoxelShape EAST_SHAPE;
     static {
@@ -42,6 +45,7 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING,LIT);
+        builder.add(LEVEL);
     }
 
     static {
@@ -101,7 +105,8 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof TubeHolderEntity tubeHolderEntity) {
-            tubeHolderEntity.use(player);
+            tubeHolderEntity.use(state,world,pos,player);
+
             return ActionResult.SUCCESS;
         }
         return ActionResult.SUCCESS;

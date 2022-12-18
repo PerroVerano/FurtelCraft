@@ -4,6 +4,7 @@ import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.inventory.ImplementedInventory;
 import com.vtwo.furtelcraft.furtelcraft.screens.handler.CentrifugeScreenHandler;
+import com.vtwo.furtelcraft.furtelcraft.utils.NbtSequenceItemLists;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -87,7 +88,6 @@ public class CentrifugeEntity extends BlockEntity implements NamedScreenHandlerF
         if (!entity.inventory.get(3).isEmpty()) {
             ItemStack item = entity.inventory.get(3);
             if (item.isOf(ItemInit.SPECIMEN_TUBE) && item.hasNbt()) {
-                NbtCompound nbt = item.getNbt();
                 entity.tick++;
                 if (entity.tick == 20 * 4){
                     entity.inventory.set(0, item);
@@ -104,8 +104,7 @@ public class CentrifugeEntity extends BlockEntity implements NamedScreenHandlerF
                     entity.tick = 0;
                     entity.inventory.set(2,ItemStack.EMPTY);
                     entity.inventory.set(3,ItemStack.EMPTY);
-                    ItemStack result = ItemInit.DRAGON_DNA_TUBE.getDefaultStack();
-                    result.setNbt(nbt);
+                    ItemStack result = NbtSequenceItemLists.getSequenceNbtResult(item);
                     entity.inventory.set(3, result);
                 }
 

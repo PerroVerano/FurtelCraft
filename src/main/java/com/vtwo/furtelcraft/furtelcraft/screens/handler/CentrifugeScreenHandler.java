@@ -64,9 +64,6 @@ public class CentrifugeScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,3,79,43){
             @Override
             public boolean canInsert(ItemStack stack) {
-                if (propertyDelegate.get(0) != 0) {
-                    return false;
-                }
                 return stack.isIn(TagInit.TUBE_ITEM);
             }
 

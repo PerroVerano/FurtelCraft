@@ -1,12 +1,39 @@
 {
   "variants": {
-    "facing=north,lit=false": { "model": "furtelcraft:block/tube_holder" },
-    "facing=south,lit=false": { "model": "furtelcraft:block/tube_holder", "y": 180 },
-    "facing=west,lit=false":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
-    "facing=east,lit=false":  { "model": "furtelcraft:block/tube_holder", "y": 90 },
-    "facing=north,lit=true": { "model": "furtelcraft:block/tube_holder" },
-    "facing=south,lit=true": { "model": "furtelcraft:block/tube_holder", "y": 180 },
-    "facing=west,lit=true":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
-    "facing=east,lit=true":  { "model": "furtelcraft:block/tube_holder", "y": 90 }
+    "facing=north,lit=false,level=0": { "model": "furtelcraft:block/tube_holder" },
+    "facing=south,lit=false,level=0": { "model": "furtelcraft:block/tube_holder", "y": 180 },
+    "facing=west,lit=false,level=0":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
+    "facing=east,lit=false,level=0":  { "model": "furtelcraft:block/tube_holder", "y": 90 },
+    "facing=north,lit=true,level=0": { "model": "furtelcraft:block/tube_holder" },
+    "facing=south,lit=true,level=0": { "model": "furtelcraft:block/tube_holder", "y": 180 },
+    "facing=west,lit=true,level=0":  { "model": "furtelcraft:block/tube_holder", "y": 270 },
+    "facing=east,lit=true,level=0":  { "model": "furtelcraft:block/tube_holder", "y": 90 },
+
+    "facing=north,lit=false,level=1": { "model": "furtelcraft:block/tube_holder_s1" },
+    "facing=south,lit=false,level=1": { "model": "furtelcraft:block/tube_holder_s1", "y": 180 },
+    "facing=west,lit=false,level=1":  { "model": "furtelcraft:block/tube_holder_s1", "y": 270 },
+    "facing=east,lit=false,level=1":  { "model": "furtelcraft:block/tube_holder_s1", "y": 90 },
+    "facing=north,lit=true,level=1": { "model": "furtelcraft:block/tube_holder_s1" },
+    "facing=south,lit=true,level=1": { "model": "furtelcraft:block/tube_holder_s1", "y": 180 },
+    "facing=west,lit=true,level=1":  { "model": "furtelcraft:block/tube_holder_s1", "y": 270 },
+    "facing=east,lit=true,level=1":  { "model": "furtelcraft:block/tube_holder_s1", "y": 90 },
+
+    "facing=north,lit=false,level=2": { "model": "furtelcraft:block/tube_holder_s2" },
+    "facing=south,lit=false,level=2": { "model": "furtelcraft:block/tube_holder_s2", "y": 180 },
+    "facing=west,lit=false,level=2":  { "model": "furtelcraft:block/tube_holder_s2", "y": 270 },
+    "facing=east,lit=false,level=2":  { "model": "furtelcraft:block/tube_holder_s2", "y": 90 },
+    "facing=north,lit=true,level=2": { "model": "furtelcraft:block/tube_holder_s2" },
+    "facing=south,lit=true,level=2": { "model": "furtelcraft:block/tube_holder_s2", "y": 180 },
+    "facing=west,lit=true,level=2":  { "model": "furtelcraft:block/tube_holder_s2", "y": 270 },
+    "facing=east,lit=true,level=2":  { "model": "furtelcraft:block/tube_holder_s2", "y": 90 },
+
+    "facing=north,lit=false,level=3": { "model": "furtelcraft:block/tube_holder_s3" },
+    "facing=south,lit=false,level=3": { "model": "furtelcraft:block/tube_holder_s3", "y": 180 },
+    "facing=west,lit=false,level=3":  { "model": "furtelcraft:block/tube_holder_s3", "y": 270 },
+    "facing=east,lit=false,level=3":  { "model": "furtelcraft:block/tube_holder_s3", "y": 90 },
+    "facing=north,lit=true,level=3": { "model": "furtelcraft:block/tube_holder_s3" },
+    "facing=south,lit=true,level=3": { "model": "furtelcraft:block/tube_holder_s3", "y": 180 },
+    "facing=west,lit=true,level=3":  { "model": "furtelcraft:block/tube_holder_s3", "y": 270 },
+    "facing=east,lit=true,level=3":  { "model": "furtelcraft:block/tube_holder_s3", "y": 90 }
   }
 }
