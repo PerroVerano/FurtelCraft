@@ -90,10 +90,11 @@ public class DNAMixerEntity extends BlockEntity implements NamedScreenHandlerFac
                 entity.tick++;
                 if (entity.tick == 20 * 36) {
                     entity.tick = 0;
+                    ItemStack temp = entity.inventory.get(0).copy();
                     entity.inventory.get(0).decrement(1);
                     entity.inventory.get(1).decrement(1);
                     if (entity.inventory.get(2).isEmpty()) {
-                        entity.inventory.set(2, NbtSequenceItemLists.getSequenceNbtItemStack(entity.inventory.get(0)));
+                        entity.inventory.set(2, NbtSequenceItemLists.getSequenceNbtItemStack(temp));
                     }
                     else {
                         entity.inventory.get(2).increment(1);
