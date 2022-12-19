@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "furtelcraft:item/kitknife"
+    "layer0": "furtelcraft:item/specimen_knife"
   }
 }

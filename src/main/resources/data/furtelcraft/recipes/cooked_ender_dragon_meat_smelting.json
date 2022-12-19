@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 5,
+  "cookingtime": 300,
+  "ingredient": {
+    "item": "furtelcraft:ender_dragon_meat"
+  },
+  "result": "furtelcraft:cooked_ender_dragon_meat"
+}

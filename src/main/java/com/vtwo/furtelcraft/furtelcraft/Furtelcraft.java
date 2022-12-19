@@ -1,5 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft;
 
+import com.vtwo.furtelcraft.furtelcraft.events.loots.LootTableInject;
 import com.vtwo.furtelcraft.furtelcraft.init.*;
 import net.fabricmc.api.ModInitializer;
 
@@ -12,5 +13,6 @@ public class Furtelcraft implements ModInitializer {
         ScreenInit.init();
         RecipeInit.init();
         TagInit.init();
+        LootTableInject.init();
     }
 }

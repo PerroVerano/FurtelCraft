@@ -5,9 +5,12 @@ import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
+
 public class TagInit {
     //=========ITEM TAGS=========//
-    public static final TagKey<Item> TUBE_ITEM = TagKey.of(Registry.ITEM_KEY,new Identifier("furtelcraft","tube_item"));
+    public static final TagKey<Item> TUBE_ITEM = TagKey.of(Registry.ITEM_KEY,new Identifier(MOD_ID,"tube_item"));
+    public static final TagKey<Item> IS_SPECIMEN_MEAT_ITEM = TagKey.of(Registry.ITEM_KEY,new Identifier(MOD_ID,"is_specimen_meat_item"));
 
     //=========BLOCK TAGS=========//
 

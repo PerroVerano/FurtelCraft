@@ -11,7 +11,7 @@ public class NbtSequenceItemLists {
     //返回带有序列的样本试管
     public static ItemStack getSequenceNbtItemStack(ItemStack stack) {
         NbtCompound nbt = new NbtCompound();
-        if (stack.isOf(ItemInit.WOLF_MEAT_PIECE)) {
+        if (stack.isOf(ItemInit.WOLF_MEAT_SPECIMEN)) {
             ItemStack specimentube = ItemInit.SPECIMEN_TUBE.getDefaultStack();
             nbt.putString("Sequence","WWF7");
             specimentube.setNbt(nbt);
@@ -23,7 +23,7 @@ public class NbtSequenceItemLists {
     public static NbtList setSequenceNbtList(ItemStack stack) {
         NbtList baseNbt = new NbtList();
         NbtCompound nbt = new NbtCompound();
-        if (stack.isOf(ItemInit.WOLF_MEAT_PIECE)) {
+        if (stack.isOf(ItemInit.WOLF_MEAT_SPECIMEN)) {
             nbt.putString("Sequence","WWF7");
             baseNbt.add(nbt);
         }

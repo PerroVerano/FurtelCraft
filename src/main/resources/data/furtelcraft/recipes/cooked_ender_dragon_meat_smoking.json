@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "experience": 5,
+  "cookingtime": 150,
+  "ingredient": {
+    "item": "furtelcraft:ender_dragon_meat"
+  },
+  "result": "furtelcraft:cooked_ender_dragon_meat"
+}
