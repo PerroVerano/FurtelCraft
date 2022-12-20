@@ -10,6 +10,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
-    public static final IntProperty LEVEL = IntProperty.of("level",0,3);
+    public static final IntProperty LEVEL = IntProperty.of("level",0,7);
     public static final VoxelShape NORTH_SHAPE;
     public static final VoxelShape EAST_SHAPE;
     static {
@@ -106,8 +107,14 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof TubeHolderEntity tubeHolderEntity) {
             tubeHolderEntity.use(state,world,pos,player);
-
-            return ActionResult.SUCCESS;
+            if (!world.isClient) {
+                if (player.isSneaking()) {
+                NamedScreenHandlerFactory namedScreenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+                if (namedScreenHandlerFactory != null) {
+                    player.openHandledScreen(namedScreenHandlerFactory);
+                    }
+                }
+            }
         }
         return ActionResult.SUCCESS;
     }
