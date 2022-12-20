@@ -1,10 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.clientinit;
 
 import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
-import com.vtwo.furtelcraft.furtelcraft.screens.CentrifugeScreen;
-import com.vtwo.furtelcraft.furtelcraft.screens.DNAMixerScreen;
-import com.vtwo.furtelcraft.furtelcraft.screens.MagneticParticleProcessorScreen;
-import com.vtwo.furtelcraft.furtelcraft.screens.TubeHolderScreen;
+import com.vtwo.furtelcraft.furtelcraft.screens.*;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 
 public class ScreenClientInit {
@@ -14,5 +11,6 @@ public class ScreenClientInit {
         HandledScreens.register(ScreenInit.CENTRIFUGE_SCREEN_HANDLER, CentrifugeScreen::new);
         HandledScreens.register(ScreenInit.DNA_MIXER_SCREEN_HANDLER, DNAMixerScreen::new);
         HandledScreens.register(ScreenInit.TUBE_HOLDER_SCREEN_HANDLER, TubeHolderScreen::new);
+        HandledScreens.register(ScreenInit.RACK_SCREEN_HANDLER, RackScreen::new);
     }
 }

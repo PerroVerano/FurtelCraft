@@ -10,5 +10,6 @@ public class BlockTransInit {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.CENTRIFUGE,RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.TUBE_HOLDER,RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.DNA_MIXER,RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.RACK,RenderLayer.getTranslucent());
     }
 }

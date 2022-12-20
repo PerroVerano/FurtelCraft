@@ -1,8 +1,8 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
+import com.vtwo.furtelcraft.furtelcraft.blockentities.RackEntity;
 import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,7 +14,6 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -26,16 +25,25 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
-    public static final IntProperty LEVEL = IntProperty.of("level",0,7);
+public class Rack extends BlockWithEntity implements BlockEntityProvider {
     public static final VoxelShape NORTH_SHAPE;
     public static final VoxelShape EAST_SHAPE;
+    public static final VoxelShape SOUTH_SHAPE;
+    public static final VoxelShape WEST_SHAPE;
     static {
-        NORTH_SHAPE = Block.createCuboidShape(1.0,0.0,5.0,15.0,9.0,11.0);
-        EAST_SHAPE = Block.createCuboidShape(5.0,0.0,1.0,11.0,9.0,15.0);
+        NORTH_SHAPE = Block.createCuboidShape(-15.0,0.0,4.0,15.0,16.0,16.0);
+        EAST_SHAPE = Block.createCuboidShape(0.0,0.0,-15.0,12.0,16.0,15.0);
+        SOUTH_SHAPE = Block.createCuboidShape(1.0,0.0,0.0,31.0,16.0,12.0);
+        WEST_SHAPE = Block.createCuboidShape(4.0,0.0,1.0,16.0,16.0,31.0);
     }
-    public TubeHolder(Settings settings) {
+    public Rack(Settings settings) {
         super(settings);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new RackEntity(pos,state);
     }
 
     //方块面向玩家 —— 开始
@@ -46,7 +54,6 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING,LIT);
-        builder.add(LEVEL);
     }
 
     static {
@@ -69,13 +76,29 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
         return BlockRenderType.MODEL;
     }
 
+    @Override
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof RackEntity) {
+                ItemScatterer.spawn(world,pos, (Inventory) blockEntity);
+                world.updateComparators(pos,this);
+            }
+            super.onStateReplaced(state,world,pos,newState,moved);
+        }
+    }
+
+
     private VoxelShape getShape (BlockState state) {
         Direction direction = state.get(FACING);
-        if (direction == Direction.NORTH || direction == Direction.SOUTH) {
+        if (direction == Direction.NORTH) {
             return NORTH_SHAPE;
-        }
-        else {
+        } else if (direction == Direction.SOUTH) {
+            return SOUTH_SHAPE;
+        } else if (direction == Direction.EAST) {
             return EAST_SHAPE;
+        } else {
+            return WEST_SHAPE;
         }
     }
 
@@ -84,29 +107,15 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
         return getShape(state);
     }
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new TubeHolderEntity(pos,state);
-    }
-
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof TubeHolderEntity) {
-                ItemScatterer.spawn(world,pos, (Inventory) blockEntity);
-                world.updateComparators(pos,this);
-            }
-            super.onStateReplaced(state,world,pos,newState,moved);
-        }
-    }
-
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.getBlockEntity(pos) instanceof TubeHolderEntity tubeHolderEntity) {
-            tubeHolderEntity.use(state,world,pos,player);
+        if (world.getBlockEntity(pos) instanceof RackEntity rackEntity) {
+            if (!world.isClient) {
+                NamedScreenHandlerFactory namedScreenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+                if (namedScreenHandlerFactory != null) {
+                    player.openHandledScreen(namedScreenHandlerFactory);
+                }
+            }
         }
         return ActionResult.SUCCESS;
     }
@@ -114,6 +123,6 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockInit.TUBE_HOLDER_ENTITY,TubeHolderEntity::tick);
+        return checkType(type, BlockInit.RACK_ENTITY,RackEntity::tick);
     }
 }

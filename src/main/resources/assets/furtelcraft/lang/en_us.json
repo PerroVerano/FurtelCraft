@@ -39,5 +39,6 @@
   "item.furtelcraft.white_wolf_dna_tube.tooltip": "Sequence WWF7WPW",
   "item.furtelcraft.specimen_tube.tooltip.sequence": "Sequence ",
   "block.furtelcraft.tube_holder": "Tube Holder[BETA]",
-  "block.furtelcraft.dna_mixer": "Specimen Maker"
+  "block.furtelcraft.dna_mixer": "Specimen Maker",
+  "block.furtelcraft.rack": "Rack"
 }

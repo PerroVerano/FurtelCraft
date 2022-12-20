@@ -1,13 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.init;
 
-import com.vtwo.furtelcraft.furtelcraft.blockentities.CentrifugeEntity;
-import com.vtwo.furtelcraft.furtelcraft.blockentities.DNAMixerEntity;
-import com.vtwo.furtelcraft.furtelcraft.blockentities.MagneticParticleProcessorEntity;
-import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
-import com.vtwo.furtelcraft.furtelcraft.blocks.Centrifuge;
-import com.vtwo.furtelcraft.furtelcraft.blocks.DNAMixer;
-import com.vtwo.furtelcraft.furtelcraft.blocks.MagneticParticleProcessor;
-import com.vtwo.furtelcraft.furtelcraft.blocks.TubeHolder;
+import com.vtwo.furtelcraft.furtelcraft.blockentities.*;
+import com.vtwo.furtelcraft.furtelcraft.blocks.*;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -28,6 +22,7 @@ public class BlockInit {
     public static final Identifier CENTRIFUGE_ID = new Identifier(MOD_ID,"centrifuge");
     public static final Identifier TUBE_HOLDER_ID = new Identifier(MOD_ID,"tube_holder");
     public static final Identifier DNA_MIXER_ID = new Identifier(MOD_ID,"dna_mixer");
+    public static final Identifier RACK_ID = new Identifier(MOD_ID,"rack");
     //===============//
     public static final MagneticParticleProcessor MAGNETIC_PARTICLE_PROCESSOR = new MagneticParticleProcessor(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem MAGNETIC_PARTICLE_PROCESSOR_ITEM = new BlockItem(MAGNETIC_PARTICLE_PROCESSOR,new FabricItemSettings());
@@ -44,6 +39,10 @@ public class BlockInit {
     public static final DNAMixer DNA_MIXER = new DNAMixer(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
     public static final BlockItem DNA_MIXER_ITEM = new BlockItem(DNA_MIXER,new FabricItemSettings());
     public static final BlockEntityType<DNAMixerEntity> DNA_MIXER_ENTITY = FabricBlockEntityTypeBuilder.create(DNAMixerEntity::new,DNA_MIXER).build(null);
+    //================//
+    public static final Rack RACK = new Rack(AbstractBlock.Settings.of(Material.METAL).nonOpaque().requiresTool().strength(5.0F,8.0F));
+    public static final BlockItem RACK_ITEM = new BlockItem(RACK,new FabricItemSettings());
+    public static final BlockEntityType<RackEntity> RACK_ENTITY = FabricBlockEntityTypeBuilder.create(RackEntity::new,RACK).build(null);
 
 
     public static final ItemGroup FC_BLOCK_GROUP = FabricItemGroupBuilder.create(
@@ -54,6 +53,7 @@ public class BlockInit {
                 itemStacks.add(new ItemStack(CENTRIFUGE_ITEM));
                 itemStacks.add(new ItemStack(TUBE_HOLDER_ITEM));
                 itemStacks.add(new ItemStack(DNA_MIXER_ITEM));
+                itemStacks.add(new ItemStack(RACK_ITEM));
             })
             .build();
 
@@ -73,5 +73,9 @@ public class BlockInit {
         Registry.register(Registry.BLOCK,DNA_MIXER_ID,DNA_MIXER);
         Registry.register(Registry.ITEM,DNA_MIXER_ID,DNA_MIXER_ITEM);
         Registry.register(Registry.BLOCK_ENTITY_TYPE,DNA_MIXER_ID,DNA_MIXER_ENTITY);
+
+        Registry.register(Registry.BLOCK,RACK_ID,RACK);
+        Registry.register(Registry.ITEM,RACK_ID,RACK_ITEM);
+        Registry.register(Registry.BLOCK_ENTITY_TYPE,RACK_ID,RACK_ENTITY);
     }
 }
