@@ -13,11 +13,11 @@ public class NbtSequenceItemLists {
         NbtCompound nbt = new NbtCompound();
         ItemStack specimentube = ItemInit.SPECIMEN_TUBE.getDefaultStack();
         if (stack.isOf(ItemInit.WOLF_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence","WWF7");
+            nbt.putString("Sequence",MammaliaLists.getWolfRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
         } else if (stack.isOf(ItemInit.FOX_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence","WFF8");
+            nbt.putString("Sequence",MammaliaLists.getFoxRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
         } else if (stack.isOf(ItemInit.ENDER_DRAGON_MEAT_SPECIMEN)) {
