@@ -83,6 +83,7 @@ public class MagneticParticleProcessorEntity extends BlockEntity implements Name
     };
 
     public static void tick(World world,BlockPos blockPos,BlockState blockState,MagneticParticleProcessorEntity entity){
+        NbtCompound nbt;
         if (entity.inventory.get(3).isOf(Items.BLAZE_POWDER)){
             if (entity.energy < 12){
                 entity.inventory.get(3).decrement(1);
@@ -90,15 +91,18 @@ public class MagneticParticleProcessorEntity extends BlockEntity implements Name
             }
         }
         if (entity.energy != 0 && !entity.inventory.get(0).isEmpty() && !entity.inventory.get(1).isEmpty() && entity.inventory.get(2).getCount() < entity.inventory.get(2).getMaxCount()){
-            if (entity.inventory.get(0).isOf(ItemInit.SPLITTING_DNA_TUBE) && entity.inventory.get(1).isOf(ItemInit.BUFFER_TUBE)){
+            if (entity.inventory.get(0).isOf(ItemInit.SPLITTING_DNA_TUBE) && entity.inventory.get(1).isOf(ItemInit.BUFFER_TUBE) && entity.inventory.get(0).hasNbt()){
                 entity.tick++;
                 if (entity.tick == 20 * 10){
                     entity.tick = 0;
                     --entity.energy;
+                    nbt = entity.inventory.get(0).getNbt();
                     entity.inventory.get(0).decrement(1);
                     entity.inventory.get(1).decrement(1);
                     if (entity.inventory.get(2).isEmpty()){
-                        entity.inventory.set(2,new ItemStack(ItemInit.COMBINE_DNA_TUBE,1));
+                        ItemStack result = ItemInit.COMBINE_DNA_TUBE.getDefaultStack();
+                        result.setNbt(nbt);
+                        entity.inventory.set(2,result);
                     }
                     else {
                         entity.inventory.get(2).increment(1);

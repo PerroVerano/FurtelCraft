@@ -2,7 +2,6 @@ package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
 import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
 import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -11,16 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import org.jetbrains.annotations.Nullable;
 
 public class RackScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
     
     public RackScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId,playerInventory,new SimpleInventory(15),new ArrayPropertyDelegate(2));
+        this(syncId,playerInventory,new SimpleInventory(15),new ArrayPropertyDelegate(3));
     }
 
     public RackScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -155,5 +152,9 @@ public class RackScreenHandler extends ScreenHandler {
 
     public int getPotion(){
         return propertyDelegate.get(1);
+    }
+
+    public int getTime() {
+        return propertyDelegate.get(2);
     }
 }

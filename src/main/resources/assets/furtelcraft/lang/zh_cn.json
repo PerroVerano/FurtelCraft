@@ -37,8 +37,9 @@
   "item.furtelcraft.dragon_dna_tube.tooltip": "序列 GDS9LFW",
   "item.furtelcraft.gray_wolf_dna_tube.tooltip": "序列 WWF7GFW",
   "item.furtelcraft.white_wolf_dna_tube.tooltip": "序列 WWF7WPW",
-  "item.furtelcraft.specimen_tube.tooltip.sequence": "序列 ",
+  "item.furtelcraft.tooltip.sequence": "序列 ",
   "block.furtelcraft.tube_holder": "试管架[BETA]",
   "block.furtelcraft.dna_mixer": "样品成型机",
-  "block.furtelcraft.rack": "实验台"
+  "block.furtelcraft.rack": "实验台",
+  "item.furtelcraft.time": "静置反应 "
 }
