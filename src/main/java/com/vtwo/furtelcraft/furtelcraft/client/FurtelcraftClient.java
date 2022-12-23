@@ -1,6 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.client;
 
 import com.vtwo.furtelcraft.furtelcraft.clientinit.BlockTransInit;
+import com.vtwo.furtelcraft.furtelcraft.clientinit.EntityRendererInit;
 import com.vtwo.furtelcraft.furtelcraft.clientinit.ScreenClientInit;
 import com.vtwo.furtelcraft.furtelcraft.clientinit.KeyboardInit;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,5 +15,6 @@ public class FurtelcraftClient implements ClientModInitializer {
         BlockTransInit.init();
         ScreenClientInit.init();
         KeyboardInit.init();
+        EntityRendererInit.init();
     }
 }
