@@ -86,7 +86,7 @@ public class DNAMixerEntity extends BlockEntity implements NamedScreenHandlerFac
     };
 
     public static void tick(World world, BlockPos blockPos, BlockState blockState,DNAMixerEntity entity) {
-        if (!entity.inventory.get(0).isEmpty() && !entity.inventory.get(1).isEmpty()) {
+        if (!entity.inventory.get(0).isEmpty() && !entity.inventory.get(1).isEmpty() && entity.inventory.get(2).isEmpty()) {
             if (entity.inventory.get(0).isIn(TagInit.SPECIMEN_MEAT_ITEM) && entity.inventory.get(1).isOf(ItemInit.WATER_TUBE)) {
                 entity.tick++;
                 if (entity.tick == 20 * 36) {

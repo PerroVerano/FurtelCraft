@@ -1,5 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -8,13 +10,24 @@ import java.util.Random;
 
 public class MammaliaLists {
     static List<String> m_classes = List.of("W");
-    static List<String> m_species = List.of("W","F","C","T","E","L","D","O","P","H","S","A","R","M","Y","B");
-    static List<String> m_features = List.of("F","L","S","M","C");
+    static List<String> m_species = List.of("W","F","C","T","E","L","D","O","P","H","S","A","R","M","Y","B","X");
+    static List<String> m_features = List.of("F");
     static List<String> m_furcolor_f = List.of("G","O","Y","B","W","R","C","E","L","P");
-    static List<String> m_module = List.of("P","B","J","F","T","Z","H");
+    static List<String> m_module = List.of("B","J","F","T","Z","H");
     static List<String> m_furcolor_s = List.of("G","O","Y","B","W","R","C","E","L","P");
+    static List<String> m_module_p = List.of("P");
 
-    public static List<String> getAllLists() {
+    public static List<String> getSoildColorList() {
+        List list = new ArrayList<>();
+        list.add(m_classes);
+        list.add(m_species);
+        list.add(m_features);
+        list.add(m_furcolor_f);
+        list.add(m_module_p);
+        return (List<String>) ArrayUtils.combineLists(list, Object::toString);
+    }
+
+    public static @NotNull List<String> getAllLists() {
         List list = new ArrayList<>();
         list.add(m_classes);
         list.add(m_species);
@@ -22,7 +35,11 @@ public class MammaliaLists {
         list.add(m_furcolor_f);
         list.add(m_module);
         list.add(m_furcolor_s);
-        return (List<String>) ArrayUtils.combineLists(list, Object::toString);
+        List<String> list1 = ArrayUtils.combineLists(list, Object::toString);
+        List<String> list2 = new ArrayList<>();
+        list2.addAll(list1);
+        list2.addAll(getSoildColorList());
+        return list2;
     }
 
     public static String getMammaliaAssign(int index){
@@ -30,10 +47,10 @@ public class MammaliaLists {
         return list.get(index);
     }
 
-    public static void outputFile(){
+    public static void outputFile(String path){
         try {
             List<String> list = getAllLists();
-            File file = new File("E:/MammaliaLists.txt");
+            File file = new File(path);
             Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), StandardCharsets.UTF_8),40960);
             for (String s : list) {
                 out.write(s + "\r\n");

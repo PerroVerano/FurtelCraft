@@ -5,8 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 
-import java.util.Objects;
-
 public class NbtSequenceItemLists {
     //返回带有序列的样本试管
     public static ItemStack getSequenceNbtItemStack(ItemStack stack) {
@@ -21,7 +19,7 @@ public class NbtSequenceItemLists {
             specimentube.setNbt(nbt);
             return specimentube;
         } else if (stack.isOf(ItemInit.ENDER_DRAGON_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence","GDS9");
+            nbt.putString("Sequence",SauropsidaLists.getDragonRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
         }
@@ -41,7 +39,7 @@ public class NbtSequenceItemLists {
     public static ItemStack getSequenceNbtResult(ItemStack stack) {
         NbtCompound nbtCompound = stack.getNbt();
         assert nbtCompound != null;
-        if (Objects.equals(nbtCompound.getString("Sequence"), "WWF7")) {
+        if (nbtCompound.contains("WWFG")) {
             ItemStack wolf = ItemInit.GRAY_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;
