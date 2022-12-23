@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "123",
+    "444",
+    "4 5"
+  ],
+  "key": {
+    "1": {
+      "item": "furtelcraft:empty_tube"
+    },
+    "2": {
+      "item": "furtelcraft:cpu"
+    },
+    "3": {
+      "item": "minecraft:chest"
+    },
+    "4": {
+      "item": "minecraft:iron_ingot"
+    },
+    "5": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "furtelcraft:rack",
+    "count": 1
+  }
+}
