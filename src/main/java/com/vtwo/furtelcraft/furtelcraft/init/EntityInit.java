@@ -1,7 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.init;
 
 import com.vtwo.furtelcraft.furtelcraft.entities.TestBaseFurryMob;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -17,11 +16,18 @@ public class EntityInit {
     public static final EntityType<TestBaseFurryMob> TEST_BASE_FURRY_MOB = Registry.register(
             Registry.ENTITY_TYPE,
             TEST_BASE_FURRY_MOB_ID,
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE,TestBaseFurryMob::new).dimensions(EntityDimensions.fixed(1.75F,1F)).build()
+            FabricEntityTypeBuilder.createLiving().spawnGroup(SpawnGroup.CREATURE)
+                    .entityFactory(TestBaseFurryMob::new)
+                    .defaultAttributes(TestBaseFurryMob::createLivingAttributes)
+                    .dimensions(EntityDimensions.fixed(0.6f,1.5f))
+                    .trackRangeBlocks(64)
+                    .forceTrackedVelocityUpdates(true)
+                    .trackedUpdateRate(3)
+                    .build()
     );
 
 
     public static void init() {
-        FabricDefaultAttributeRegistry.register(TEST_BASE_FURRY_MOB, TestBaseFurryMob.createLivingAttributes());
+
     }
 }

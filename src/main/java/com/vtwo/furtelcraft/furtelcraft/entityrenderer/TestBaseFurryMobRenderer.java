@@ -7,12 +7,14 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
+import static com.vtwo.furtelcraft.furtelcraft.entitymodel.TestBaseFurryMobModel.TEST_BASE_FURRY_MOB;
 
 public class TestBaseFurryMobRenderer extends MobEntityRenderer<TestBaseFurryMob, TestBaseFurryMobModel> {
 
 
-    public TestBaseFurryMobRenderer(EntityRendererFactory.Context context, TestBaseFurryMobModel entityModel, float f) {
-        super(context, entityModel, f);
+
+    public TestBaseFurryMobRenderer(EntityRendererFactory.Context context) {
+        super(context, new TestBaseFurryMobModel(context.getPart(TEST_BASE_FURRY_MOB)), 0.5f);
     }
 
     @Override
