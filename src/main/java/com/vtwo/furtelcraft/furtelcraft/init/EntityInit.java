@@ -11,7 +11,7 @@ import net.minecraft.util.registry.Registry;
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
 
 public class EntityInit {
-    private static final Identifier TEST_BASE_FURRY_MOB_ID = new Identifier(MOD_ID,"test_base_furry_mob");
+    private static final Identifier TEST_BASE_FURRY_MOB_ID = new Identifier(MOD_ID, "test_base_furry_mob");
 
     public static final EntityType<TestBaseFurryMob> TEST_BASE_FURRY_MOB = Registry.register(
             Registry.ENTITY_TYPE,
@@ -19,7 +19,7 @@ public class EntityInit {
             FabricEntityTypeBuilder.createLiving().spawnGroup(SpawnGroup.CREATURE)
                     .entityFactory(TestBaseFurryMob::new)
                     .defaultAttributes(TestBaseFurryMob::getAttribute)
-                    .dimensions(EntityDimensions.fixed(0.6f,1.5f))
+                    .dimensions(EntityDimensions.fixed(0.6f, 1.5f))
                     .trackRangeBlocks(64)
                     .forceTrackedVelocityUpdates(true)
                     .trackedUpdateRate(3)
@@ -28,6 +28,5 @@ public class EntityInit {
 
 
     public static void init() {
-
     }
 }

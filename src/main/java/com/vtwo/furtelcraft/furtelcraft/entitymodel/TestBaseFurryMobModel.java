@@ -4,15 +4,10 @@ import com.vtwo.furtelcraft.furtelcraft.entities.TestBaseFurryMob;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 
-import static com.vtwo.furtelcraft.furtelcraft.clientinit.EntityModelInit.MAIN;
-import static com.vtwo.furtelcraft.furtelcraft.clientinit.EntityModelInit.TEST_BASE_FURRY_MOB_ID;
-
 public class TestBaseFurryMobModel extends EntityModel<TestBaseFurryMob> {
-	public static final EntityModelLayer TEST_BASE_FURRY_MOB = new EntityModelLayer(TEST_BASE_FURRY_MOB_ID,MAIN);
 	private final ModelPart leftleg;
 	private final ModelPart rightleg;
 	private final ModelPart body;
