@@ -43,6 +43,18 @@ public class NbtSequenceItemLists {
             ItemStack wolf = ItemInit.GRAY_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;
+        } else if (nbtCompound.contains("WFF")) {
+            ItemStack fox = ItemInit.FOX_DNA_TUBE.getDefaultStack();
+            fox.setNbt(nbtCompound);
+            return fox;
+        } else if (nbtCompound.contains("GD")) {
+            ItemStack dragon = ItemInit.DRAGON_DNA_TUBE.getDefaultStack();
+            dragon.setNbt(nbtCompound);
+            return dragon;
+        } else if (nbtCompound.contains("WWFW")) {
+            ItemStack wolf = ItemInit.WHITE_WOLF_DNA_TUBE.getDefaultStack();
+            wolf.setNbt(nbtCompound);
+            return wolf;
         }
         return ItemStack.EMPTY;
     }
