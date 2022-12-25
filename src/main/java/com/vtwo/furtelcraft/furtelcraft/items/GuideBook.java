@@ -25,12 +25,12 @@ public class GuideBook extends Item {
             NamedScreenHandlerFactory screenHandlerFactory = new NamedScreenHandlerFactory() {
                 @Override
                 public Text getDisplayName() {
-                    return new LiteralText("TEEESSSSSSST");
+                    return new LiteralText("");
                 }
 
                 @Override
                 public @NotNull ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                    return new BookBaseScreenHandler(syncId,inv);
+                    return new BookBaseScreenHandler(syncId,null);
                 }
             };
             user.openHandledScreen(screenHandlerFactory);
