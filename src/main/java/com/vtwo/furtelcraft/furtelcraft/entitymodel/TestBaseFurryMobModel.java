@@ -6,6 +6,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.math.MathHelper;
 
 import static com.vtwo.furtelcraft.furtelcraft.clientinit.EntityModelInit.MAIN;
 import static com.vtwo.furtelcraft.furtelcraft.clientinit.EntityModelInit.TEST_BASE_FURRY_MOB_ID;
@@ -48,6 +49,11 @@ public class TestBaseFurryMobModel extends EntityModel<TestBaseFurryMob> {
 	}
 	@Override
 	public void setAngles(TestBaseFurryMob entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.rightleg.pivotX = MathHelper.cos(limbSwing) * 1.0F * limbSwingAmount;
+		this.rightarm.pivotX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount;
+		this.leftleg.pivotX = MathHelper.cos(limbSwing) * -1.0F * limbSwingAmount;
+		this.leftarm.pivotX = MathHelper.cos(limbSwing * 0.6662F) * limbSwingAmount;
+
 	}
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
