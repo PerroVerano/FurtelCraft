@@ -39,19 +39,20 @@ public class NbtSequenceItemLists {
     public static ItemStack getSequenceNbtResult(ItemStack stack) {
         NbtCompound nbtCompound = stack.getNbt();
         assert nbtCompound != null;
-        if (nbtCompound.contains("WWFG")) {
+        String nbt = nbtCompound.getString("Sequence");
+        if (nbt.contains("WWFG")) {
             ItemStack wolf = ItemInit.GRAY_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;
-        } else if (nbtCompound.contains("WFF")) {
+        } else if (nbt.contains("WFF")) {
             ItemStack fox = ItemInit.FOX_DNA_TUBE.getDefaultStack();
             fox.setNbt(nbtCompound);
             return fox;
-        } else if (nbtCompound.contains("GD")) {
+        } else if (nbt.contains("GD")) {
             ItemStack dragon = ItemInit.DRAGON_DNA_TUBE.getDefaultStack();
             dragon.setNbt(nbtCompound);
             return dragon;
-        } else if (nbtCompound.contains("WWFW")) {
+        } else if (nbt.contains("WWFW")) {
             ItemStack wolf = ItemInit.WHITE_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;

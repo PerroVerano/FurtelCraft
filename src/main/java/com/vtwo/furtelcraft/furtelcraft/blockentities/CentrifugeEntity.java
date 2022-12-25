@@ -87,7 +87,7 @@ public class CentrifugeEntity extends BlockEntity implements NamedScreenHandlerF
     public static void tick(World world, BlockPos blockPos, BlockState blockState,CentrifugeEntity entity) {
         if (!entity.inventory.get(3).isEmpty()) {
             ItemStack item = entity.inventory.get(3);
-            if (item.isOf(ItemInit.SPECIMEN_TUBE) && item.hasNbt()) {
+            if (item.isOf(ItemInit.SEDIMENT_DNA_TUBE) && item.hasNbt()) {
                 entity.tick++;
                 if (entity.tick == 20 * 4){
                     entity.inventory.set(0, item);
