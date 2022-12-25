@@ -12,5 +12,6 @@ public class ScreenClientInit {
         HandledScreens.register(ScreenInit.DNA_MIXER_SCREEN_HANDLER, DNAMixerScreen::new);
         HandledScreens.register(ScreenInit.TUBE_HOLDER_SCREEN_HANDLER, TubeHolderScreen::new);
         HandledScreens.register(ScreenInit.RACK_SCREEN_HANDLER, RackScreen::new);
+        HandledScreens.register(ScreenInit.BOOK_BASE_SCREEN_HANDLER, BookBaseScreen::new);
     }
 }
