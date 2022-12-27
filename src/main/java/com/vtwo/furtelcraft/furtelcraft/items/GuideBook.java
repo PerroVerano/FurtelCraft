@@ -1,18 +1,14 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.screens.handler.BookBaseScreenHandler;
+import com.vtwo.furtelcraft.furtelcraft.screens.intedgui.BookBaseGUI;
+import com.vtwo.furtelcraft.furtelcraft.screens.intedscreen.BookBaseScreen;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 
 public class GuideBook extends Item {
     public GuideBook(Settings settings) {
@@ -21,19 +17,9 @@ public class GuideBook extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = new NamedScreenHandlerFactory() {
-                @Override
-                public Text getDisplayName() {
-                    return new LiteralText("");
-                }
-
-                @Override
-                public @NotNull ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                    return new BookBaseScreenHandler(syncId,null);
-                }
-            };
-            user.openHandledScreen(screenHandlerFactory);
+        if (world.isClient) {
+            MinecraftClient client = MinecraftClient.getInstance();
+            client.setScreen(new BookBaseScreen(new BookBaseGUI()));
         }
         return TypedActionResult.success(user.getStackInHand(hand));
     }

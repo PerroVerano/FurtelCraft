@@ -13,7 +13,7 @@ public class ScreenInit {
     public static final ScreenHandlerType<DNAMixerScreenHandler> DNA_MIXER_SCREEN_HANDLER = new ScreenHandlerType<>(DNAMixerScreenHandler::new);
     public static final ScreenHandlerType<TubeHolderScreenHandler> TUBE_HOLDER_SCREEN_HANDLER = new ScreenHandlerType<>(TubeHolderScreenHandler::new);
     public static final ScreenHandlerType<RackScreenHandler> RACK_SCREEN_HANDLER = new ScreenHandlerType<>(RackScreenHandler::new);
-    public static final ScreenHandlerType<BookBaseScreenHandler> BOOK_BASE_SCREEN_HANDLER = new ScreenHandlerType<>(BookBaseScreenHandler::new);
+
 
     public static void init() {
         Registry.register(Registry.SCREEN_HANDLER,new Identifier(MOD_ID,"magnetic_particle_processor_screen_handler"),MAGNETIC_PARTICLE_PROCESSOR_SCREEN_HANDLER);
@@ -21,6 +21,5 @@ public class ScreenInit {
         Registry.register(Registry.SCREEN_HANDLER,new Identifier(MOD_ID,"dna_mixer_screen_handler"),DNA_MIXER_SCREEN_HANDLER);
         Registry.register(Registry.SCREEN_HANDLER,new Identifier(MOD_ID,"tube_holder_screen_handler"),TUBE_HOLDER_SCREEN_HANDLER);
         Registry.register(Registry.SCREEN_HANDLER,new Identifier(MOD_ID,"rack_screen_handler"),RACK_SCREEN_HANDLER);
-        Registry.register(Registry.SCREEN_HANDLER,new Identifier(MOD_ID,"book_base_screen_handler"),BOOK_BASE_SCREEN_HANDLER);
     }
 }
