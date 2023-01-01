@@ -6,7 +6,7 @@ FurtelCraft（暂定中文名：毛茸时代）是运行于Fabric上的一个Fur
 
 已安装`Fabric` 0.14.10及以上版本、`Fabric API` 0.59.1及以上版本的`Minecraft` 1.18.2。  
 或是  
-已安装`Fabric` 0.14.12及以上版本、`Fabric API` 0.70.1及以上版本的`Minecraft` 1.19.2。  
+已安装`Fabric` 0.14.12及以上版本、`Fabric API` 0.70.0及以上版本的`Minecraft` 1.19.2。  
 ###  **前置模组**
 1.18.2版本：  
 [`GeckoLib`3.0.80及以上版本 | MCMOD](https://www.mcmod.cn/class/3232.html)   
