@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -23,7 +22,7 @@ public class SplittingDNATube extends Item {
             NbtCompound nbt = stack.getNbt();
             assert nbt != null;
             String nbts = nbt.getString("Sequence");
-            tooltip.add(new TranslatableText("item.furtelcraft.tooltip.sequence").append(nbts).formatted(Formatting.DARK_PURPLE));
+            tooltip.add(Text.translatable("item.furtelcraft.tooltip.sequence").append(nbts).formatted(Formatting.DARK_PURPLE));
         }
     }
 }

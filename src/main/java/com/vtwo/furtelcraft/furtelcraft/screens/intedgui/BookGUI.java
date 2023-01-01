@@ -10,7 +10,7 @@ import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.data.Texture;
 import juuxel.libninepatch.NinePatch;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
@@ -70,8 +70,8 @@ public class BookGUI extends LightweightGuiDescription {
 
             leftpanel = getLeftPagePanel();
             rightpanel = getRightPagePanel();
-            leftPaginationText = new WText(new LiteralText("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
-            rightPaginationText = new WText(new LiteralText("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+            leftPaginationText = new WText(Text.literal("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+            rightPaginationText = new WText(Text.literal("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
 
             root.add(leftpanel, LEFT_PAGE_PANEL_X, PAGE_PANEL_Y);
             root.add(rightpanel, RIGHT_PAGE_PANEL_X, PAGE_PANEL_Y);
@@ -101,8 +101,8 @@ public class BookGUI extends LightweightGuiDescription {
 
             leftpanel = getLeftPagePanel();
             rightpanel = getRightPagePanel();
-            leftPaginationText = new WText(new LiteralText("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
-            rightPaginationText = new WText(new LiteralText("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+            leftPaginationText = new WText(Text.literal("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+            rightPaginationText = new WText(Text.literal("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
 
             root.add(leftpanel, LEFT_PAGE_PANEL_X, PAGE_PANEL_Y);
             root.add(rightpanel, RIGHT_PAGE_PANEL_X, PAGE_PANEL_Y);
@@ -143,7 +143,7 @@ public class BookGUI extends LightweightGuiDescription {
         }
         leftpanel = getLeftPagePanel();
         rightpanel = getRightPagePanel();
-        leftPaginationText = new WText(new LiteralText("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
-        rightPaginationText = new WText(new LiteralText("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+        leftPaginationText = new WText(Text.literal("-" + leftpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
+        rightPaginationText = new WText(Text.literal("-" + rightpagination + "-")).setHorizontalAlignment(HorizontalAlignment.CENTER);
     }
 }

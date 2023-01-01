@@ -3,7 +3,7 @@ package com.vtwo.furtelcraft.furtelcraft.utils;
 import com.vtwo.furtelcraft.furtelcraft.stories.main.ChapterOne;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WText;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.utils
@@ -57,6 +57,6 @@ public class PageUtils {
     }
 
     public static WText DefaultPage() {
-        return new WText(new LiteralText(" "));
+        return new WText(Text.literal(" "));
     }
 }

@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -24,10 +23,10 @@ public class CombineDNATube extends Item {
             NbtCompound nbt = stack.getNbt();
             assert nbt != null;
             String nbts = nbt.getString("Sequence");
-            tooltip.add(new TranslatableText("item.furtelcraft.tooltip.sequence").append(nbts).formatted(Formatting.DARK_PURPLE));
+            tooltip.add(Text.translatable("item.furtelcraft.tooltip.sequence").append(nbts).formatted(Formatting.DARK_PURPLE));
             int time = nbt.getInt("time");
             if (time != 0) {
-                tooltip.add(new TranslatableText("item.furtelcraft.time").formatted(Formatting.GRAY).append(ProgressBar.ProgressBarTooltip(time,20 * 10)));
+                tooltip.add(Text.translatable("item.furtelcraft.time").formatted(Formatting.GRAY).append(ProgressBar.ProgressBarTooltip(time,20 * 10)));
             }
         }
     }

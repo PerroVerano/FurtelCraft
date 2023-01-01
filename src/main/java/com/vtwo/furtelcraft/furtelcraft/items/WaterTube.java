@@ -76,7 +76,7 @@ public class WaterTube extends Item {
             }
         }
 
-        world.emitGameEvent(user, GameEvent.DRINKING_FINISH, user.getCameraBlockPos());
+        world.emitGameEvent(user, GameEvent.DRINK, user.getBlockPos());
         return stack;
     }
 }
