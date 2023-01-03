@@ -1,5 +1,9 @@
 package com.vtwo.furtelcraft.furtelcraft.stories.main;
 
+import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.utils.PageUtils;
+import io.github.cottonmc.cotton.gui.widget.WItem;
+import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WText;
 import net.minecraft.text.LiteralText;
 
@@ -51,4 +55,10 @@ public class ChapterOne {
         return new WText(text);
     }
 
+    public static WPlainPanel Page4() {
+        WPlainPanel panel = PageUtils.getDefaultPanel();
+        WItem item = new WItem(ItemInit.CPU.getDefaultStack());
+        panel.add(item, 0, 0);
+        return panel;
+    }
 }

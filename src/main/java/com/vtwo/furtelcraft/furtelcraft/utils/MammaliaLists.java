@@ -10,11 +10,11 @@ import java.util.Random;
 
 public class MammaliaLists {
     static List<String> m_classes = List.of("W");
-    static List<String> m_species = List.of("W","F","C","T","E","L","D","O","P","H","S","A","R","M","Y","B","X");
+    static List<String> m_species = List.of("W", "F", "C", "T", "E", "L", "D", "O", "P", "H", "S", "A", "R", "M", "Y", "B", "X");
     static List<String> m_features = List.of("F");
-    static List<String> m_furcolor_f = List.of("G","O","Y","B","W","R","C","E","L","P");
-    static List<String> m_module = List.of("B","J","F","T","Z","H");
-    static List<String> m_furcolor_s = List.of("G","O","Y","B","W","R","C","E","L","P");
+    static List<String> m_furcolor_f = List.of("G", "O", "Y", "B", "W", "R", "C", "E", "L", "P");
+    static List<String> m_module = List.of("B", "J", "F", "T", "Z", "H");
+    static List<String> m_furcolor_s = List.of("G", "O", "Y", "B", "W", "R", "C", "E", "L", "P");
     static List<String> m_module_p = List.of("P");
 
     public static List<String> getSoildColorList() {
@@ -42,28 +42,28 @@ public class MammaliaLists {
         return list2;
     }
 
-    public static String getMammaliaAssign(int index){
+    public static String getMammaliaAssign(int index) {
         List<String> list = getAllLists();
         return list.get(index);
     }
 
-    public static void outputFile(String path){
+    public static void outputFile(String path) {
         try {
             List<String> list = getAllLists();
             File file = new File(path);
-            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), StandardCharsets.UTF_8),40960);
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8), 40960);
             for (String s : list) {
                 out.write(s + "\r\n");
             }
             out.flush();
             out.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static List<String> getWolfAllList() {
-        return ArrayUtils.filtList(getAllLists(),"WWF");
+        return ArrayUtils.filtList(getAllLists(), "WWF");
     }
 
     public static String getWolfAssignSequence(int index) {
@@ -71,14 +71,14 @@ public class MammaliaLists {
         return list.get(index);
     }
 
-    public static String getWolfRandomSequence(){
+    public static String getWolfRandomSequence() {
         List<String> list = getWolfAllList();
-        int random = new Random().nextInt(list.size() + 1);
+        int random = new Random().nextInt(list.size());
         return list.get(random);
     }
 
     public static List<String> getFoxAllList() {
-        return ArrayUtils.filtList(getAllLists(),"WFF");
+        return ArrayUtils.filtList(getAllLists(), "WFF");
     }
 
     public static String getFoxAssignSequence(int index) {
@@ -88,7 +88,7 @@ public class MammaliaLists {
 
     public static String getFoxRandomSequence() {
         List<String> list = getFoxAllList();
-        int random = new Random().nextInt(list.size() + 1);
+        int random = new Random().nextInt(list.size());
         return list.get(random);
     }
 }

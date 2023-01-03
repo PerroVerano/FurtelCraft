@@ -9,10 +9,10 @@ import java.util.Random;
 public class SauropsidaLists {
     static List<String> s_classes = List.of("G");
     static List<String> s_species = List.of("D");
-    static List<String> s_features = List.of("F","S");
-    static List<String> s_furcolor_f = List.of("G","O","Y","B","W","R","C","E","L","P");
-    static List<String> s_module = List.of("B","J","F","T","Z","H");
-    static List<String> s_furcolor_s = List.of("G","O","Y","B","W","R","C","E","L","P");
+    static List<String> s_features = List.of("F", "S");
+    static List<String> s_furcolor_f = List.of("G", "O", "Y", "B", "W", "R", "C", "E", "L", "P");
+    static List<String> s_module = List.of("B", "J", "F", "T", "Z", "H");
+    static List<String> s_furcolor_s = List.of("G", "O", "Y", "B", "W", "R", "C", "E", "L", "P");
     static List<String> s_module_p = List.of("P");
 
     public static List<String> getSoildColorList() {
@@ -45,23 +45,23 @@ public class SauropsidaLists {
         return list.get(index);
     }
 
-    public static void outputFile(String path){
+    public static void outputFile(String path) {
         try {
             List<String> list = getAllLists();
             File file = new File(path);
-            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file,true), StandardCharsets.UTF_8),40960);
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8), 40960);
             for (String s : list) {
                 out.write(s + "\r\n");
             }
             out.flush();
             out.close();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static List<String> getDragonAllList() {
-        return ArrayUtils.filtList(getAllLists(),"GD");
+        return ArrayUtils.filtList(getAllLists(), "GD");
     }
 
     public static String getDragonAssignSequence(int index) {
@@ -71,7 +71,7 @@ public class SauropsidaLists {
 
     public static String getDragonRandomSequence() {
         List<String> list = getDragonAllList();
-        int random = new Random().nextInt(list.size() + 1);
+        int random = new Random().nextInt(list.size());
         return list.get(random);
     }
 }

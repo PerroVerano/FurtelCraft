@@ -1,9 +1,14 @@
 package com.vtwo.furtelcraft.furtelcraft.utils;
 
+import com.vtwo.furtelcraft.furtelcraft.stories.ChapterPreface;
 import com.vtwo.furtelcraft.furtelcraft.stories.main.ChapterOne;
+import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WText;
+import io.github.cottonmc.cotton.gui.widget.WWidget;
 import net.minecraft.text.LiteralText;
+
+import java.util.List;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.utils
@@ -26,9 +31,28 @@ public class PageUtils {
     //一页260字
     public static final int PAGE_SIZE_X = 136;
     public static final int PAGE_SIZE_Y = 144;
+    private static final List<WWidget> PageList;
+
+    static {
+        PageList = List.of(
+                ChapterPreface.Page1(),
+                ChapterPreface.Page2(),
+                ChapterPreface.Page3(),
+                ChapterOne.Page1(),
+                ChapterOne.Page2(),
+                ChapterOne.Page3(),
+                ChapterOne.Page4()
+        );
+    }
 
     public static WPlainPanel getDefaultPanel() {
         WPlainPanel panel = new WPlainPanel();
+        panel.setSize(PAGE_SIZE_X, PAGE_SIZE_Y);
+        return panel;
+    }
+
+    public static WGridPanel getDefaultGridPanel() {
+        WGridPanel panel = new WGridPanel(10);
         panel.setSize(PAGE_SIZE_X, PAGE_SIZE_Y);
         return panel;
     }
@@ -43,17 +67,16 @@ public class PageUtils {
         return panel;
     }
 
-    private static WText getText(int page) {
-        return switch (page) {
-            case 1 -> ChapterOne.Page1();
-            case 2 -> ChapterOne.Page2();
-            case 3 -> ChapterOne.Page3();
-            default -> DefaultPage();
-        };
+    private static WWidget getText(int page) {
+        if (page > getPageSize() - 1 || page < 0) {
+            return DefaultPage();
+        } else {
+            return PageList.get(page);
+        }
     }
 
     public static int getPageSize() {
-        return 4;
+        return PageList.size();
     }
 
     public static WText DefaultPage() {
