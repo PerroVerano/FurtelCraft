@@ -118,9 +118,8 @@ public class WBookPageBtnWidget extends WWidget {
         return this.onClick;
     }
 
-    public WBookPageBtnWidget setOnClick(@Nullable Runnable onClick) {
+    public void setOnClick(@Nullable Runnable onClick) {
         this.onClick = onClick;
-        return this;
     }
 
     public boolean isEnabled() {
