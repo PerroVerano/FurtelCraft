@@ -2,6 +2,7 @@ package com.vtwo.furtelcraft.furtelcraft.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -39,4 +40,7 @@ public class ArrayUtils {
                 .toList();
     }
 
+    public static void iteratorRemoveSoild(List<String> list) {
+        list.removeIf(cur -> Objects.equals(cur.charAt(3), cur.charAt(5)));
+    }
 }

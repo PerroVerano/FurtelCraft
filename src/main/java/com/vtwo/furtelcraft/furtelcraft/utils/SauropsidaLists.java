@@ -33,9 +33,9 @@ public class SauropsidaLists {
         list.add(s_furcolor_f);
         list.add(s_module);
         list.add(s_furcolor_s);
-        List<String> list1 = ArrayUtils.combineLists(list, Object::toString);
         List<String> result = new ArrayList<>();
-        result.addAll(list1);
+        result.addAll(ArrayUtils.combineLists(list, Object::toString));
+        ArrayUtils.iteratorRemoveSoild(result);
         result.addAll(getSoildColorList());
         return result;
     }
@@ -65,13 +65,10 @@ public class SauropsidaLists {
     }
 
     public static String getDragonAssignSequence(int index) {
-        List<String> list = getDragonAllList();
-        return list.get(index);
+        return getDragonAllList().get(index);
     }
 
     public static String getDragonRandomSequence() {
-        List<String> list = getDragonAllList();
-        int random = new Random().nextInt(list.size());
-        return list.get(random);
+        return getDragonAllList().get(new Random().nextInt(getDragonAllList().size()));
     }
 }
