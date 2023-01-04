@@ -35,16 +35,15 @@ public class MammaliaLists {
         list.add(m_furcolor_f);
         list.add(m_module);
         list.add(m_furcolor_s);
-        List<String> list1 = ArrayUtils.combineLists(list, Object::toString);
         List<String> list2 = new ArrayList<>();
-        list2.addAll(list1);
+        list2.addAll(ArrayUtils.combineLists(list, Object::toString));
+        ArrayUtils.iteratorRemoveSoild(list2);
         list2.addAll(getSoildColorList());
         return list2;
     }
 
     public static String getMammaliaAssign(int index) {
-        List<String> list = getAllLists();
-        return list.get(index);
+        return getAllLists().get(index);
     }
 
     public static void outputFile(String path) {
@@ -67,14 +66,11 @@ public class MammaliaLists {
     }
 
     public static String getWolfAssignSequence(int index) {
-        List<String> list = getWolfAllList();
-        return list.get(index);
+        return getWolfAllList().get(index);
     }
 
     public static String getWolfRandomSequence() {
-        List<String> list = getWolfAllList();
-        int random = new Random().nextInt(list.size());
-        return list.get(random);
+        return getWolfAllList().get(new Random().nextInt(getWolfAllList().size()));
     }
 
     public static List<String> getFoxAllList() {
@@ -82,13 +78,10 @@ public class MammaliaLists {
     }
 
     public static String getFoxAssignSequence(int index) {
-        List<String> list = getFoxAllList();
-        return list.get(index);
+        return getFoxAllList().get(index);
     }
 
     public static String getFoxRandomSequence() {
-        List<String> list = getFoxAllList();
-        int random = new Random().nextInt(list.size());
-        return list.get(random);
+        return getFoxAllList().get(new Random().nextInt(getFoxAllList().size()));
     }
 }
