@@ -19,7 +19,7 @@ public class EntityInit {
             FabricEntityTypeBuilder.createLiving().spawnGroup(SpawnGroup.CREATURE)
                     .entityFactory(TestBaseFurryMob::new)
                     .defaultAttributes(TestBaseFurryMob::getAttribute)
-                    .dimensions(EntityDimensions.fixed(0.6f, 1.5f))
+                    .dimensions(EntityDimensions.fixed(0.6f, 2.1f))
                     .trackRangeBlocks(64)
                     .forceTrackedVelocityUpdates(true)
                     .trackedUpdateRate(3)
