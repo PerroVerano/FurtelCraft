@@ -43,7 +43,7 @@ public class ChapterPreface {
 
         WText oneword = new WText(OneWord.getRandomOneWord()).setColor(Color.ORANGE_DYE.toRgb());
         oneword.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        root.add(oneword, 0, 140, PAGE_SIZE_X, 16);
+        root.add(oneword, 0, 138, PAGE_SIZE_X, 16);
         return root;
     }
 
@@ -52,10 +52,12 @@ public class ChapterPreface {
 
         WText author = new WText(Text.translatable("text.furtelcraft.author").setStyle(Style.EMPTY.withBold(true)));
         WText version = new WText(Text.translatable("text.furtelcraft.version").formatted(Formatting.GRAY));
+        WText tip = new WText(Text.translatable("text.furtelcraft.tip").setStyle(Style.EMPTY.withBold(true).withColor(Formatting.BLUE)));
         author.setHorizontalAlignment(HorizontalAlignment.CENTER);
         version.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        root.add(author, 0, 64, PAGE_SIZE_X, 16);
-        root.add(version, 0, 78, PAGE_SIZE_X, 16);
+        root.add(author, 0, 52, PAGE_SIZE_X, 16);
+        root.add(version, 0, 66, PAGE_SIZE_X, 16);
+        root.add(tip, 0, 78, PAGE_SIZE_X, 16);
 
         return root;
     }

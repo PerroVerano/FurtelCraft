@@ -1,11 +1,19 @@
 package com.vtwo.furtelcraft.furtelcraft.stories.main;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.utils.PageUtils;
-import io.github.cottonmc.cotton.gui.widget.WItem;
+import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
+import io.github.cottonmc.cotton.gui.widget.WSprite;
 import io.github.cottonmc.cotton.gui.widget.WText;
+import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+
+import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
+import static com.vtwo.furtelcraft.furtelcraft.utils.PageUtils.PAGE_SIZE_X;
+import static com.vtwo.furtelcraft.furtelcraft.utils.PageUtils.PAGE_SIZE_Y;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.stories.main
@@ -25,40 +33,38 @@ import net.minecraft.text.Text;
  * @PROJECT_NAME: furtelcraft
  */
 public class ChapterOne {
+    private static final Identifier PAGE3 = new Identifier(MOD_ID, "textures/screen/book_ele/chapter1_page3.png");
+    private static final Identifier PAGE4 = new Identifier(MOD_ID, "textures/screen/book_ele/chapter1_page4.png");
 
-    public static WText Page1() {
-        String story =
-                "page1所谓的引言就是为论文的写作立题，目的是引出下文。一篇论文只有“命题”成立，才有必要继续写下去， 否则论文的写作就失去了意义。一般的引言包括这样两层意思：一是“立题”的背景，说明论文选题在本学科领域的地位、作用以及目前研究的现状，特别是研究中存在的或没有解决的问题。二是针对现有研究的状况，确立本文拟要解决的问题，从而引出下文。一般作者在引言写作中存在这样两方面的问题。" +
-                        "1）文不着题，泛泛而谈。一些作者似乎把论文的引言看成是一种形式，是可有可无的部分，将引言的写作和正文的写作相分离，只是为了给论文加一顶帽子。常见的现象是";
-        Text text = Text.literal(story);
-        return new WText(text);
+    public static WGridPanel Page1() {
+        WGridPanel root = PageUtils.getDefaultGridPanel();
+        root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1").setStyle(Style.EMPTY.withBold(true))), 10, -1, 5, 1);
+        root.add(new WText(Text.translatable("text.furtelcraft.story.begin")
+                .setStyle(Style.EMPTY.withBold(true)
+                        .withColor(Formatting.GRAY)))
+                .setHorizontalAlignment(HorizontalAlignment.CENTER), 0, 0, 14, 1);
+        root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1.page1")), 0, 1, 14, 10);
+        return root;
     }
 
-    public static WText Page2() {
-        String story =
-                "page2dbajsdbsabdjksabjkdbasjkdbsajbdjkjasbdjkjsadb" +
-                        "dbsabdkasbdjskabdjkasbjdkbasjkdbaksjdbakjsdb" +
-                        "asbjkdbsakdbsakdbahkjbdjkasbdjkasbdkjasjbjdkasbd" +
-                        "asbjdbaskdbsahjjdbsakbdaskjbdjksabdjabdkajsdbkas" +
-                        "abshjdbsahjdbashbdsadbahsksdsakhhkdas" +
-                        "bashjdbsahjdbaskdbaskhhdbsahkhbdaskbdaskdbask";
-        Text text = Text.literal(story);
-
-        return new WText(text);
+    public static WGridPanel Page2() {
+        WGridPanel root = PageUtils.getDefaultGridPanel();
+        root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1.page2").setStyle(Style.EMPTY.withBold(true)))
+                .setHorizontalAlignment(HorizontalAlignment.CENTER), 0, 7, 14, 4);
+        return root;
     }
 
-    public static WText Page3() {
-        String story =
-                "page3所谓的引言就是为论文的写作立题，目的是引出下文。一篇论文只有“命题”成立，才有必要继续写下去， 否则论文的写作就失去了意义。一般的引言包括这样两层意思：一是“立题”的背景，说明论文选题在本学科领域的地位、作用以及目前研究的现状，特别是研究中存在的或没有解决的问题。二是针对现有研究的状况，确立本文拟要解决的问题，从而引出下文。一般作者在引言写作中存在这样两方面的问题。" +
-                        "1）文不着题，泛泛而谈。一些作者似乎把论文的引言看成是一种形式，是可有可无的部分，将引言的写作和正文的写作相分离，只是为了给论文加一顶帽子。常见的现象是";
-        Text text = Text.literal(story);
-        return new WText(text);
+    public static WPlainPanel Page3() {
+        WPlainPanel root = PageUtils.getDefaultPanel();
+        root.add(new WSprite(PAGE3), 0, 0, PAGE_SIZE_X, PAGE_SIZE_Y);
+        return root;
     }
 
-    public static WPlainPanel Page4() {
-        WPlainPanel panel = PageUtils.getDefaultPanel();
-        WItem item = new WItem(ItemInit.CPU.getDefaultStack());
-        panel.add(item, 0, 0);
-        return panel;
+    public static WGridPanel Page4() {
+        WGridPanel root = PageUtils.getDefaultGridPanel();
+        root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1.page4.1")), 0, 0, 14, 10);
+        root.add(new WSprite(PAGE4), 0, 10, 13, 3);
+        root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1.page4.2")), 0, 14, 14, 1);
+        return root;
     }
 }
