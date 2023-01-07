@@ -32,13 +32,17 @@ public class OneWord {
         TranslatableText word3 = new TranslatableText("text.furtelcraft.oneword3");
         TranslatableText word4 = new TranslatableText("text.furtelcraft.oneword4");
         TranslatableText word5 = new TranslatableText("text.furtelcraft.oneword5");
+        TranslatableText word6 = new TranslatableText("text.furtelcraft.oneword6");
+        TranslatableText word7 = new TranslatableText("text.furtelcraft.oneword7");
 
         TranslatableText[] word = new TranslatableText[]{
                 word1,
                 word2,
                 word3,
                 word4,
-                word5
+                word5,
+                word6,
+                word7
         };
 
         return new ArrayList<>(Arrays.asList(word).subList(0, word.length));

@@ -23,14 +23,16 @@ public class BookGUI extends LightweightGuiDescription {
     public static int rightpagination;
     private WPlainPanel leftpanel;
     private WPlainPanel rightpanel;
-    private static WText leftPaginationText;
-    private static WText rightPaginationText;
+    private WText leftPaginationText;
+    private WText rightPaginationText;
     private static final int LEFT_PAGE_PANEL_X = 12;
     private static final int PAGE_PANEL_Y = 20;
     private static final int RIGHT_PAGE_PANEL_X = 160;
-    private static final int LEFT_PAGINATION_TEXT_X = 68;
+    private static final int LEFT_PAGINATION_TEXT_X = 58;
     private static final int PAGINATION_TEXT_Y = 180;
-    private static final int RIGHT_PAGINATION_TEXT_X = 220;
+    private static final int RIGHT_PAGINATION_TEXT_X = 210;
+    private static final int PAGEINATION_TEXT_WEIGHT = 48;
+    private static final int PAGEINATION_TEXT_HEIGHT = 12;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/book.png");
 
     public BookGUI() {
@@ -45,8 +47,8 @@ public class BookGUI extends LightweightGuiDescription {
         }
         root.add(leftpanel, LEFT_PAGE_PANEL_X, PAGE_PANEL_Y);
         root.add(rightpanel, RIGHT_PAGE_PANEL_X, PAGE_PANEL_Y);
-        root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
-        root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
+        root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
+        root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
 
 
         WPlainPanel pageRoot = new WPlainPanel();
@@ -69,8 +71,9 @@ public class BookGUI extends LightweightGuiDescription {
 
             if (leftpagination > 1) {
                 leftpagination -= 2;
+                rightpagination = leftpagination + 1;
             }
-            rightpagination = leftpagination + 1;
+
 
             leftpanel = getLeftPagePanel();
             rightpanel = getRightPagePanel();
@@ -79,8 +82,8 @@ public class BookGUI extends LightweightGuiDescription {
 
             root.add(leftpanel, LEFT_PAGE_PANEL_X, PAGE_PANEL_Y);
             root.add(rightpanel, RIGHT_PAGE_PANEL_X, PAGE_PANEL_Y);
-            root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
-            root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
+            root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
+            root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
 
             if (leftpagination < 1) {
                 pageRoot.remove(pribtn);
@@ -108,8 +111,9 @@ public class BookGUI extends LightweightGuiDescription {
 
             if (rightpagination < PageUtils.getPageSize()) {
                 rightpagination += 2;
+                leftpagination = rightpagination - 1;
             }
-            leftpagination = rightpagination - 1;
+
 
             leftpanel = getLeftPagePanel();
             rightpanel = getRightPagePanel();
@@ -118,8 +122,8 @@ public class BookGUI extends LightweightGuiDescription {
 
             root.add(leftpanel, LEFT_PAGE_PANEL_X, PAGE_PANEL_Y);
             root.add(rightpanel, RIGHT_PAGE_PANEL_X, PAGE_PANEL_Y);
-            root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
-            root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y);
+            root.add(leftPaginationText, LEFT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
+            root.add(rightPaginationText, RIGHT_PAGINATION_TEXT_X, PAGINATION_TEXT_Y, PAGEINATION_TEXT_WEIGHT, PAGEINATION_TEXT_HEIGHT);
 
             if (rightpagination > PageUtils.getPageSize() - 2) {
                 pageRoot.remove(nextbtn);

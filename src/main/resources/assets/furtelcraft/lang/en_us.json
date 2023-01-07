@@ -42,10 +42,9 @@
   "block.furtelcraft.dna_mixer": "Specimen Maker",
   "block.furtelcraft.rack": "Rack",
   "item.furtelcraft.time": "Time ",
-
-
   "text.furtelcraft.author": "·V2x5aHV2 编纂·",
   "text.furtelcraft.version": "2023年1月 第1版",
+  "text.furtelcraft.tip": "本书会根据探索进度增加内容，\n并根据你的游戏方式决定结局。",
   "text.furtelcraft.content": "目录",
   "text.furtelcraft.content.storymode": "故事模式",
   "text.furtelcraft.content.storymode.mainplot": "主线剧情",
@@ -58,10 +57,17 @@
   "text.furtelcraft.content.guidemode.cultivatefeeling": "章节：好感度",
   "text.furtelcraft.content.guidemode.transfur": "章节：兽化",
   "text.furtelcraft.content.guidemode.multiblockstructure": "章节：多方块结构",
-
   "text.furtelcraft.oneword1": "今天如何？",
   "text.furtelcraft.oneword2": "嗨！布莱泽！",
   "text.furtelcraft.oneword3": "福瑞控是吧？",
   "text.furtelcraft.oneword4": "从今天开始这里叫做卢本伟广场！",
-  "text.furtelcraft.oneword5": "广告位招租"
+  "text.furtelcraft.oneword5": "广告位招租",
+  "text.furtelcraft.oneword6": "你有梦想，你有力量，你渴望8848种毛茸茸 ——ykbgkb",
+  "text.furtelcraft.oneword7": "Hi，先生，请问这是您订的毛茸茸嘛＝D ——°balala▫",
+  "text.furtelcraft.story.begin": "引子",
+  "text.furtelcraft.mainplot.chapter1": "章节一",
+  "text.furtelcraft.mainplot.chapter1.page1": "\u00A0\u00A0我奔跑在这意识的洪流之上，追逐着暗空闪耀的夜航星，空间在我的身侧溃撒成沙，扬空而散；时间在我的体内潺潺流动，往复循环。我喘息着，吸入无穷的宇宙，在我的细胞之间流转穿梭，与分子互溶，向上我看到了倒转的星河，向下我看到了苍茫的云海，我处在世界之间等待孕化；呼出绚烂的光河，在我的肢体之间翻腾飞跃，与时间缠绕，向前我看到了海枯和石烂，向后我看到了流年和朝夕，我处在岁月之中等待初生。夜航星逐渐明亮，而我也逐渐失航，飘摇欲坠，任由意识决堤，冲毁空间与时间永无胜负的，世界的棋局。",
+  "text.furtelcraft.mainplot.chapter1.page2": "那么你猜……\n我是谁呢？",
+  "text.furtelcraft.mainplot.chapter1.page4.1": "Minecraft是孤独的，我早就知道。\n\n但是又能如何呢？我有什么理由抱怨呢？我创建了这个世界，我建造了身边的这一切，我在这里生存。\n\n这是一个游戏，即使它再怎么孤独，也好过那个局限的现实。\n\n我不该抱怨的。",
+  "text.furtelcraft.mainplot.chapter1.page4.2": "是我造就了它。"
 }
