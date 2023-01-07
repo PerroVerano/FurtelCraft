@@ -13,6 +13,7 @@ FurtelCraft（暂定中文名：毛茸时代）是运行于Fabric上的一个Fur
 [`GeckoLib`3.0.80及以上版本 | MCMOD](https://www.mcmod.cn/class/3232.html)   
 [`LibGUI`5.4.2及以上版本 | GitHub](https://github.com/CottonMC/LibGui)  
 1.19.2版本：  
+[`GeckoLib`3.1.38及以上版本 | MCMOD](https://www.mcmod.cn/class/3232.html)   
 [`LibGUI`6.4.0及以上版本 | GitHub](https://github.com/CottonMC/LibGui)  
 ###  **模组玩法**
 - 剧情模式！跟随主线剧情来探索整个模组内容，或者开始一场高自由度的毛茸茸冒险，揭开尘封多年的秘史。  
