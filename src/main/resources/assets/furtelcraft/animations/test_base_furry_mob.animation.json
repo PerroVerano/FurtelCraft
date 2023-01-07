@@ -1,0 +1,66 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.model.walk": {
+      "animation_length": 1.5,
+      "bones": {
+        "leftleg": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                0,
+                0,
+                0
+              ]
+            },
+            "0.5": {
+              "vector": [
+                22.5,
+                0,
+                0
+              ]
+            }
+          }
+        },
+        "rightleg": {
+          "rotation": {
+            "0.0": {
+              "vector": [
+                0,
+                0,
+                0
+              ]
+            },
+            "0.5": {
+              "vector": [
+                -32.5,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      }
+    },
+    "animation.model.new": {
+      "animation_length": 0.45833,
+      "bones": {
+        "leftleg": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4583": [
+              27.5,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "geckolib_format_version": 2
+}
