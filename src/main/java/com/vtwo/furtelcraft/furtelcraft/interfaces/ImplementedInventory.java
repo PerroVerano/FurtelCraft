@@ -1,4 +1,4 @@
-package com.vtwo.furtelcraft.furtelcraft.inventory;
+package com.vtwo.furtelcraft.furtelcraft.interfaces;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;

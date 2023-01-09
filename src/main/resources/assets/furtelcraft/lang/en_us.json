@@ -64,10 +64,17 @@
   "text.furtelcraft.oneword5": "广告位招租",
   "text.furtelcraft.oneword6": "你有梦想，你有力量，你渴望8848种毛茸茸 ——ykbgkb",
   "text.furtelcraft.oneword7": "Hi，先生，请问这是您订的毛茸茸嘛＝D ——°balala▫",
+  "text.furtelcraft.story.mission.tip": "完成任务面板上的任务以解锁后续内容",
   "text.furtelcraft.story.begin": "引子",
   "text.furtelcraft.mainplot.chapter1": "章节一",
-  "text.furtelcraft.mainplot.chapter1.page1": "\u00A0\u00A0我奔跑在这意识的洪流之上，追逐着暗空闪耀的夜航星，空间在我的身侧溃撒成沙，扬空而散；时间在我的体内潺潺流动，往复循环。我喘息着，吸入无穷的宇宙，在我的细胞之间流转穿梭，与分子互溶，向上我看到了倒转的星河，向下我看到了苍茫的云海，我处在世界之间等待孕化；呼出绚烂的光河，在我的肢体之间翻腾飞跃，与时间缠绕，向前我看到了海枯和石烂，向后我看到了流年和朝夕，我处在岁月之中等待初生。夜航星逐渐明亮，而我也逐渐失航，飘摇欲坠，任由意识决堤，冲毁空间与时间永无胜负的，世界的棋局。",
+  "text.furtelcraft.mainplot.chapter1.page1": " 我奔跑在这意识的洪流之上，追逐着暗空闪耀的夜航星，空间在我的身侧溃撒成沙，扬空而散；时间在我的体内潺潺流动，往复循环。我喘息着，吸入无穷的宇宙，在我的细胞之间流转穿梭，与分子互溶，向上我看到了倒转的星河，向下我看到了苍茫的云海，我处在世界之间等待孕化；呼出绚烂的光河，在我的肢体之间翻腾飞跃，与时间缠绕，向前我看到了海枯和石烂，向后我看到了流年和朝夕，我处在岁月之中等待初生。夜航星逐渐明亮，而我也逐渐失航，飘摇欲坠，任由意识决堤，冲毁空间与时间永无胜负的，世界的棋局。",
   "text.furtelcraft.mainplot.chapter1.page2": "那么你猜……\n我是谁呢？",
   "text.furtelcraft.mainplot.chapter1.page4.1": "Minecraft是孤独的，我早就知道。\n\n但是又能如何呢？我有什么理由抱怨呢？我创建了这个世界，我建造了身边的这一切，我在这里生存。\n\n这是一个游戏，即使它再怎么孤独，也好过那个局限的现实。\n\n我不该抱怨的。",
-  "text.furtelcraft.mainplot.chapter1.page4.2": "是我造就了它。"
+  "text.furtelcraft.mainplot.chapter1.page4.2": "是我造就了它。",
+  "text.furtelcraft.mainplot.chapter1.page5": "不该抱怨的，抱歉，忘记它吧，这只是我的无病呻吟。\n\n该去工作了。",
+  "text.furtelcraft.mission": "任务 %d",
+  "text.furtelcraft.mission.completed": "已完成",
+  "text.furtelcraft.mission.incompleted": "未完成",
+  "text.furtelcraft.mission.biome": "前往 %s 群系",
+  "text.furtelcraft.mission.biome.plains": "平原"
 }

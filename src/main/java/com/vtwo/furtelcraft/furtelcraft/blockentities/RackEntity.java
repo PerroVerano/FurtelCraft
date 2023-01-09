@@ -2,7 +2,7 @@ package com.vtwo.furtelcraft.furtelcraft.blockentities;
 
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
-import com.vtwo.furtelcraft.furtelcraft.inventory.ImplementedInventory;
+import com.vtwo.furtelcraft.furtelcraft.interfaces.ImplementedInventory;
 import com.vtwo.furtelcraft.furtelcraft.screens.handler.RackScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

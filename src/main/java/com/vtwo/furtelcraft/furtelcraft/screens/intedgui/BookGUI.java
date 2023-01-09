@@ -23,8 +23,8 @@ public class BookGUI extends LightweightGuiDescription {
     public static int rightpagination;
     private WPlainPanel leftpanel;
     private WPlainPanel rightpanel;
-    private WText leftPaginationText;
-    private WText rightPaginationText;
+    private static WText leftPaginationText;
+    private static WText rightPaginationText;
     private static final int LEFT_PAGE_PANEL_X = 12;
     private static final int PAGE_PANEL_Y = 20;
     private static final int RIGHT_PAGE_PANEL_X = 160;
@@ -57,6 +57,8 @@ public class BookGUI extends LightweightGuiDescription {
         WBookPageBtnWidget nextbtn = new WBookPageBtnWidget(WBookPageBtnWidget.NEXT_BTN);
         if (isInitBook) {
             pageRoot.add(nextbtn, 271, 3);
+        } else if (rightpagination > PageUtils.getPageSize() - 1) {
+            pageRoot.add(pribtn, 0, 3);
         } else {
             pageRoot.add(pribtn, 0, 3);
             pageRoot.add(nextbtn, 271, 3);

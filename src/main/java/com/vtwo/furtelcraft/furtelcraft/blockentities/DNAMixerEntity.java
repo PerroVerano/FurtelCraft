@@ -3,7 +3,7 @@ package com.vtwo.furtelcraft.furtelcraft.blockentities;
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
 import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
-import com.vtwo.furtelcraft.furtelcraft.inventory.ImplementedInventory;
+import com.vtwo.furtelcraft.furtelcraft.interfaces.ImplementedInventory;
 import com.vtwo.furtelcraft.furtelcraft.screens.handler.DNAMixerScreenHandler;
 import com.vtwo.furtelcraft.furtelcraft.utils.NbtSequenceItemLists;
 import net.minecraft.block.BlockState;
