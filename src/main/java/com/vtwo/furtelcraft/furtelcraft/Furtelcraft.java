@@ -16,6 +16,7 @@ public class Furtelcraft implements ModInitializer {
         TagInit.init();
         LootTableInject.init();
         EntityInit.init();
+        NetPackInit.init();
 
         GeckoLib.initialize();
     }

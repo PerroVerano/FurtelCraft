@@ -2,8 +2,7 @@ package com.vtwo.furtelcraft.furtelcraft.blockentities;
 
 import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
 import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
-import com.vtwo.furtelcraft.furtelcraft.inventory.ImplementedInventory;
-import com.vtwo.furtelcraft.furtelcraft.items.SpecimenTube;
+import com.vtwo.furtelcraft.furtelcraft.interfaces.ImplementedInventory;
 import com.vtwo.furtelcraft.furtelcraft.screens.handler.RackScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -22,8 +20,6 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public class RackEntity extends BlockEntity implements ImplementedInventory, NamedScreenHandlerFactory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(15,ItemStack.EMPTY);
