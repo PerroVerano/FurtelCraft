@@ -254,6 +254,7 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
         this.appendDefaultNarrations(builder);
+        assert this.tooltipSupplier != null;
         this.tooltipSupplier.supply((text) -> builder.put(NarrationPart.HINT, text));
     }
 
