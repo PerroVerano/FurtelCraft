@@ -1,28 +1,31 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.intedgui;
 
+import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
 import com.vtwo.furtelcraft.furtelcraft.screens.intedwidget.WBookPageBtnWidget;
 import com.vtwo.furtelcraft.furtelcraft.utils.PageUtils;
+import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
-import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WText;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.github.cottonmc.cotton.gui.widget.data.Texture;
 import juuxel.libninepatch.NinePatch;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
 
-public class BookGUI extends LightweightGuiDescription {
+public class BookSyncGUI extends SyncedGuiDescription {
     private static boolean isInitBook = true;
     private static boolean isPriBtnRemoved = false;
     private static boolean isNextBtnRemoved = false;
     public static int leftpagination;
     public static int rightpagination;
-    private static WPlainPanel leftpanel;
-    private static WPlainPanel rightpanel;
+    private WPlainPanel leftpanel;
+    private WPlainPanel rightpanel;
     private static WText leftPaginationText;
     private static WText rightPaginationText;
     private static final int LEFT_PAGE_PANEL_X = 12;
@@ -35,7 +38,8 @@ public class BookGUI extends LightweightGuiDescription {
     private static final int PAGEINATION_TEXT_HEIGHT = 12;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/book.png");
 
-    public BookGUI() {
+    public BookSyncGUI(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+        super(ScreenInit.GUIDE_BOOK_SCREEN_HANDLER, syncId, playerInventory);
         WPlainPanel root = new WPlainPanel();
         root.setInsets(Insets.ROOT_PANEL);
         root.setSize(320, 174);

@@ -42,7 +42,8 @@ public class PageUtils {
                 ChapterOne.Page1(),
                 ChapterOne.Page2(),
                 ChapterOne.Page3(),
-                ChapterOne.Page4()
+                ChapterOne.Page4(),
+                ChapterOne.Page5()
         );
     }
 
