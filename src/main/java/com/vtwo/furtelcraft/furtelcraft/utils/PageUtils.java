@@ -42,7 +42,8 @@ public class PageUtils {
                 ChapterOne.Page1(),
                 ChapterOne.Page2(),
                 ChapterOne.Page3(),
-                ChapterOne.Page4()
+                ChapterOne.Page4(),
+                ChapterOne.Page5()
         );
     }
 
@@ -81,6 +82,6 @@ public class PageUtils {
     }
 
     public static WText DefaultPage() {
-        return new WText(Text.literal(" "));
+        return new WText(Text.literal(""));
     }
 }

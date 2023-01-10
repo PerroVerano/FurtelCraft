@@ -67,4 +67,9 @@ public class ChapterOne {
         root.add(new WText(Text.translatable("text.furtelcraft.mainplot.chapter1.page4.2")), 0, 14, 14, 1);
         return root;
     }
+
+    public static WGridPanel Page5() {
+        WGridPanel root = PageUtils.getDefaultGridPanel();
+        return root;
+    }
 }
