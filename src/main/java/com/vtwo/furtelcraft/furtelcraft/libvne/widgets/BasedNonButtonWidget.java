@@ -1,14 +1,12 @@
 package com.vtwo.furtelcraft.furtelcraft.libvne.widgets;
 
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.render.GameRenderer;
@@ -21,6 +19,7 @@ import net.minecraft.util.math.MathHelper;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
@@ -43,7 +42,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Element, Selectable {
+public class BasedNonButtonWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -55,10 +54,14 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
     protected Color textColor;
     public boolean active = true;
     public boolean visible = true;
+    @Nullable
+    private Element efocused;
     protected float alpha = 1.0F;
     protected final PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
+    private final List<? extends Element> children = Lists.newArrayList();
+    private boolean dragging;
 
     public BasedNonButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable PressAction onPress, @Nullable TooltipSupplier tooltipSupplier) {
         this.x = x;
@@ -68,6 +71,17 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
         this.message = message;
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
+        this.onPress = onPress;
+        this.tooltipSupplier = tooltipSupplier;
+        this.textColor = textColor;
+    }
+
+    public BasedNonButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable PressAction onPress, @Nullable TooltipSupplier tooltipSupplier) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = message;
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
         this.textColor = textColor;
@@ -119,8 +133,10 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
             this.renderTooltip(matrices, mouseX, mouseY);
         }
         this.renderBackground(matrices, minecraftClient, mouseX, mouseY);
-        int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
-        drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+        if (this.textColor != null) {
+            int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
+            drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
+        }
     }
 
     protected int RGB2DEC(int r, int g, int b) {
@@ -142,6 +158,11 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
     }
 
     protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
+    }
+
+    @Override
+    public List<? extends Element> children() {
+        return this.children;
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
@@ -171,6 +192,11 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
         return button == 0;
     }
 
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+        return ParentElement.super.mouseScrolled(mouseX, mouseY, amount);
+    }
+
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         if (this.isValidClickButton(button)) {
             this.onDrag(mouseX, mouseY, deltaX, deltaY);
@@ -178,6 +204,16 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean isDragging() {
+        return this.dragging;
+    }
+
+    @Override
+    public void setDragging(boolean dragging) {
+        this.dragging = dragging;
     }
 
     protected boolean clicked(double mouseX, double mouseY) {
@@ -206,6 +242,7 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
     }
 
     public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+        assert this.tooltipSupplier != null;
         this.tooltipSupplier.onTooltip(this, matrices, mouseX, mouseY);
     }
 
@@ -288,6 +325,17 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, El
         } else {
             return false;
         }
+    }
+
+    @Nullable
+    @Override
+    public Element getFocused() {
+        return this.efocused;
+    }
+
+    @Override
+    public void setFocused(@Nullable Element focused) {
+        this.efocused = focused;
     }
 
     @Environment(EnvType.CLIENT)
