@@ -81,26 +81,28 @@ public class TextWidget extends BasedNonButtonWidget {
         int m = (int) ((posBlock / 44.0F) * cache.size());
         int a = MathHelper.ceil(cache.size() / 5.0F);
         int p = (int) (m / 5.0F);
-        for (int i = 0; i < 5; i++) {
-            int n;
-            if (p > 0) {
-                if (p < a) {
-                    int k = -1;
-                    for (n = p * 5; n < (p * 5) + 5; n++) {
-                        if (n < cache.size()) {
-                            k++;
-                            textRenderer.drawWithShadow(matrices, cache.get(n), iTextPanel + 1, 1 + jTextPanel + (k * 10), j);
-                        } else {
-                            break;
-                        }
+        if (!cache.isEmpty()) {
+            for (int i = 0; i < 5; i++) {
+                int n;
+                if (p > 0) {
+                    if (p < a) {
+                        int k = -1;
+                        for (n = p * 5; n < (p * 5) + 5; n++) {
+                            if (n < cache.size()) {
+                                k++;
+                                textRenderer.drawWithShadow(matrices, cache.get(n), iTextPanel + 1, 1 + jTextPanel + (k * 10), j);
+                            } else {
+                                break;
+                            }
 
+                        }
                     }
+                    continue;
+                } else {
+                    n = i;
                 }
-                continue;
-            } else {
-                n = i;
+                textRenderer.drawWithShadow(matrices, cache.get(n), iTextPanel + 1, 1 + jTextPanel + (i * 10), j);
             }
-            textRenderer.drawWithShadow(matrices, cache.get(n), iTextPanel + 1, 1 + jTextPanel + (i * 10), j);
         }
     }
 

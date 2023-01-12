@@ -80,26 +80,28 @@ public class HistSideWidget extends BasedNonButtonWidget {
         int m = (int) ((posBlock / 116.0F) * TheList.size());//dang qian hang shu
         int a = MathHelper.ceil(TheList.size() / 12.0F);//zong ye shu
         int p = (int) (m / 12.0F);//dang qian ye shu
-        for (int i = 0; i < 12; i++) {
-            int n;
-            if (p > 0) {
-                if (p < a) {
-                    int k = -1;
-                    for (n = p * 12; n < (p * 12) + 12; n++) {
-                        if (n < TheList.size()) {
-                            k++;
-                            textRenderer.drawWithShadow(matrices, TheList.get(n), iHistPanel + 7, 7 + jHistPanel + (k * 10), j);
-                        } else {
-                            break;
-                        }
+        if (!TheList.isEmpty()) {
+            for (int i = 0; i < 12; i++) {
+                int n;
+                if (p > 0) {
+                    if (p < a) {
+                        int k = -1;
+                        for (n = p * 12; n < (p * 12) + 12; n++) {
+                            if (n < TheList.size()) {
+                                k++;
+                                textRenderer.drawWithShadow(matrices, TheList.get(n), iHistPanel + 7, 7 + jHistPanel + (k * 10), j);
+                            } else {
+                                break;
+                            }
 
+                        }
                     }
+                    continue;
+                } else {
+                    n = i;
                 }
-                continue;
-            } else {
-                n = i;
+                textRenderer.drawWithShadow(matrices, TheList.get(n), iHistPanel + 7, 7 + jHistPanel + (i * 10), j);
             }
-            textRenderer.drawWithShadow(matrices, TheList.get(n), iHistPanel + 7, 7 + jHistPanel + (i * 10), j);
         }
     }
 
