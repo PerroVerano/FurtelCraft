@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.libvne.VNScreen;
+import com.vtwo.furtelcraft.furtelcraft.screens.vne.MainScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -36,7 +36,7 @@ public class TestServerBook extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
             MinecraftClient client = MinecraftClient.getInstance();
-            client.setScreen(new VNScreen(Text.literal("test")));
+            client.setScreen(new MainScreen(Text.literal("")));
         }
         return TypedActionResult.success(user.getStackInHand(hand));
     }

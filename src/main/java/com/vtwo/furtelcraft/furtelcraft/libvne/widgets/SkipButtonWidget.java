@@ -2,13 +2,15 @@ package com.vtwo.furtelcraft.furtelcraft.libvne.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.libvne.VNScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.Nullable;
+
+import java.awt.*;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.vne.widgets
@@ -27,7 +29,7 @@ import net.minecraft.text.Text;
  * @MINUTE: 37
  * @PROJECT_NAME: furtelcraft
  */
-public class SkipButtonWidget extends ButtonWidget {
+public class SkipButtonWidget extends BasedNonButtonWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int iButtonWidth;
@@ -38,8 +40,8 @@ public class SkipButtonWidget extends ButtonWidget {
     protected final TooltipSupplier tooltipSupplier;
     protected boolean isEnabled;
 
-    public SkipButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, Text message, PressAction onPress, TooltipSupplier tooltipSupplier, boolean isEnabled) {
-        super(x, y, width, height, message, onPress, tooltipSupplier);
+    public SkipButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, boolean isEnabled) {
+        super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
         this.iButtonWidth = width;
@@ -51,8 +53,9 @@ public class SkipButtonWidget extends ButtonWidget {
         this.isEnabled = isEnabled;
     }
 
+
     @Override
-    public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
