@@ -1,11 +1,12 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.screens.intedgui.BookGUI;
-import com.vtwo.furtelcraft.furtelcraft.screens.intedscreen.BookScreen;
-import net.minecraft.client.MinecraftClient;
+import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -18,8 +19,9 @@ public class GuideBook extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
-            MinecraftClient client = MinecraftClient.getInstance();
-            client.setScreen(new BookScreen(new BookGUI()));
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeBoolean(true);
+            ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_GUIDE_BOOK_SCREEN_ID, buf);
         }
         return TypedActionResult.success(user.getStackInHand(hand));
     }

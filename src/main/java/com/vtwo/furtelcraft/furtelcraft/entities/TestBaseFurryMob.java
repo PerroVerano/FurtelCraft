@@ -59,6 +59,8 @@ public class TestBaseFurryMob extends PathAwareEntity implements IAnimatable {
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", ILoopType.EDefaultLoopTypes.LOOP));
+        } else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.test_base_furry_mob.stay", ILoopType.EDefaultLoopTypes.LOOP));
         }
         return PlayState.CONTINUE;
     }

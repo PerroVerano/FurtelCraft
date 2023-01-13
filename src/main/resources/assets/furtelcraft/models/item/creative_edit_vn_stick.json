@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "furtelcraft:item/creative_edit_stick"
+  }
+}

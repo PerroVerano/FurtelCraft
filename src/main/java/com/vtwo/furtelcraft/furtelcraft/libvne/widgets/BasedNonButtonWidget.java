@@ -9,13 +9,19 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
+import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Quaternion;
+import net.minecraft.util.math.Vec3f;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -82,8 +88,27 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.width = width;
         this.height = height;
         this.message = message;
+        this.textureWidth = 256;
+        this.textureHeight = 256;
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
+        this.textColor = textColor;
+    }
+
+    public BasedNonButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = message;
+        this.textureWidth = 256;
+        this.textureHeight = 256;
+        this.onPress = widget -> {
+
+        };
+        this.tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
+
+        };
         this.textColor = textColor;
     }
 
@@ -148,6 +173,52 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
     }
 
     protected void renderBackground(MatrixStack matrices, MinecraftClient client, int mouseX, int mouseY) {
+    }
+
+    public static void drawEntity(int x, int y, int size, float mouseX, float mouseY, LivingEntity entity) {
+        float f = (float) Math.atan((double) (mouseX / 40.0F));
+        float g = (float) Math.atan((double) (mouseY / 40.0F));
+        MatrixStack matrixStack = RenderSystem.getModelViewStack();
+        matrixStack.push();
+        matrixStack.translate((double) x, (double) y, 1050.0);
+        matrixStack.scale(1.0F, 1.0F, -1.0F);
+        RenderSystem.applyModelViewMatrix();
+        MatrixStack matrixStack2 = new MatrixStack();
+        matrixStack2.translate(0.0, 0.0, 1000.0);
+        matrixStack2.scale((float) size, (float) size, (float) size);
+        Quaternion quaternion = Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F);
+        Quaternion quaternion2 = Vec3f.POSITIVE_X.getDegreesQuaternion(g * 20.0F);
+        quaternion.hamiltonProduct(quaternion2);
+        matrixStack2.multiply(quaternion);
+        float h = entity.bodyYaw;
+        float i = entity.getYaw();
+        float j = entity.getPitch();
+        float k = entity.prevHeadYaw;
+        float l = entity.headYaw;
+        entity.bodyYaw = 180.0F + f * 20.0F;
+        entity.setYaw(180.0F + f * 40.0F);
+        entity.setPitch(-g * 20.0F);
+        entity.headYaw = entity.getYaw();
+        entity.prevHeadYaw = entity.getYaw();
+        DiffuseLighting.method_34742();
+        EntityRenderDispatcher entityRenderDispatcher = MinecraftClient.getInstance().getEntityRenderDispatcher();
+        quaternion2.conjugate();
+        entityRenderDispatcher.setRotation(quaternion2);
+        entityRenderDispatcher.setRenderShadows(false);
+        VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
+        RenderSystem.runAsFancy(() -> {
+            entityRenderDispatcher.render(entity, 0.0, 0.0, 0.0, 0.0F, 1.0F, matrixStack2, immediate, 15728880);
+        });
+        immediate.draw();
+        entityRenderDispatcher.setRenderShadows(true);
+        entity.bodyYaw = h;
+        entity.setYaw(i);
+        entity.setPitch(j);
+        entity.prevHeadYaw = k;
+        entity.headYaw = l;
+        matrixStack.pop();
+        RenderSystem.applyModelViewMatrix();
+        DiffuseLighting.enableGuiDepthLighting();
     }
 
     public void onClick(double mouseX, double mouseY) {

@@ -33,6 +33,8 @@
   "item.furtelcraft.handler": "处理机",
   "item.furtelcraft.cpu": "CPU",
   "item.furtelcraft.storage_card": "储存卡",
+  "item.furtelcraft.creative_edit_vn_stick": "创造模式 VN编辑之杖",
+  "title.furtelcraft.vn_edit_screen": "编辑VN %s",
   "item.furtelcraft.fox_dna_tube.tooltip": "序列 WFFOZR",
   "item.furtelcraft.dragon_dna_tube.tooltip": "序列 GDSLFW",
   "item.furtelcraft.gray_wolf_dna_tube.tooltip": "序列 WWFGFW",
@@ -81,5 +83,9 @@
   "text.furtelcraft.mission.completed": "已完成",
   "text.furtelcraft.mission.incompleted": "未完成",
   "text.furtelcraft.mission.biome": "前往 %s 群系",
-  "text.furtelcraft.mission.biome.plains": "平原"
+  "text.furtelcraft.mission.biome.plains": "平原",
+  "widget.furtelcraft.vn_edit_screen.textfieldwidget": "姓名",
+  "widget.furtelcraft.vn_edit_screen_donebtn": "完成",
+  "widget.furtelcraft.vn_edit_screen_nextbtn": "下一句",
+  "widget.furtelcraft.vn_edit_screen_delbtn": "删除"
 }
