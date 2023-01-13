@@ -81,7 +81,7 @@ public class HistSideWidget extends BasedNonButtonWidget {
         int a = MathHelper.ceil(TheList.size() / 12.0F);//zong ye shu
         int p = (int) (m / 12.0F);//dang qian ye shu
         if (!TheList.isEmpty()) {
-            for (int i = 0; i < 12; i++) {
+            for (int i = 0; i < Math.min(12, TheList.size()); i++) {
                 int n;
                 if (p > 0) {
                     if (p < a) {

@@ -63,6 +63,7 @@ public class ItemInit {
     public static final CPU CPU = new CPU(new FabricItemSettings().rarity(Rarity.RARE));
     public static final StorageCard STORAGE_CARD = new StorageCard(new FabricItemSettings());
     public static final TestServerBook TEST_SERVER_BOOK = new TestServerBook(new FabricItemSettings().maxCount(1));
+    public static final CreativeEditVNStick CREATIVE_EDIT_VN_STICK = new CreativeEditVNStick(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE));
 
 
     public static final ItemGroup FC_ITEM_GROUP = FabricItemGroupBuilder.create(
@@ -100,6 +101,7 @@ public class ItemInit {
                 itemStacks.add(new ItemStack(ItemInit.HANDLER));
                 itemStacks.add(new ItemStack(ItemInit.CPU));
                 itemStacks.add(new ItemStack(ItemInit.STORAGE_CARD));
+                itemStacks.add(new ItemStack(ItemInit.CREATIVE_EDIT_VN_STICK));
             })
             .build();
 
@@ -135,5 +137,6 @@ public class ItemInit {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "cpu"), CPU);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "storage_card"), STORAGE_CARD);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "test_server_book"), TEST_SERVER_BOOK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "creative_edit_vn_stick"), CREATIVE_EDIT_VN_STICK);
     }
 }
