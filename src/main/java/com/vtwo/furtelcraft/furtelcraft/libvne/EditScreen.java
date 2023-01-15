@@ -151,6 +151,8 @@ public class EditScreen extends Screen {
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeUuid(this.entity.getUuid());
         NbtList nbtList = new NbtList();
+        NbtString string = NbtString.of(this.nameFieldWidget.getText());
+        nbtList.add(string);
         Stream<NbtString> stream = this.WordList.stream().map(NbtString::of);
         Objects.requireNonNull(nbtList);
         stream.forEach(nbtList::add);
