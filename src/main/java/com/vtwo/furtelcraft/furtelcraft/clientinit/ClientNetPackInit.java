@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.Text;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.clientinit
@@ -57,9 +58,11 @@ public class ClientNetPackInit {
 
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, (client, handler, buf, responseSender) -> {
             boolean isOpen = buf.readBoolean();
+            UUID uuid = buf.readUuid();
             client.execute(() -> {
                 if (isOpen) {
-                    client.setScreen(new VNScreen(Text.empty()));
+                    VNScreen screen = new VNScreen(Text.empty());
+                    client.setScreen(screen);
                 }
             });
         });
