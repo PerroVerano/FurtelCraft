@@ -3,13 +3,13 @@ package com.vtwo.furtelcraft.furtelcraft.items;
 import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.items
@@ -33,7 +33,7 @@ public class TestServerBook extends Item {
         super(settings);
     }
 
-    @Override
+    /*@Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) {
             PacketByteBuf buf = PacketByteBufs.create();
@@ -41,5 +41,16 @@ public class TestServerBook extends Item {
             ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, buf);
         }
         return TypedActionResult.success(user.getStackInHand(hand));
+    }*/
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        if (user.world.isClient) {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeBoolean(true);
+            buf.writeUuid(entity.getUuid());
+            ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, buf);
+        }
+        return ActionResult.success(true);
     }
 }

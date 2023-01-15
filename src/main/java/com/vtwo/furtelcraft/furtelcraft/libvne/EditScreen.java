@@ -13,6 +13,9 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtString;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -23,6 +26,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
 
@@ -143,6 +147,17 @@ public class EditScreen extends Screen {
         byteBuf.writeString(this.nameFieldWidget.getText());
         byteBuf.writeInt(this.entity.getId());
         ClientPlayNetworking.send(NetPackInit.EDIT_SCREEN_ENTITY_NAME_ID, byteBuf);
+
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeUuid(this.entity.getUuid());
+        NbtList nbtList = new NbtList();
+        Stream<NbtString> stream = this.WordList.stream().map(NbtString::of);
+        Objects.requireNonNull(nbtList);
+        stream.forEach(nbtList::add);
+        NbtCompound temp = new NbtCompound();
+        temp.put("Word", nbtList);
+        buf.writeNbt(temp);
+        ClientPlayNetworking.send(NetPackInit.EDIT_SCREEN_SAVE_ENTITY_WORD_ID, buf);
     }
 
     private void addWidgets() {

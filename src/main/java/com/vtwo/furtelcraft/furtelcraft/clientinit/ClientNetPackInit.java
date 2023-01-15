@@ -11,6 +11,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.clientinit
@@ -58,9 +59,11 @@ public class ClientNetPackInit {
 
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, (client, handler, buf, responseSender) -> {
             boolean isOpen = buf.readBoolean();
+            UUID uuid = buf.readUuid();
             client.execute(() -> {
                 if (isOpen) {
-                    client.setScreen(new VNScreen(LiteralText.EMPTY));
+                    VNScreen screen = new VNScreen(LiteralText.EMPTY);
+                    client.setScreen(screen);
                 }
             });
         });
