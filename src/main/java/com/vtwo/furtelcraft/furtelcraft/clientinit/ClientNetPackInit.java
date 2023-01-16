@@ -7,10 +7,10 @@ import com.vtwo.furtelcraft.furtelcraft.screens.intedgui.BookGUI;
 import com.vtwo.furtelcraft.furtelcraft.screens.intedscreen.BookScreen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Text;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.clientinit
@@ -34,7 +34,7 @@ public class ClientNetPackInit {
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_EDIT_SCREEN_ID, (client, handler, buf, responseSender) -> {
             boolean isOpen = buf.readBoolean();
             int id = buf.readInt();
-            client.executeSync(() -> {
+            client.execute(() -> {
                 if (isOpen) {
                     assert client.world != null;
                     EditScreen screen = new EditScreen(
@@ -57,13 +57,13 @@ public class ClientNetPackInit {
         });
 
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, (client, handler, buf, responseSender) -> {
-            boolean isOpen = buf.readBoolean();
-            UUID uuid = buf.readUuid();
+            NbtList word = (NbtList) Objects.requireNonNull(buf.readNbt()).get("WORD");
             client.execute(() -> {
-                if (isOpen) {
-                    VNScreen screen = new VNScreen(Text.empty());
-                    client.setScreen(screen);
-                }
+                VNScreen screen = new VNScreen(Text.empty());
+                assert word != null;
+                screen.setTheName(Text.literal(word.getString(0)));
+                screen.setTheText(Text.literal(word.getString(1)));
+                client.setScreen(screen);
             });
         });
     }
