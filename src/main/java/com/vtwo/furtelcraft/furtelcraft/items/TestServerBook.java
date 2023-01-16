@@ -46,10 +46,15 @@ public class TestServerBook extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (user.world.isClient) {
-            PacketByteBuf buf = PacketByteBufs.create();
+            PacketByteBuf byteBuf = PacketByteBufs.create();
+            byteBuf.writeUuid(entity.getUuid());
+            ClientPlayNetworking.send(NetPackInit.AUTH_OPEN_VN_SCREEN_ID, byteBuf);
+
+
+            /*PacketByteBuf buf = PacketByteBufs.create();
             buf.writeBoolean(true);
             buf.writeUuid(entity.getUuid());
-            ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, buf);
+            ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, buf);*/
         }
         return ActionResult.success(true);
     }

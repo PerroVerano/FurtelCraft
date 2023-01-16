@@ -640,6 +640,7 @@ public class VNScreen extends Screen {
     }
 
     public void setTheName(@Nullable Text theName) {
+        this.isNameEnabled = true;
         TheName = theName;
     }
 
@@ -690,6 +691,7 @@ public class VNScreen extends Screen {
     }
 
     public void setTheText(@Nullable Text theText) {
+        this.isTextEnabled = true;
         TheText = theText;
     }
 
