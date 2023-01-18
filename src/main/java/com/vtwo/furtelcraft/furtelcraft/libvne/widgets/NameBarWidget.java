@@ -62,7 +62,7 @@ public class NameBarWidget extends BasedNonButtonWidget {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
-        drawTexture(matrices, iNameBar, jNameBar, 52, 75, NameBarWidth, NameBarHeight, textureWidth, textureHeight);
+        drawTexture(matrices, iNameBar, jNameBar, 27, 75, NameBarWidth, NameBarHeight, textureWidth, textureHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 6) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
     }

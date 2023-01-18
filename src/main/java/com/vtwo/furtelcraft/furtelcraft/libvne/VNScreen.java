@@ -44,7 +44,7 @@ public class VNScreen extends Screen {
     protected int iButtonWidth = 25;
     protected int ButtonWidth = 27;
     protected int ButtonHeight = 11;
-    protected int nameBarWidth = 44;
+    protected int nameBarWidth = 69;
     protected int selectionButtonWidth = 96;
     protected int ItemFrame = 21;
     protected int HistWidth = 134;
