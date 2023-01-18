@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.util.WorldSavePath;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,15 +32,18 @@ import java.util.UUID;
 public class EntityWordFiles {
     private final HashMap<UUID, NbtList> words = new HashMap<>();
     private File file;
+    private long seed;
 
     public EntityWordFiles(LivingEntity entity) throws IOException {
-        this.file = new File(Objects.requireNonNull(entity.getServer()).getRunDirectory().getPath() + "\\furtelcraft_word_script");
+        this.seed = Objects.requireNonNull(entity.getServer()).getOverworld().getSeed();
+        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_words" + seed);
         this.mark();
     }
 
     public void setWords(LivingEntity entity, NbtList nbtList) throws IOException {
         words.put(entity.getUuid(), nbtList);
-        this.file = new File(Objects.requireNonNull(entity.getServer()).getRunDirectory().getPath() + "\\furtelcraft_word_script");
+        this.seed = Objects.requireNonNull(entity.getServer()).getOverworld().getSeed();
+        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_words" + seed);
         this.mark();
     }
 
@@ -56,8 +60,10 @@ public class EntityWordFiles {
     }
 
     public NbtList getWords(LivingEntity entity) throws IOException {
-        NbtCompound nbtCompound = NbtIo.readCompressed(file);
-        NbtList list = (NbtList) nbtCompound.get(String.valueOf(entity.getUuid()));
-        return list;
+        return (NbtList) NbtIo.readCompressed(file).get(String.valueOf(entity.getUuid()));
+    }
+
+    public void removeWords(LivingEntity entity) throws IOException {
+        NbtIo.readCompressed(file).remove(String.valueOf(entity.getUuid()));
     }
 }

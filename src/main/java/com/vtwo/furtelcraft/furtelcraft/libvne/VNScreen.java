@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -41,7 +42,7 @@ public class VNScreen extends Screen {
     protected int iButtonWidth = 25;
     protected int ButtonWidth = 27;
     protected int ButtonHeight = 11;
-    protected int nameBarWidth = 44;
+    protected int nameBarWidth = 69;
     protected int selectionButtonWidth = 96;
     protected int ItemFrame = 21;
     protected int HistWidth = 134;
@@ -64,6 +65,9 @@ public class VNScreen extends Screen {
     protected @Nullable Text TheText = EMPTY;
     protected @Nullable Text TheOptionSelect1 = EMPTY;
     protected @Nullable Text TheOptionSelect2 = EMPTY;
+    private String HistText = "";
+    private NbtList WordList;
+    private int pageCount = 1;
     protected BasedNonButtonWidget.PressAction onPress = widget -> {
     };
     protected BasedNonButtonWidget.TooltipSupplier tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
@@ -102,6 +106,7 @@ public class VNScreen extends Screen {
 
     @Override
     protected void init() {
+        this.passEvents = false;
         this.initWidgetList();
         this.addWidgets();
         super.init();
@@ -182,6 +187,8 @@ public class VNScreen extends Screen {
         this.DisabledHistBtnEle.visible = !this.isHistEnabled;
         this.EnabledExitBtnEle.visible = this.isExitEnabled;
         this.DisabledExitBtnEle.visible = !this.isExitEnabled;
+        this.TextEle.setMessage(TheText);
+        this.HistSideEle.setMessage(Text.literal(HistText));
     }
 
     protected NullWidget getNullWidget() {
@@ -237,7 +244,7 @@ public class VNScreen extends Screen {
                 HistHeight,
                 140,
                 236,
-                TheText,
+                Text.literal(HistText),
                 Color.WHITE,
                 onPress,
                 tooltipSupplier
@@ -323,7 +330,14 @@ public class VNScreen extends Screen {
                 textureHeight,
                 TheText,
                 Color.WHITE,
-                onPress,
+                widget -> {
+                    if (pageCount < WordList.size() - 1) {
+                        pageCount++;
+                        TheText = Text.literal(WordList.getString(pageCount));
+                        assert TheName != null;
+                        HistText += "<" + TheName.getString() + ">" + WordList.getString(pageCount - 1) + "\n";
+                    }
+                },
                 tooltipSupplier
         );
     }
@@ -684,13 +698,14 @@ public class VNScreen extends Screen {
     }
 
     @Nullable
-    public Text getTheText() {
-        return TheText;
+    public NbtList getTheTextList() {
+        return WordList;
     }
 
-    public void setTheText(@Nullable Text theText) {
+    public void setTheTextList(NbtList nbtList) {
         this.isTextEnabled = true;
-        TheText = theText;
+        WordList = nbtList;
+        TheText = Text.literal(WordList.getString(pageCount));
     }
 
     public boolean isItemEnabled() {

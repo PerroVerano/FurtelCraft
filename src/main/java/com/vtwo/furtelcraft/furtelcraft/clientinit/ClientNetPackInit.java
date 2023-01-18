@@ -62,7 +62,7 @@ public class ClientNetPackInit {
                 VNScreen screen = new VNScreen(Text.empty());
                 assert word != null;
                 screen.setTheName(Text.literal(word.getString(0)));
-                screen.setTheText(Text.literal(word.getString(1)));
+                screen.setTheTextList(word);
                 client.setScreen(screen);
             });
         });
