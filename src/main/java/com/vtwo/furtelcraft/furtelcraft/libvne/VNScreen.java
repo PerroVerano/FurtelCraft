@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -64,6 +65,9 @@ public class VNScreen extends Screen {
     private static final Text EMPTY = LiteralText.EMPTY;
     protected @Nullable Text TheName = EMPTY;
     protected @Nullable Text TheText = EMPTY;
+    private String HistText = "";
+    private NbtList WordList;
+    private int pageCount = 1;
     protected @Nullable Text TheOptionSelect1 = EMPTY;
     protected @Nullable Text TheOptionSelect2 = EMPTY;
     protected BasedNonButtonWidget.PressAction onPress = widget -> {
@@ -104,6 +108,7 @@ public class VNScreen extends Screen {
 
     @Override
     protected void init() {
+        this.passEvents = false;
         this.initWidgetList();
         this.addWidgets();
         super.init();
@@ -184,6 +189,8 @@ public class VNScreen extends Screen {
         this.DisabledHistBtnEle.visible = !this.isHistEnabled;
         this.EnabledExitBtnEle.visible = this.isExitEnabled;
         this.DisabledExitBtnEle.visible = !this.isExitEnabled;
+        this.TextEle.setMessage(TheText);
+        this.HistSideEle.setMessage(new LiteralText(HistText));
     }
 
     protected NullWidget getNullWidget() {
@@ -239,7 +246,7 @@ public class VNScreen extends Screen {
                 HistHeight,
                 140,
                 236,
-                TheText,
+                new LiteralText(HistText),
                 Color.WHITE,
                 onPress,
                 tooltipSupplier
@@ -325,7 +332,14 @@ public class VNScreen extends Screen {
                 textureHeight,
                 TheText,
                 Color.WHITE,
-                onPress,
+                widget -> {
+                    if (pageCount < WordList.size() - 1) {
+                        pageCount++;
+                        TheText = new LiteralText(WordList.getString(pageCount));
+                        assert TheName != null;
+                        HistText += "<" + TheName.getString() + ">" + WordList.getString(pageCount - 1) + "\n";
+                    }
+                },
                 tooltipSupplier
         );
     }
@@ -686,13 +700,14 @@ public class VNScreen extends Screen {
     }
 
     @Nullable
-    public Text getTheText() {
-        return TheText;
+    public NbtList getTheTextList() {
+        return WordList;
     }
 
-    public void setTheText(@Nullable Text theText) {
+    public void setTheTextList(NbtList nbtList) {
         this.isTextEnabled = true;
-        TheText = theText;
+        WordList = nbtList;
+        TheText = new LiteralText(WordList.getString(pageCount));
     }
 
     public boolean isItemEnabled() {
