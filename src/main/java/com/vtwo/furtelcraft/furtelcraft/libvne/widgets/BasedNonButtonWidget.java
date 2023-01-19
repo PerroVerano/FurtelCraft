@@ -16,6 +16,7 @@ import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -110,6 +111,23 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
 
         };
         this.textColor = textColor;
+    }
+
+    public BasedNonButtonWidget(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = LiteralText.EMPTY;
+        this.textureWidth = 256;
+        this.textureHeight = 256;
+        this.onPress = widget -> {
+
+        };
+        this.tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
+
+        };
+        this.textColor = Color.WHITE;
     }
 
     public int getHeight() {
