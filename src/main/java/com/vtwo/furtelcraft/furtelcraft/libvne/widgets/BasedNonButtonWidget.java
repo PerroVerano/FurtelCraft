@@ -111,6 +111,23 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.textColor = textColor;
     }
 
+    public BasedNonButtonWidget(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = Text.empty();
+        this.textureWidth = 256;
+        this.textureHeight = 256;
+        this.onPress = widget -> {
+
+        };
+        this.tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
+
+        };
+        this.textColor = Color.WHITE;
+    }
+
     public int getHeight() {
         return this.height;
     }

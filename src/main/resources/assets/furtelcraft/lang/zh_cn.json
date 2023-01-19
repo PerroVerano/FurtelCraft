@@ -87,5 +87,9 @@
   "widget.furtelcraft.vn_edit_screen.textfieldwidget": "姓名",
   "widget.furtelcraft.vn_edit_screen_donebtn": "完成",
   "widget.furtelcraft.vn_edit_screen_nextbtn": "下一句",
-  "widget.furtelcraft.vn_edit_screen_delbtn": "删除"
+  "widget.furtelcraft.vn_edit_screen_delbtn": "删除",
+  "widget.furtelcraft.vn_edit_screen.singleline": "单线",
+  "widget.furtelcraft.vn_edit_screen.multiline": "多线",
+  "widget.furtelcraft.vn_edit_screen.hist": "全部",
+  "widget.furtelcraft.vn_edit_screen.multiline.osfield": "选项名称"
 }

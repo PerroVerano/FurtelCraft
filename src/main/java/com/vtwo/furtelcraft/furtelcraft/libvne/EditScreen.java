@@ -5,6 +5,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
 import com.vtwo.furtelcraft.furtelcraft.libvne.widgets.BasedNonButtonWidget;
 import com.vtwo.furtelcraft.furtelcraft.libvne.widgets.EditScreenTextWidget;
+import com.vtwo.furtelcraft.furtelcraft.libvne.widgets.MultiLineStripWidget;
+import com.vtwo.furtelcraft.furtelcraft.libvne.widgets.TabWidget;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.gui.screen.Screen;
@@ -56,11 +58,36 @@ public class EditScreen extends Screen {
     private ButtonWidget NextBtnWidget;
     private ButtonWidget DelBtnWidget;
     private EditScreenTextWidget TextWidget;
+    private TabWidget EnabledSingleLineTab;
+    private TabWidget DisabledSingleLineTab;
+    private TabWidget EnabledMultiLineTab;
+    private TabWidget DisabledMultiLineTab;
+    private TabWidget EnabledHistTab;
+    private TabWidget DisabledHistTab;
+    private MultiLineStripWidget OS1StripWidget;
+    private MultiLineStripWidget OS2StripWidget;
+    private TextFieldWidget OS1FieldWidget;
+    private TextFieldWidget OS2FieldWidget;
+    private TextFieldWidget OS1WordField;
+    private TextFieldWidget OS2WordField;
+    private EditScreenTextWidget OS1TextWidget;
+    private EditScreenTextWidget OS2TextWidget;
+    private boolean isEnabledSingleLineTab = true;
+    private boolean isEnabledMultiLineTab = false;
+    private boolean isEnabledHistTab = false;
     private int count = 0;
+    private int OS1count = 0;
+    private int OS2count = 0;
     private String s = "";
+    private String s1 = "";
+    private String s2 = "";
     private final List<String> WordList = Lists.newArrayList();
     private final List<String> WordHist = Lists.newArrayList();
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_edit.png");
+    private final List<String> OS1Word = Lists.newArrayList();
+    private final List<String> OS2Word = Lists.newArrayList();
+    private final List<String> OS1WordHist = Lists.newArrayList();
+    private final List<String> OS2WordHist = Lists.newArrayList();
+    public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_edit.png");
 
     public EditScreen(Text title) {
         super(title);
@@ -79,6 +106,7 @@ public class EditScreen extends Screen {
         //this.textRenderer.drawWithShadow(matrices, new TranslatableText("widget.furtelcraft.vn_edit_screen.textfieldwidget"), iBase + 142, jBase + 27, 16777215);
 
         this.updateInfo();
+        this.updateWidget();
 
         super.render(matrices, mouseX, mouseY, delta);
     }
@@ -110,24 +138,211 @@ public class EditScreen extends Screen {
             this.client.setScreen(null);
         });
         this.NextBtnWidget = new ButtonWidget(iBase + 172, jBase + 143, 36, 20, Text.translatable("widget.furtelcraft.vn_edit_screen_nextbtn"), button -> {
-            this.count++;
-            WordList.add(this.wordFieldWidget.getText());
-            this.WordHist.add(this.count + ">" + this.wordFieldWidget.getText() + "\n");
-            this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
-            this.TextWidget.setMessage(Text.literal(this.s));
-            this.wordFieldWidget.setText("");
-        });
-        this.DelBtnWidget = new ButtonWidget(iBase + 132, jBase + 143, 36, 20, Text.translatable("widget.furtelcraft.vn_edit_screen_delbtn"), button -> {
-            if (!WordList.isEmpty()) {
-                this.count--;
-                WordList.remove(this.count);
-                this.WordHist.remove(this.count);
+            if (this.isEnabledSingleLineTab) {
+                this.count++;
+                WordList.add(this.wordFieldWidget.getText());
+                this.WordHist.add(this.count + ">" + this.wordFieldWidget.getText() + "\n");
                 this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                 this.TextWidget.setMessage(Text.literal(this.s));
+                this.wordFieldWidget.setText("");
+            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0) {
+                this.OS1count++;
+                OS1Word.add(this.OS1WordField.getText());
+                this.OS1WordHist.add(this.OS1count + ">" + this.OS1WordField.getText() + "\n");
+                this.s1 = this.OS1WordHist.stream().map(Objects::toString).collect(Collectors.joining());
+                this.OS1TextWidget.setMessage(Text.literal(this.s1));
+                this.OS1WordField.setText("");
+            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0) {
+                this.OS2count++;
+                OS2Word.add(this.OS2WordField.getText());
+                this.OS2WordHist.add(this.OS2count + ">" + this.OS2WordField.getText() + "\n");
+                this.s2 = this.OS2WordHist.stream().map(Objects::toString).collect(Collectors.joining());
+                this.OS2TextWidget.setMessage(Text.literal(this.s2));
+                this.OS2WordField.setText("");
             }
-
+        });
+        this.DelBtnWidget = new ButtonWidget(iBase + 132, jBase + 143, 36, 20, Text.translatable("widget.furtelcraft.vn_edit_screen_delbtn"), button -> {
+            if (this.isEnabledSingleLineTab) {
+                if (!WordList.isEmpty()) {
+                    this.count--;
+                    WordList.remove(this.count);
+                    this.WordHist.remove(this.count);
+                    this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
+                    this.TextWidget.setMessage(Text.literal(this.s));
+                }
+            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0) {
+                if (!OS1Word.isEmpty()) {
+                    this.OS1count--;
+                    OS1Word.remove(this.OS1count);
+                    this.OS1WordHist.remove(this.OS1count);
+                    this.s1 = this.OS1WordHist.stream().map(Objects::toString).collect(Collectors.joining());
+                    this.OS1TextWidget.setMessage(Text.literal(this.s1));
+                }
+            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0) {
+                if (!OS2Word.isEmpty()) {
+                    this.OS2count--;
+                    OS2Word.remove(this.OS2count);
+                    this.OS2WordHist.remove(this.OS2count);
+                    this.s2 = this.OS2WordHist.stream().map(Objects::toString).collect(Collectors.joining());
+                    this.OS2TextWidget.setMessage(Text.literal(this.s2));
+                }
+            }
         });
         this.TextWidget = new EditScreenTextWidget(iBase + 84, jBase + 77, 164, 64, EMPTY, Color.WHITE);
+        this.EnabledSingleLineTab = new TabWidget(
+                iBase + 3,
+                jBase + 165,
+                32,
+                19,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.singleline"),
+                Color.WHITE,
+                widget -> {
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.singleline.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                true
+        );
+        this.DisabledSingleLineTab = new TabWidget(
+                iBase + 3,
+                jBase + 168,
+                32,
+                17,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.singleline"),
+                Color.WHITE,
+                widget -> {
+                    this.isEnabledSingleLineTab = true;
+                    this.isEnabledMultiLineTab = false;
+                    this.isEnabledHistTab = false;
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.singleline.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                false
+        );
+
+        this.EnabledMultiLineTab = new TabWidget(
+                iBase + 37,
+                jBase + 165,
+                32,
+                19,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.multiline"),
+                Color.WHITE,
+                widget -> {
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                true
+        );
+
+        this.DisabledMultiLineTab = new TabWidget(
+                iBase + 37,
+                jBase + 168,
+                32,
+                17,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.multiline"),
+                Color.WHITE,
+                widget -> {
+                    this.isEnabledSingleLineTab = false;
+                    this.isEnabledMultiLineTab = true;
+                    this.isEnabledHistTab = false;
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                false
+        );
+
+        this.EnabledHistTab = new TabWidget(
+                iBase + 71,
+                jBase + 165,
+                32,
+                19,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.hist"),
+                Color.WHITE,
+                widget -> {
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.hist.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                true
+        );
+        this.DisabledHistTab = new TabWidget(
+                iBase + 71,
+                jBase + 168,
+                32,
+                17,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.hist"),
+                Color.WHITE,
+                widget -> {
+                    this.isEnabledSingleLineTab = false;
+                    this.isEnabledMultiLineTab = false;
+                    this.isEnabledHistTab = true;
+                },
+                (widget, matrices, mouseX, mouseY) -> this.renderTooltip(
+                        matrices,
+                        Text.translatable("widget.furtelcraft.vn_edit_screen.hist.tooltip"),
+                        mouseX,
+                        mouseY
+                ),
+                false
+        );
+        this.OS1StripWidget = new MultiLineStripWidget(
+                iBase + 96,
+                jBase + 22,
+                70,
+                14,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.os1strip"),
+                Color.WHITE,
+                widget -> {
+                    if (this.OS2StripWidget.getState() == 0 && this.OS1StripWidget.getState() == 1) {
+                        this.OS1StripWidget.setState(0);
+                        this.OS2StripWidget.setState(2);
+                    }
+                },
+                (widget, matrices, mouseX, mouseY) -> {
+                },
+                0
+        );
+        this.OS2StripWidget = new MultiLineStripWidget(
+                iBase + 166,
+                jBase + 22,
+                70,
+                14,
+                Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.os2strip"),
+                Color.WHITE,
+                widget -> {
+                    if (this.OS2StripWidget.getState() == 2 && this.OS1StripWidget.getState() == 0) {
+                        this.OS2StripWidget.setState(0);
+                        this.OS1StripWidget.setState(1);
+                    }
+                },
+                (widget, matrices, mouseX, mouseY) -> {
+                },
+                2
+        );
+        this.OS1FieldWidget = new TextFieldWidget(this.textRenderer, iBase + 85, jBase + 40, 162, 14, Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.osfield"));
+        this.OS2FieldWidget = new TextFieldWidget(this.textRenderer, iBase + 85, jBase + 40, 162, 14, Text.translatable("widget.furtelcraft.vn_edit_screen.multiline.osfield"));
+        this.OS1WordField = new TextFieldWidget(this.textRenderer, iBase + 85, jBase + 60, 162, 14, this.EMPTY);
+        this.OS2WordField = new TextFieldWidget(this.textRenderer, iBase + 85, jBase + 60, 162, 14, this.EMPTY);
+        this.OS1TextWidget = new EditScreenTextWidget(iBase + 84, jBase + 77, 164, 64, EMPTY, Color.WHITE);
+        this.OS2TextWidget = new EditScreenTextWidget(iBase + 84, jBase + 77, 164, 64, EMPTY, Color.WHITE);
     }
 
     private void saveInfo() {
@@ -167,5 +382,47 @@ public class EditScreen extends Screen {
         this.addDrawableChild(this.NextBtnWidget);
         this.addDrawableChild(this.TextWidget);
         this.addDrawableChild(this.DelBtnWidget);
+        this.addDrawableChild(this.DisabledHistTab);
+        this.addDrawableChild(this.EnabledHistTab);
+        this.addDrawableChild(this.DisabledMultiLineTab);
+        this.addDrawableChild(this.EnabledMultiLineTab);
+        this.addDrawableChild(this.DisabledSingleLineTab);
+        this.addDrawableChild(this.EnabledSingleLineTab);
+
+        this.addDrawableChild(this.OS1StripWidget);
+        this.addDrawableChild(this.OS2StripWidget);
+        this.addDrawableChild(this.OS1FieldWidget);
+        this.addDrawableChild(this.OS2FieldWidget);
+        this.addDrawableChild(this.OS1WordField);
+        this.addDrawableChild(this.OS2WordField);
+        this.addDrawableChild(this.OS1TextWidget);
+        this.addDrawableChild(this.OS2TextWidget);
+    }
+
+    private void updateWidget() {
+        this.EnabledSingleLineTab.visible = this.isEnabledSingleLineTab;
+        this.DisabledSingleLineTab.visible = !this.isEnabledSingleLineTab;
+        this.EnabledMultiLineTab.visible = this.isEnabledMultiLineTab;
+        this.DisabledMultiLineTab.visible = !this.isEnabledMultiLineTab;
+        this.EnabledHistTab.visible = this.isEnabledHistTab;
+        this.DisabledHistTab.visible = !this.isEnabledHistTab;
+        this.updateSingle();
+        this.updateMulti();
+    }
+
+    private void updateSingle() {
+        this.TextWidget.visible = this.isEnabledSingleLineTab;
+        this.wordFieldWidget.visible = this.isEnabledSingleLineTab;
+    }
+
+    private void updateMulti() {
+        this.OS1StripWidget.visible = this.isEnabledMultiLineTab;
+        this.OS2StripWidget.visible = this.isEnabledMultiLineTab;
+        this.OS1FieldWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
+        this.OS2FieldWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
+        this.OS1WordField.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
+        this.OS2WordField.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
+        this.OS1TextWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
+        this.OS2TextWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
     }
 }
