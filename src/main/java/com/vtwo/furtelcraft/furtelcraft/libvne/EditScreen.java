@@ -393,7 +393,7 @@ public class EditScreen extends Screen {
             Objects.requireNonNull(os2List);
             os2Stream.forEach(os2List::add);
             nbtCompound.put("OS2", os2List);
-            nbtCompound.putString("OS2TEXT", this.OS1FieldWidget.getText());
+            nbtCompound.putString("OS2TEXT", this.OS2FieldWidget.getText());
         }
         NbtCompound temp = new NbtCompound();
         temp.put("Word", nbtCompound);

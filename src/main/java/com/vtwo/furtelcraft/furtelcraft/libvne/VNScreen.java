@@ -736,10 +736,16 @@ public class VNScreen extends Screen {
         if (nbt.contains("OS1")) {
             OS1WordList = (NbtList) nbt.get("OS1");
             TheOptionSelect1 = new LiteralText(nbt.getString("OS1TEXT"));
+            if (WordList.size() == 1) {
+                setOS1Enabled(true);
+            }
         }
         if (nbt.contains("OS2")) {
             OS2WordList = (NbtList) nbt.get("OS2");
             TheOptionSelect2 = new LiteralText(nbt.getString("OS2TEXT"));
+            if (WordList.size() == 1) {
+                setOS2Enabled(true);
+            }
         }
     }
 
