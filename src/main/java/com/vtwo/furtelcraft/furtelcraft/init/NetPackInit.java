@@ -7,7 +7,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -84,13 +83,13 @@ public class NetPackInit {
 
         ServerPlayNetworking.registerGlobalReceiver(EDIT_SCREEN_SAVE_ENTITY_WORD_ID, (server, player, handler, buf, responseSender) -> {
             UUID uuid = buf.readUuid();
-            NbtList list = (NbtList) Objects.requireNonNull(buf.readNbt()).get("Word");
+            NbtCompound nbtCompound = (NbtCompound) Objects.requireNonNull(buf.readNbt()).get("Word");
             server.execute(() -> {
                 /*EntityWordServerState serverState = EntityWordServerState.get(server.getOverworld());
                 serverState.setEntityState((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)), list);*/
                 try {
                     EntityWordFiles wordFiles = new EntityWordFiles((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
-                    wordFiles.setWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)), list);
+                    wordFiles.setWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)), nbtCompound);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -102,11 +101,9 @@ public class NetPackInit {
             server.execute(() -> {
                 try {
                     EntityWordFiles wordFiles = new EntityWordFiles((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
-                    NbtList list = wordFiles.getWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
-                    NbtCompound nbtCompound = new NbtCompound();
-                    nbtCompound.put("WORD", list);
+                    NbtCompound nbt = wordFiles.getWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
                     PacketByteBuf byteBuf = PacketByteBufs.create();
-                    byteBuf.writeNbt(nbtCompound);
+                    byteBuf.writeNbt(nbt);
                     ServerPlayNetworking.send(player, CLIENT_OPEN_VN_SCREEN_ID, byteBuf);
                 } catch (IOException e) {
                     throw new RuntimeException(e);

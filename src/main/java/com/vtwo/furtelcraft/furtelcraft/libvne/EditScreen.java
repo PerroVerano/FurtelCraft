@@ -365,14 +365,38 @@ public class EditScreen extends Screen {
 
         PacketByteBuf buf = PacketByteBufs.create();
         buf.writeUuid(this.entity.getUuid());
-        NbtList nbtList = new NbtList();
+        /*NbtList nbtList = new NbtList();
         NbtString string = NbtString.of(this.nameFieldWidget.getText());
         nbtList.add(string);
         Stream<NbtString> stream = this.WordList.stream().map(NbtString::of);
         Objects.requireNonNull(nbtList);
         stream.forEach(nbtList::add);
+        */
+        NbtCompound nbtCompound = new NbtCompound();
+        nbtCompound.putString("NAME", this.nameFieldWidget.getText());
+        NbtList singlelist = new NbtList();
+        Stream<NbtString> singleStream = this.WordList.stream().map(NbtString::of);
+        Objects.requireNonNull(singlelist);
+        singleStream.forEach(singlelist::add);
+        nbtCompound.put("SINGLE", singlelist);
+        if (!this.OS1Word.isEmpty()) {
+            NbtList os1List = new NbtList();
+            Stream<NbtString> os1Stream = this.OS1Word.stream().map(NbtString::of);
+            Objects.requireNonNull(os1List);
+            os1Stream.forEach(os1List::add);
+            nbtCompound.put("OS1", os1List);
+            nbtCompound.putString("OS1TEXT", this.OS1FieldWidget.getText());
+        }
+        if (!this.OS2Word.isEmpty()) {
+            NbtList os2List = new NbtList();
+            Stream<NbtString> os2Stream = this.OS2Word.stream().map(NbtString::of);
+            Objects.requireNonNull(os2List);
+            os2Stream.forEach(os2List::add);
+            nbtCompound.put("OS2", os2List);
+            nbtCompound.putString("OS2TEXT", this.OS1FieldWidget.getText());
+        }
         NbtCompound temp = new NbtCompound();
-        temp.put("Word", nbtList);
+        temp.put("Word", nbtCompound);
         buf.writeNbt(temp);
         ClientPlayNetworking.send(NetPackInit.EDIT_SCREEN_SAVE_ENTITY_WORD_ID, buf);
     }

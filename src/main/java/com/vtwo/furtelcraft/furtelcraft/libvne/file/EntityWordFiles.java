@@ -3,12 +3,10 @@ package com.vtwo.furtelcraft.furtelcraft.libvne.file;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.util.WorldSavePath;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -30,20 +28,21 @@ import java.util.UUID;
  * @PROJECT_NAME: furtelcraft
  */
 public class EntityWordFiles {
-    private final HashMap<UUID, NbtList> words = new HashMap<>();
+    private UUID uuid;
+    private NbtCompound nbt;
     private File file;
     private long seed;
 
     public EntityWordFiles(LivingEntity entity) throws IOException {
         this.seed = Objects.requireNonNull(entity.getServer()).getOverworld().getSeed();
-        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_words" + seed);
-        this.mark();
+        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_plot_" + seed);
     }
 
-    public void setWords(LivingEntity entity, NbtList nbtList) throws IOException {
-        words.put(entity.getUuid(), nbtList);
+    public void setWords(LivingEntity entity, NbtCompound nbtCompound) throws IOException {
+        this.uuid = entity.getUuid();
+        this.nbt = nbtCompound;
         this.seed = Objects.requireNonNull(entity.getServer()).getOverworld().getSeed();
-        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_words" + seed);
+        this.file = new File(Objects.requireNonNull(entity.getServer()).getSavePath(WorldSavePath.ROOT) + "\\furtelcraft_plot_" + seed);
         this.mark();
     }
 
@@ -55,12 +54,12 @@ public class EntityWordFiles {
             compound = new NbtCompound();
         }
         NbtCompound nbtCompound = compound.copy();
-        words.forEach((uuid, nbtList) -> nbtCompound.put(String.valueOf(uuid), nbtList));
+        nbtCompound.put(String.valueOf(uuid), nbt);
         NbtIo.writeCompressed(nbtCompound, file);
     }
 
-    public NbtList getWords(LivingEntity entity) throws IOException {
-        return (NbtList) NbtIo.readCompressed(file).get(String.valueOf(entity.getUuid()));
+    public NbtCompound getWords(LivingEntity entity) throws IOException {
+        return (NbtCompound) NbtIo.readCompressed(file).get(String.valueOf(entity.getUuid()));
     }
 
     public void removeWords(LivingEntity entity) throws IOException {

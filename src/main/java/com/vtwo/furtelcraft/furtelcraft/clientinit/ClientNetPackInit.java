@@ -7,7 +7,7 @@ import com.vtwo.furtelcraft.furtelcraft.screens.intedgui.BookGUI;
 import com.vtwo.furtelcraft.furtelcraft.screens.intedscreen.BookScreen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 
@@ -58,11 +58,11 @@ public class ClientNetPackInit {
         });
 
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_VN_SCREEN_ID, (client, handler, buf, responseSender) -> {
-            NbtList word = (NbtList) Objects.requireNonNull(buf.readNbt()).get("WORD");
+            NbtCompound word = buf.readNbt();
             client.execute(() -> {
                 VNScreen screen = new VNScreen(LiteralText.EMPTY);
                 assert word != null;
-                screen.setTheName(new LiteralText(word.getString(0)));
+                screen.setTheName(new LiteralText(word.getString("NAME")));
                 screen.setTheTextList(word);
                 client.setScreen(screen);
             });
