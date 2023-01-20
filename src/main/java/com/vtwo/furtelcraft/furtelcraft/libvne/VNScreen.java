@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -67,14 +68,15 @@ public class VNScreen extends Screen {
     protected @Nullable Text TheOptionSelect2 = EMPTY;
     private String HistText = "";
     private NbtList WordList;
-    private int pageCount = 1;
+    private int pageCount = 0;
+    private NbtList OS1WordList;
+    private NbtList OS2WordList;
+    private boolean hasSelected = false;
     protected BasedNonButtonWidget.PressAction onPress = widget -> {
     };
     protected BasedNonButtonWidget.TooltipSupplier tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
     };
-    protected BasedNonButtonWidget.PressAction OS1onPress = onPress;
     protected BasedNonButtonWidget.TooltipSupplier OS1Tooltip = tooltipSupplier;
-    protected BasedNonButtonWidget.PressAction OS2onPress = onPress;
     protected BasedNonButtonWidget.TooltipSupplier OS2Tooltip = tooltipSupplier;
     protected @Nullable ItemStack TheItem = new ItemStack(ItemInit.GUIDE_BOOK);
     protected @Nullable Color TheColor = Color.ORANGE;
@@ -336,6 +338,14 @@ public class VNScreen extends Screen {
                         TheText = Text.literal(WordList.getString(pageCount));
                         assert TheName != null;
                         HistText += "<" + TheName.getString() + ">" + WordList.getString(pageCount - 1) + "\n";
+                        if (pageCount == WordList.size() - 1 && !hasSelected) {
+                            if (!OS1WordList.isEmpty()) {
+                                setOS1Enabled(true);
+                            }
+                            if (!OS2WordList.isEmpty()) {
+                                setOS2Enabled(true);
+                            }
+                        }
                     }
                 },
                 tooltipSupplier
@@ -356,7 +366,14 @@ public class VNScreen extends Screen {
                 textureHeight,
                 TheOptionSelect1,
                 Color.PINK,
-                OS1onPress,
+                widget -> {
+                    pageCount = 0;
+                    WordList = OS1WordList;
+                    TheText = Text.literal(WordList.getString(pageCount));
+                    hasSelected = true;
+                    setOS1Enabled(false);
+                    setOS2Enabled(false);
+                },
                 OS1Tooltip
         );
     }
@@ -375,7 +392,14 @@ public class VNScreen extends Screen {
                 textureHeight,
                 TheOptionSelect2,
                 Color.PINK,
-                OS2onPress,
+                widget -> {
+                    pageCount = 0;
+                    WordList = OS2WordList;
+                    TheText = Text.literal(WordList.getString(pageCount));
+                    hasSelected = true;
+                    setOS1Enabled(false);
+                    setOS2Enabled(false);
+                },
                 OS2Tooltip
         );
     }
@@ -702,10 +726,25 @@ public class VNScreen extends Screen {
         return WordList;
     }
 
-    public void setTheTextList(NbtList nbtList) {
+    public void setTheTextList(NbtCompound nbt) {
         this.isTextEnabled = true;
-        WordList = nbtList;
+        WordList = (NbtList) nbt.get("SINGLE");
+        assert WordList != null;
         TheText = Text.literal(WordList.getString(pageCount));
+        if (nbt.contains("OS1")) {
+            OS1WordList = (NbtList) nbt.get("OS1");
+            TheOptionSelect1 = Text.literal(nbt.getString("OS1TEXT"));
+            if (WordList.size() == 1) {
+                setOS1Enabled(true);
+            }
+        }
+        if (nbt.contains("OS2")) {
+            OS2WordList = (NbtList) nbt.get("OS2");
+            TheOptionSelect2 = Text.literal(nbt.getString("OS2TEXT"));
+            if (WordList.size() == 1) {
+                setOS2Enabled(true);
+            }
+        }
     }
 
     public boolean isItemEnabled() {
@@ -759,28 +798,12 @@ public class VNScreen extends Screen {
         this.tooltipSupplier = tooltipSupplier;
     }
 
-    public BasedNonButtonWidget.PressAction getOS1onPress() {
-        return OS1onPress;
-    }
-
-    public void setOS1onPress(BasedNonButtonWidget.PressAction OS1onPress) {
-        this.OS1onPress = OS1onPress;
-    }
-
     public BasedNonButtonWidget.TooltipSupplier getOS1Tooltip() {
         return OS1Tooltip;
     }
 
     public void setOS1Tooltip(BasedNonButtonWidget.TooltipSupplier OS1Tooltip) {
         this.OS1Tooltip = OS1Tooltip;
-    }
-
-    public BasedNonButtonWidget.PressAction getOS2onPress() {
-        return OS2onPress;
-    }
-
-    public void setOS2onPress(BasedNonButtonWidget.PressAction OS2onPress) {
-        this.OS2onPress = OS2onPress;
     }
 
     public BasedNonButtonWidget.TooltipSupplier getOS2Tooltip() {
