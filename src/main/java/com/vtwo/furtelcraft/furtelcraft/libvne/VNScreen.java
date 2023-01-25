@@ -341,11 +341,15 @@ public class VNScreen extends Screen {
                         assert TheName != null;
                         HistText += "<" + TheName.getString() + ">" + WordList.getString(pageCount - 1) + "\n";
                         if (pageCount == WordList.size() - 1 && !hasSelected) {
-                            if (!OS1WordList.isEmpty()) {
-                                setOS1Enabled(true);
+                            if (this.OS1WordList != null) {
+                                if (!OS1WordList.isEmpty()) {
+                                    setOS1Enabled(true);
+                                }
                             }
-                            if (!OS2WordList.isEmpty()) {
-                                setOS2Enabled(true);
+                            if (this.OS2WordList != null) {
+                                if (!OS2WordList.isEmpty()) {
+                                    setOS2Enabled(true);
+                                }
                             }
                         }
                     }

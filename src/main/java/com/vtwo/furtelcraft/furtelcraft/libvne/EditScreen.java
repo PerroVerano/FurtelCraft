@@ -213,7 +213,7 @@ public class EditScreen extends Screen {
                 ClientPlayNetworking.send(NetPackInit.DEL_ENTITY_WORD_OS_ID, byteBuf);
                 if (this.nbtCompound != null) {
                     if (this.nbtCompound.contains("OS1")) {
-                        this.histTextWidget.setMessage(LiteralText.EMPTY);
+                        this.histTextWidget.setMessage(EMPTY);
                         this.nbtCompound.remove("OS1");
                         this.nbtCompound.remove("OS1TEXT");
                     }
@@ -225,7 +225,7 @@ public class EditScreen extends Screen {
                 ClientPlayNetworking.send(NetPackInit.DEL_ENTITY_WORD_OS_ID, byteBuf);
                 if (this.nbtCompound != null) {
                     if (this.nbtCompound.contains("OS2")) {
-                        this.histTextWidget.setMessage(LiteralText.EMPTY);
+                        this.histTextWidget.setMessage(EMPTY);
                         this.nbtCompound.remove("OS2");
                         this.nbtCompound.remove("OS2TEXT");
                     }
@@ -455,7 +455,7 @@ public class EditScreen extends Screen {
                         this.histTextWidget.setMessage(new LiteralText(this.sh));
                     } else {
                         this.histTextWidget.resetPos();
-                        this.histTextWidget.setMessage(LiteralText.EMPTY);
+                        this.histTextWidget.setMessage(EMPTY);
                     }
                 },
                 (widget, matrices, mouseX, mouseY) -> {
@@ -484,7 +484,7 @@ public class EditScreen extends Screen {
                         this.histTextWidget.setMessage(new LiteralText(this.sh));
                     } else {
                         this.histTextWidget.resetPos();
-                        this.histTextWidget.setMessage(LiteralText.EMPTY);
+                        this.histTextWidget.setMessage(EMPTY);
                     }
                 },
                 (widget, matrices, mouseX, mouseY) -> {
