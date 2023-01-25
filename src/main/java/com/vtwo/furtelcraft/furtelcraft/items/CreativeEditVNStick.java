@@ -40,6 +40,7 @@ public class CreativeEditVNStick extends Item {
                 PacketByteBuf buf = PacketByteBufs.create();
                 buf.writeBoolean(true);
                 buf.writeInt(entity.getId());
+                buf.writeUuid(entity.getUuid());
                 ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_EDIT_SCREEN_ID, buf);
             }
         } else {

@@ -41,7 +41,7 @@ public class NetPackInit {
     public static final Identifier CLIENT_OPEN_VN_SCREEN_ID = new Identifier(MOD_ID, "client_open_vn_screen_id");
     public static final Identifier EDIT_SCREEN_SAVE_ENTITY_WORD_ID = new Identifier(MOD_ID, "edit_screen_save_entity_word_id");
     public static final Identifier AUTH_OPEN_VN_SCREEN_ID = new Identifier(MOD_ID, "auth_open_vn_screen_id");
-    public static final Identifier STATE_ENTITY_VN_WORD_ID = new Identifier(MOD_ID, "state_entity_vn_word_id");
+    public static final Identifier DEL_ENTITY_WORD_OS_ID = new Identifier(MOD_ID, "del_entity_word_os1_id");
 
     public static void init() {
         ServerPlayNetworking.registerGlobalReceiver(EDIT_SCREEN_ENTITY_NAME_ID, (server, player, handler, buf, responseSender) -> {
@@ -61,9 +61,28 @@ public class NetPackInit {
         });
 
         ServerPlayNetworking.registerGlobalReceiver(CLIENT_OPEN_EDIT_SCREEN_ID, (server, player, handler, buf, responseSender) -> {
-            buf.retain();
+            boolean isOpen = buf.readBoolean();
+            int id = buf.readInt();
+            UUID uuid = buf.readUuid();
             server.execute(() -> {
-                ServerPlayNetworking.send(player, CLIENT_OPEN_EDIT_SCREEN_ID, buf);
+                try {
+                    EntityWordFiles wordFiles = new EntityWordFiles((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
+                    NbtCompound nbt = wordFiles.getWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
+                    PacketByteBuf byteBuf = PacketByteBufs.create();
+                    byteBuf.writeBoolean(isOpen);
+                    byteBuf.writeInt(id);
+                    byteBuf.writeNbt(nbt);
+                    ServerPlayNetworking.send(player, CLIENT_OPEN_EDIT_SCREEN_ID, byteBuf);
+                } catch (IOException e) {
+                    NbtCompound nbt = new NbtCompound();
+                    nbt.putString("null", "null");
+                    PacketByteBuf byteBuf = PacketByteBufs.create();
+                    byteBuf.writeBoolean(isOpen);
+                    byteBuf.writeInt(id);
+                    byteBuf.writeNbt(nbt);
+                    ServerPlayNetworking.send(player, CLIENT_OPEN_EDIT_SCREEN_ID, byteBuf);
+                    throw new RuntimeException(e);
+                }
             });
         });
 
@@ -105,6 +124,19 @@ public class NetPackInit {
                     PacketByteBuf byteBuf = PacketByteBufs.create();
                     byteBuf.writeNbt(nbt);
                     ServerPlayNetworking.send(player, CLIENT_OPEN_VN_SCREEN_ID, byteBuf);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        });
+
+        ServerPlayNetworking.registerGlobalReceiver(DEL_ENTITY_WORD_OS_ID, (server, player, handler, buf, responseSender) -> {
+            int id = buf.readInt();
+            UUID uuid = buf.readUuid();
+            server.execute(() -> {
+                try {
+                    EntityWordFiles wordFiles = new EntityWordFiles((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)));
+                    wordFiles.removeWords((LivingEntity) Objects.requireNonNull(server.getOverworld().getEntity(uuid)), id);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

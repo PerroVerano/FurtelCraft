@@ -1,16 +1,21 @@
 package com.vtwo.furtelcraft.furtelcraft.libvne.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.vtwo.furtelcraft.furtelcraft.libvne.EditScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+
+import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.libvne.widgets
@@ -29,7 +34,7 @@ import java.awt.*;
  * @MINUTE: 55
  * @PROJECT_NAME: furtelcraft
  */
-public class MultiLineStripWidget extends BasedNonButtonWidget {
+public class StripWidget extends BasedNonButtonWidget {
     private int iStrip;
     private int jStrip;
     private int StripWidth;
@@ -39,12 +44,13 @@ public class MultiLineStripWidget extends BasedNonButtonWidget {
     private PressAction onPress;
     private TooltipSupplier tooltipSupplier;
     private int state;
+    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/widgets.png");
 
-    public MultiLineStripWidget(int x, int y, @Deprecated int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, int state) {
+    public StripWidget(int x, int y, int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, int state) {
         super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.iStrip = x;
         this.jStrip = y;
-        this.StripWidth = 70;
+        this.StripWidth = width;
         this.StripHeight = 14;
         this.message = message;
         this.textColor = textColor;
@@ -59,18 +65,15 @@ public class MultiLineStripWidget extends BasedNonButtonWidget {
         TextRenderer textRenderer = minecraftClient.textRenderer;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, EditScreen.TEXTURE);
-        switch (this.state) {
-            case 0 -> drawTexture(matrices, iStrip, jStrip, 0, 204, StripWidth, StripHeight);
-            case 1 -> drawTexture(matrices, iStrip, jStrip, 0, 218, StripWidth, StripHeight);
-            case 2 -> drawTexture(matrices, iStrip, jStrip, 0, 232, StripWidth, StripHeight);
-            default -> throw new IllegalStateException("Unexpected value: " + this.state);
-        }
+        RenderSystem.setShaderTexture(0, TEXTURE);
+        drawTexture(matrices, this.iStrip, this.jStrip, 0, 64 + this.state * 14, this.StripWidth / 2, this.StripHeight);
+        drawTexture(matrices, this.iStrip + this.StripWidth / 2, this.jStrip, 256 - this.StripWidth / 2, 64 + this.state * 14, this.StripWidth / 2, this.StripHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
-        drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
         if (this.isHovered()) {
             this.renderTooltip(matrices, mouseX, mouseY);
+            j = RGB2DEC(Color.ORANGE.getRed(), Color.ORANGE.getGreen(), Color.ORANGE.getBlue());
         }
+        drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
     }
 
     public int getState() {
@@ -79,5 +82,10 @@ public class MultiLineStripWidget extends BasedNonButtonWidget {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    @Override
+    public void playDownSound(SoundManager soundManager) {
+        soundManager.play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
     }
 }
