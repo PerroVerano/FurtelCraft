@@ -420,7 +420,7 @@ public class EditScreen extends Screen {
                         NbtList nbtList = (NbtList) this.nbtCompound.get("SINGLE");
                         StringBuilder builder = new StringBuilder(this.sh);
                         for (int i = 0; i < Objects.requireNonNull(nbtList).size(); i++) {
-                            builder.append(i).append(">").append(nbtList.getString(i)).append("\n");
+                            builder.append(i + 1).append(">").append(nbtList.getString(i)).append("\n");
                         }
                         this.sh = builder.toString();
                         this.histTextWidget.resetPos();
@@ -446,7 +446,7 @@ public class EditScreen extends Screen {
                         NbtList nbtList = (NbtList) this.nbtCompound.get("OS1");
                         StringBuilder builder = new StringBuilder(this.sh);
                         for (int i = 0; i < Objects.requireNonNull(nbtList).size(); i++) {
-                            builder.append(i).append(">").append(nbtList.getString(i)).append("\n");
+                            builder.append(i + 1).append(">").append(nbtList.getString(i)).append("\n");
                         }
                         this.sh = builder.toString();
                         this.histTextWidget.resetPos();
@@ -475,7 +475,7 @@ public class EditScreen extends Screen {
                         NbtList nbtList = (NbtList) this.nbtCompound.get("OS2");
                         StringBuilder builder = new StringBuilder(this.sh);
                         for (int i = 0; i < Objects.requireNonNull(nbtList).size(); i++) {
-                            builder.append(i).append(">").append(nbtList.getString(i)).append("\n");
+                            builder.append(i + 1).append(">").append(nbtList.getString(i)).append("\n");
                         }
                         this.sh = builder.toString();
                         this.histTextWidget.resetPos();
@@ -497,7 +497,7 @@ public class EditScreen extends Screen {
             NbtList nbtList = (NbtList) this.nbtCompound.get("SINGLE");
             StringBuilder builder = new StringBuilder(this.sh);
             for (int i = 0; i < Objects.requireNonNull(nbtList).size(); i++) {
-                builder.append(i).append(">").append(nbtList.getString(i)).append("\n");
+                builder.append(i + 1).append(">").append(nbtList.getString(i)).append("\n");
             }
             this.sh = builder.toString();
             this.histTextWidget.setMessage(Text.literal(this.sh));
@@ -510,7 +510,7 @@ public class EditScreen extends Screen {
                     this.count = 0;
                     for (int i = 0; i < Objects.requireNonNull(single).size(); i++) {
                         this.count++;
-                        this.WordHist.add(i + ">" + single.getString(i) + "\n");
+                        this.WordHist.add((i + 1) + ">" + single.getString(i) + "\n");
                         this.WordList.add(single.getString(i));
                     }
                     this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
@@ -521,7 +521,7 @@ public class EditScreen extends Screen {
                     this.OS1count = 0;
                     for (int i = 0; i < Objects.requireNonNull(os1).size(); i++) {
                         this.OS1count++;
-                        this.OS1WordHist.add(i + ">" + os1.getString(i) + "\n");
+                        this.OS1WordHist.add((i + 1) + ">" + os1.getString(i) + "\n");
                         this.OS1Word.add(os1.getString(i));
                     }
                     this.s1 = this.OS1WordHist.stream().map(Objects::toString).collect(Collectors.joining());
@@ -533,7 +533,7 @@ public class EditScreen extends Screen {
                     this.OS2count = 0;
                     for (int i = 0; i < Objects.requireNonNull(os2).size(); i++) {
                         this.OS2count++;
-                        this.OS2WordHist.add(i + ">" + os2.getString(i) + "\n");
+                        this.OS2WordHist.add((i + 1) + ">" + os2.getString(i) + "\n");
                         this.OS2Word.add(os2.getString(i));
                     }
                     this.s2 = this.OS2WordHist.stream().map(Objects::toString).collect(Collectors.joining());
