@@ -62,7 +62,22 @@ public class EntityWordFiles {
         return (NbtCompound) NbtIo.readCompressed(file).get(String.valueOf(entity.getUuid()));
     }
 
-    public void removeWords(LivingEntity entity) throws IOException {
-        NbtIo.readCompressed(file).remove(String.valueOf(entity.getUuid()));
+    public void removeWords(LivingEntity entity, int id) throws IOException {
+        NbtCompound nbt = NbtIo.readCompressed(file);
+        NbtCompound nbtCompound = (NbtCompound) nbt.get(String.valueOf(entity.getUuid()));
+        switch (id) {
+            case 1 -> {
+                assert nbtCompound != null;
+                nbtCompound.remove("OS1");
+                nbtCompound.remove("OS1TEXT");
+            }
+            case 2 -> {
+                assert nbtCompound != null;
+                nbtCompound.remove("OS2");
+                nbtCompound.remove("OS2TEXT");
+            }
+        }
+        nbt.put(String.valueOf(entity.getUuid()), nbtCompound);
+        NbtIo.writeCompressed(nbt, file);
     }
 }

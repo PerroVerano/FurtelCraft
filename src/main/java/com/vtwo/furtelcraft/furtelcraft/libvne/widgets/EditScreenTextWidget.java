@@ -158,4 +158,8 @@ public class EditScreenTextWidget extends BasedNonButtonWidget {
     public TextRenderer getTextRenderer() {
         return this.textRenderer;
     }
+
+    public void resetPos() {
+        this.posBlock = 0;
+    }
 }

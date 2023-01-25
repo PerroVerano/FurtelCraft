@@ -35,6 +35,7 @@ public class ClientNetPackInit {
         ClientPlayNetworking.registerGlobalReceiver(NetPackInit.CLIENT_OPEN_EDIT_SCREEN_ID, (client, handler, buf, responseSender) -> {
             boolean isOpen = buf.readBoolean();
             int id = buf.readInt();
+            NbtCompound compound = buf.readNbt();
             client.execute(() -> {
                 if (isOpen) {
                     assert client.world != null;
@@ -42,6 +43,7 @@ public class ClientNetPackInit {
                             new TranslatableText("title.furtelcraft.vn_edit_screen",
                                     Objects.requireNonNull(client.world.getEntityById(id)).getName()));
                     screen.setEntity((LivingEntity) client.world.getEntityById(id));
+                    screen.setEntityNbt(compound);
                     client.setScreen(screen);
                 }
             });
