@@ -35,7 +35,7 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @MINUTE: 55
  * @PROJECT_NAME: furtelcraft
  */
-public class HistSideWidget extends BasedNonButtonWidget {
+public class HistSideWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int HistWidth;
@@ -50,7 +50,7 @@ public class HistSideWidget extends BasedNonButtonWidget {
 
     private List<OrderedText> TheList = Lists.newArrayList();
 
-    public HistSideWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public HistSideWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

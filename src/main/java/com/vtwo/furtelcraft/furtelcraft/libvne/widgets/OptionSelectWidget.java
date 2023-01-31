@@ -32,7 +32,7 @@ import java.awt.*;
  * @MINUTE: 30
  * @PROJECT_NAME: furtelcraft
  */
-public class OptionSelectWidget extends BasedNonButtonWidget {
+public class OptionSelectWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int osWidth;
@@ -44,7 +44,7 @@ public class OptionSelectWidget extends BasedNonButtonWidget {
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
 
-    public OptionSelectWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public OptionSelectWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

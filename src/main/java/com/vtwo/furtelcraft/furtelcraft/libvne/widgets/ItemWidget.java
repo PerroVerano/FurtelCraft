@@ -30,7 +30,7 @@ import java.util.Objects;
  * @MINUTE: 51
  * @PROJECT_NAME: furtelcraft
  */
-public class ItemWidget extends BasedNonButtonWidget {
+public class ItemWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int ItemWidth;
@@ -43,7 +43,7 @@ public class ItemWidget extends BasedNonButtonWidget {
     protected ItemStack itemStack;
     private Text message;
 
-    public ItemWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, ItemStack itemStack, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public ItemWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, ItemStack itemStack, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

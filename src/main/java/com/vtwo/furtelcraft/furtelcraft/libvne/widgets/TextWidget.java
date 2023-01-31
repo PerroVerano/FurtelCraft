@@ -32,7 +32,7 @@ import java.util.List;
  * @MINUTE: 19
  * @PROJECT_NAME: furtelcraft
  */
-public class TextWidget extends BasedNonButtonWidget {
+public class TextWidget extends BasedWidget {
 
     protected int textureWidth;
     protected int textureHeight;
@@ -46,7 +46,7 @@ public class TextWidget extends BasedNonButtonWidget {
     private int posBlock = 0;
     private Text message;
 
-    public TextWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public TextWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

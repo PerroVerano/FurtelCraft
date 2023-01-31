@@ -107,7 +107,7 @@ public class EditScreen extends Screen {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, iBase, jBase, 0, 0, backgroundWidth, backgroundHeight);
-        BasedNonButtonWidget.drawEntity(iBase + 44, jBase + 102, 28, (float) (iBase + 44) - mouseX, (float) (jBase + 122 - 50) - mouseY, this.entity);
+        BasedWidget.drawEntity(iBase + 44, jBase + 102, 28, (float) (iBase + 44) - mouseX, (float) (jBase + 122 - 50) - mouseY, this.entity);
         this.textRenderer.drawWithShadow(matrices, this.getTitle(), iBase + 8, jBase + 8, 16777215);
         //this.textRenderer.drawWithShadow(matrices, new TranslatableText("widget.furtelcraft.vn_edit_screen.textfieldwidget"), iBase + 142, jBase + 27, 16777215);
 
@@ -121,13 +121,13 @@ public class EditScreen extends Screen {
         int iBase = (width - backgroundWidth) / 2;
         int jBase = (height - backgroundHeight) / 2;
         this.entity.setCustomName(new LiteralText(this.nameFieldWidget.getText()));
-        if (this.os1HistWidget.getState() == 0 && this.isEnabledHistTab) {
+        if (this.os1HistWidget.isSelected() && this.isEnabledHistTab) {
             if (this.nbtCompound == null || !this.nbtCompound.contains("OS1")) {
                 this.textRenderer.drawWithShadow(matrices, new TranslatableText("widget.furtelcraft.vn_edit_screen.hist.os1.empty"), iBase + 85, jBase + 40, 16777215);
             } else {
                 this.textRenderer.drawWithShadow(matrices, new TranslatableText("widget.furtelcraft.vn_edit_screen.hist.os1").append(this.nbtCompound.getString("OS1TEXT")), iBase + 85, jBase + 40, 16777215);
             }
-        } else if (this.os2HistWidget.getState() == 0 && this.isEnabledHistTab) {
+        } else if (this.os2HistWidget.isSelected() && this.isEnabledHistTab) {
             if (this.nbtCompound == null || !this.nbtCompound.contains("OS2")) {
                 this.textRenderer.drawWithShadow(matrices, new TranslatableText("widget.furtelcraft.vn_edit_screen.hist.os2.empty"), iBase + 85, jBase + 40, 16777215);
             } else {
@@ -164,14 +164,14 @@ public class EditScreen extends Screen {
                 this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                 this.TextWidget.setMessage(new LiteralText(this.s));
                 this.wordFieldWidget.setText("");
-            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0) {
+            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.isSelected()) {
                 this.OS1count++;
                 OS1Word.add(this.OS1WordField.getText());
                 this.OS1WordHist.add(this.OS1count + ">" + this.OS1WordField.getText() + "\n");
                 this.s1 = this.OS1WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                 this.OS1TextWidget.setMessage(new LiteralText(this.s1));
                 this.OS1WordField.setText("");
-            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0) {
+            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.isSelected()) {
                 this.OS2count++;
                 OS2Word.add(this.OS2WordField.getText());
                 this.OS2WordHist.add(this.OS2count + ">" + this.OS2WordField.getText() + "\n");
@@ -190,7 +190,7 @@ public class EditScreen extends Screen {
                     this.s = this.WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                     this.TextWidget.setMessage(new LiteralText(this.s));
                 }
-            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0) {
+            } else if (this.isEnabledMultiLineTab && this.OS1StripWidget.isSelected()) {
                 if (!OS1Word.isEmpty()) {
                     this.OS1count--;
                     OS1Word.remove(this.OS1count);
@@ -198,7 +198,7 @@ public class EditScreen extends Screen {
                     this.s1 = this.OS1WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                     this.OS1TextWidget.setMessage(new LiteralText(this.s1));
                 }
-            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0) {
+            } else if (this.isEnabledMultiLineTab && this.OS2StripWidget.isSelected()) {
                 if (!OS2Word.isEmpty()) {
                     this.OS2count--;
                     OS2Word.remove(this.OS2count);
@@ -206,7 +206,7 @@ public class EditScreen extends Screen {
                     this.s2 = this.OS2WordHist.stream().map(Objects::toString).collect(Collectors.joining());
                     this.OS2TextWidget.setMessage(new LiteralText(this.s2));
                 }
-            } else if (this.isEnabledHistTab && this.os1HistWidget.getState() == 0) {
+            } else if (this.isEnabledHistTab && this.os1HistWidget.isSelected()) {
                 PacketByteBuf byteBuf = PacketByteBufs.create();
                 byteBuf.writeInt(1);
                 byteBuf.writeUuid(this.entity.getUuid());
@@ -218,7 +218,7 @@ public class EditScreen extends Screen {
                         this.nbtCompound.remove("OS1TEXT");
                     }
                 }
-            } else if (this.isEnabledHistTab && this.os2HistWidget.getState() == 0) {
+            } else if (this.isEnabledHistTab && this.os2HistWidget.isSelected()) {
                 PacketByteBuf byteBuf = PacketByteBufs.create();
                 byteBuf.writeInt(2);
                 byteBuf.writeUuid(this.entity.getUuid());
@@ -356,7 +356,7 @@ public class EditScreen extends Screen {
                 new TranslatableText("widget.furtelcraft.vn_edit_screen.multiline.os1strip"),
                 Color.WHITE,
                 widget -> {
-                    if (this.OS2StripWidget.getState() == 0 && this.OS1StripWidget.getState() == 1) {
+                    if (this.OS2StripWidget.isSelected() && this.OS1StripWidget.getState() == 1) {
                         this.OS1StripWidget.setState(0);
                         this.OS2StripWidget.setState(2);
                     }
@@ -373,7 +373,7 @@ public class EditScreen extends Screen {
                 new TranslatableText("widget.furtelcraft.vn_edit_screen.multiline.os2strip"),
                 Color.WHITE,
                 widget -> {
-                    if (this.OS2StripWidget.getState() == 2 && this.OS1StripWidget.getState() == 0) {
+                    if (this.OS2StripWidget.getState() == 2 && this.OS1StripWidget.isSelected()) {
                         this.OS2StripWidget.setState(0);
                         this.OS1StripWidget.setState(1);
                     }
@@ -409,7 +409,7 @@ public class EditScreen extends Screen {
         this.singleHistWidget = new StripWidget(iBase + 85, jBase + 22, 54, 14, new TranslatableText("widget.furtelcraft.vn_edit_screen.singleline"), Color.WHITE,
                 widget -> {
                     if (this.singleHistWidget.getState() == 1) {
-                        if (this.os1HistWidget.getState() == 0 || this.os2HistWidget.getState() == 0) {
+                        if (this.os1HistWidget.isSelected() || this.os2HistWidget.isSelected()) {
                             this.singleHistWidget.setState(0);
                             this.os1HistWidget.setState(3);
                             this.os2HistWidget.setState(2);
@@ -435,7 +435,7 @@ public class EditScreen extends Screen {
         this.os1HistWidget = new StripWidget(iBase + 139, jBase + 22, 54, 14, new TranslatableText("widget.furtelcraft.vn_edit_screen.multiline.os1strip"), Color.WHITE,
                 widget -> {
                     if (this.os1HistWidget.getState() == 3) {
-                        if (this.singleHistWidget.getState() == 0 || this.os2HistWidget.getState() == 0) {
+                        if (this.singleHistWidget.isSelected() || this.os2HistWidget.isSelected()) {
                             this.singleHistWidget.setState(1);
                             this.os1HistWidget.setState(0);
                             this.os2HistWidget.setState(2);
@@ -464,7 +464,7 @@ public class EditScreen extends Screen {
         this.os2HistWidget = new StripWidget(iBase + 193, jBase + 22, 54, 14, new TranslatableText("widget.furtelcraft.vn_edit_screen.multiline.os2strip"), Color.WHITE,
                 widget -> {
                     if (this.os2HistWidget.getState() == 2) {
-                        if (this.singleHistWidget.getState() == 0 || this.os1HistWidget.getState() == 0) {
+                        if (this.singleHistWidget.isSelected() || this.os1HistWidget.isSelected()) {
                             this.singleHistWidget.setState(1);
                             this.os1HistWidget.setState(3);
                             this.os2HistWidget.setState(0);
@@ -651,17 +651,17 @@ public class EditScreen extends Screen {
         this.OS1StripWidget.visible = this.isEnabledMultiLineTab;
         this.OS2StripWidget.visible = this.isEnabledMultiLineTab;
         this.copyWordBtnWidget.visible = this.isEnabledMultiLineTab;
-        this.OS1FieldWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
-        this.OS2FieldWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
-        this.OS1WordField.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
-        this.OS2WordField.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
-        this.OS1TextWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.getState() == 0;
-        this.OS2TextWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.getState() == 0;
+        this.OS1FieldWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.isSelected();
+        this.OS2FieldWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.isSelected();
+        this.OS1WordField.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.isSelected();
+        this.OS2WordField.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.isSelected();
+        this.OS1TextWidget.visible = this.isEnabledMultiLineTab && this.OS1StripWidget.isSelected();
+        this.OS2TextWidget.visible = this.isEnabledMultiLineTab && this.OS2StripWidget.isSelected();
     }
 
     private void updateHist() {
         this.NextBtnWidget.visible = this.isEnabledSingleLineTab || this.isEnabledMultiLineTab || !this.isEnabledHistTab;
-        this.DelBtnWidget.visible = !(this.singleHistWidget.getState() == 0) || this.isEnabledSingleLineTab || this.isEnabledMultiLineTab;
+        this.DelBtnWidget.visible = !(this.singleHistWidget.isSelected()) || this.isEnabledSingleLineTab || this.isEnabledMultiLineTab;
         this.singleHistWidget.visible = this.isEnabledHistTab;
         this.os1HistWidget.visible = this.isEnabledHistTab;
         this.os2HistWidget.visible = this.isEnabledHistTab;

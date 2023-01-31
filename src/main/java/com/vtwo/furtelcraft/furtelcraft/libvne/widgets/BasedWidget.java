@@ -49,7 +49,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedNonButtonWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
+public class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -64,13 +64,13 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
     @Nullable
     private Element efocused;
     protected float alpha = 1.0F;
-    protected final PressAction onPress;
+    protected PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
     private final List<? extends Element> children = Lists.newArrayList();
     private boolean dragging;
 
-    public BasedNonButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable PressAction onPress, @Nullable TooltipSupplier tooltipSupplier) {
+    public BasedWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, Text message, Color textColor, PressAction onPress, TooltipSupplier tooltipSupplier) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -83,7 +83,7 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.textColor = textColor;
     }
 
-    public BasedNonButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable PressAction onPress, @Nullable TooltipSupplier tooltipSupplier) {
+    public BasedWidget(int x, int y, int width, int height, Text message, Color textColor, PressAction onPress, TooltipSupplier tooltipSupplier) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -96,7 +96,7 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.textColor = textColor;
     }
 
-    public BasedNonButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor) {
+    public BasedWidget(int x, int y, int width, int height, Text message, Color textColor) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -104,16 +104,25 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.message = message;
         this.textureWidth = 256;
         this.textureHeight = 256;
-        this.onPress = widget -> {
-
-        };
-        this.tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
-
-        };
+        this.onPress = null;
+        this.tooltipSupplier = null;
         this.textColor = textColor;
     }
 
-    public BasedNonButtonWidget(int x, int y, int width, int height) {
+    public BasedWidget(int x, int y, int width, int height, int textureWidth, int textureHeight) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = LiteralText.EMPTY;
+        this.textureWidth = textureWidth;
+        this.textureHeight = textureHeight;
+        this.onPress = null;
+        this.tooltipSupplier = null;
+        this.textColor = Color.WHITE;
+    }
+
+    public BasedWidget(int x, int y, int width, int height, PressAction onPress, TooltipSupplier tooltipSupplier) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -121,12 +130,21 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         this.message = LiteralText.EMPTY;
         this.textureWidth = 256;
         this.textureHeight = 256;
-        this.onPress = widget -> {
+        this.onPress = onPress;
+        this.tooltipSupplier = tooltipSupplier;
+        this.textColor = Color.WHITE;
+    }
 
-        };
-        this.tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
-
-        };
+    public BasedWidget(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = LiteralText.EMPTY;
+        this.textureWidth = 256;
+        this.textureHeight = 256;
+        this.onPress = null;
+        this.tooltipSupplier = null;
         this.textColor = Color.WHITE;
     }
 
@@ -149,7 +167,11 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             this.renderWidget(matrices, mouseX, mouseY, delta);
+            this.tick();
         }
+    }
+
+    public void tick() {
     }
 
     protected MutableText getNarrationMessage() {
@@ -331,8 +353,9 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
     }
 
     public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-        assert this.tooltipSupplier != null;
-        this.tooltipSupplier.onTooltip(this, matrices, mouseX, mouseY);
+        if (this.tooltipSupplier != null) {
+            this.tooltipSupplier.onTooltip(this, matrices, mouseX, mouseY);
+        }
     }
 
     public void playDownSound(SoundManager soundManager) {
@@ -381,8 +404,9 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
         this.appendDefaultNarrations(builder);
-        assert this.tooltipSupplier != null;
-        this.tooltipSupplier.supply((text) -> builder.put(NarrationPart.HINT, text));
+        if (this.tooltipSupplier != null) {
+            this.tooltipSupplier.supply((text) -> builder.put(NarrationPart.HINT, text));
+        }
     }
 
     private void appendDefaultNarrations(NarrationMessageBuilder builder) {
@@ -397,8 +421,9 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
     }
 
     public void onPress() {
-        assert this.onPress != null;
-        this.onPress.onPress(this);
+        if (this.onPress != null) {
+            this.onPress.onPress(this);
+        }
     }
 
 
@@ -429,7 +454,7 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
 
     @Environment(EnvType.CLIENT)
     public interface TooltipSupplier {
-        void onTooltip(BasedNonButtonWidget widget, MatrixStack matrices, int mouseX, int mouseY);
+        void onTooltip(BasedWidget widget, MatrixStack matrices, int mouseX, int mouseY);
 
         default void supply(Consumer<Text> consumer) {
         }
@@ -437,6 +462,6 @@ public class BasedNonButtonWidget extends DrawableHelper implements Drawable, Pa
 
     @Environment(EnvType.CLIENT)
     public interface PressAction {
-        void onPress(BasedNonButtonWidget widget);
+        void onPress(BasedWidget widget);
     }
 }

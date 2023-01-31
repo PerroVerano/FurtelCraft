@@ -26,7 +26,7 @@ import java.awt.*;
  * @MINUTE: 49
  * @PROJECT_NAME: furtelcraft
  */
-public class ScollBarWidget extends BasedNonButtonWidget {
+public class ScollBarWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int ScollBarWidth;

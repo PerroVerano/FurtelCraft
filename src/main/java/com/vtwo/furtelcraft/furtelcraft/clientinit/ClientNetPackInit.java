@@ -1,10 +1,9 @@
 package com.vtwo.furtelcraft.furtelcraft.clientinit;
 
+import com.vtwo.furtelcraft.furtelcraft.fluffybook.GuideBookScreen;
 import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
 import com.vtwo.furtelcraft.furtelcraft.libvne.EditScreen;
 import com.vtwo.furtelcraft.furtelcraft.libvne.VNScreen;
-import com.vtwo.furtelcraft.furtelcraft.screens.intedgui.BookGUI;
-import com.vtwo.furtelcraft.furtelcraft.screens.intedscreen.BookScreen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -54,7 +53,7 @@ public class ClientNetPackInit {
             boolean isOpen = buf.readBoolean();
             client.execute(() -> {
                 if (isOpen) {
-                    client.setScreen(new BookScreen(new BookGUI()));
+                    client.setScreen(new GuideBookScreen(LiteralText.EMPTY));
                 }
             });
         });

@@ -34,7 +34,7 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @MINUTE: 26
  * @PROJECT_NAME: furtelcraft
  */
-public class GButtonWidget extends BasedNonButtonWidget {
+public class GButtonWidget extends BasedWidget {
     protected int textureWidth = 256;
     protected int textureHeight = 256;
     protected int ButtonWidth;
@@ -45,7 +45,7 @@ public class GButtonWidget extends BasedNonButtonWidget {
     protected final TooltipSupplier tooltipSupplier;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/widgets.png");
 
-    public GButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public GButtonWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.iButton = x;
         this.jButton = y;

@@ -29,7 +29,7 @@ import java.awt.*;
  * @MINUTE: 41
  * @PROJECT_NAME: furtelcraft
  */
-public class NameBarWidget extends BasedNonButtonWidget {
+public class NameBarWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int NameBarWidth;

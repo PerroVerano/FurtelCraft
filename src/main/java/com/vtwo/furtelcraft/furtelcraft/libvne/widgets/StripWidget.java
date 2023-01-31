@@ -34,7 +34,7 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @MINUTE: 55
  * @PROJECT_NAME: furtelcraft
  */
-public class StripWidget extends BasedNonButtonWidget {
+public class StripWidget extends BasedWidget {
     private int iStrip;
     private int jStrip;
     private int StripWidth;
@@ -46,7 +46,7 @@ public class StripWidget extends BasedNonButtonWidget {
     private int state;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/widgets.png");
 
-    public StripWidget(int x, int y, int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, int state) {
+    public StripWidget(int x, int y, int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier, int state) {
         super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.iStrip = x;
         this.jStrip = y;
@@ -87,5 +87,9 @@ public class StripWidget extends BasedNonButtonWidget {
     @Override
     public void playDownSound(SoundManager soundManager) {
         soundManager.play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+    }
+
+    public boolean isSelected() {
+        return this.getState() == 0;
     }
 }

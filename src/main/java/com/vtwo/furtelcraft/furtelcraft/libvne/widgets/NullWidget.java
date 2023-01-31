@@ -22,7 +22,7 @@ import java.awt.*;
  * @MINUTE: 21
  * @PROJECT_NAME: furtelcraft
  */
-public class NullWidget extends BasedNonButtonWidget {
+public class NullWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int NullWidth;
@@ -34,7 +34,7 @@ public class NullWidget extends BasedNonButtonWidget {
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
 
-    public NullWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public NullWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.NullWidth = width;
         this.NullHeight = height;

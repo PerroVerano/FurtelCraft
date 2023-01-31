@@ -74,16 +74,16 @@ public class VNScreen extends Screen {
     private boolean hasSelected = false;
     protected @Nullable Text TheOptionSelect1 = EMPTY;
     protected @Nullable Text TheOptionSelect2 = EMPTY;
-    protected BasedNonButtonWidget.PressAction onPress = widget -> {
+    protected BasedWidget.PressAction onPress = widget -> {
     };
-    protected BasedNonButtonWidget.TooltipSupplier tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
+    protected BasedWidget.TooltipSupplier tooltipSupplier = (widget, matrices, mouseX, mouseY) -> {
     };
-    protected BasedNonButtonWidget.TooltipSupplier OS1Tooltip = tooltipSupplier;
-    protected BasedNonButtonWidget.TooltipSupplier OS2Tooltip = tooltipSupplier;
+    protected BasedWidget.TooltipSupplier OS1Tooltip = tooltipSupplier;
+    protected BasedWidget.TooltipSupplier OS2Tooltip = tooltipSupplier;
     protected @Nullable ItemStack TheItem = new ItemStack(ItemInit.GUIDE_BOOK);
     protected @Nullable Color TheColor = Color.ORANGE;
     public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/vne.png");
-    private List<? extends BasedNonButtonWidget> WidgetList;
+    private List<? extends BasedWidget> WidgetList;
 
     private HistSideWidget HistSideEle;
     private ItemWidget ItemEle;
@@ -788,35 +788,35 @@ public class VNScreen extends Screen {
         TheOptionSelect2 = theOptionSelect2;
     }
 
-    public BasedNonButtonWidget.PressAction getOnPress() {
+    public BasedWidget.PressAction getOnPress() {
         return onPress;
     }
 
-    public void setOnPress(BasedNonButtonWidget.PressAction onPress) {
+    public void setOnPress(BasedWidget.PressAction onPress) {
         this.onPress = onPress;
     }
 
-    public BasedNonButtonWidget.TooltipSupplier getTooltipSupplier() {
+    public BasedWidget.TooltipSupplier getTooltipSupplier() {
         return tooltipSupplier;
     }
 
-    public void setTooltipSupplier(BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public void setTooltipSupplier(BasedWidget.TooltipSupplier tooltipSupplier) {
         this.tooltipSupplier = tooltipSupplier;
     }
 
-    public BasedNonButtonWidget.TooltipSupplier getOS1Tooltip() {
+    public BasedWidget.TooltipSupplier getOS1Tooltip() {
         return OS1Tooltip;
     }
 
-    public void setOS1Tooltip(BasedNonButtonWidget.TooltipSupplier OS1Tooltip) {
+    public void setOS1Tooltip(BasedWidget.TooltipSupplier OS1Tooltip) {
         this.OS1Tooltip = OS1Tooltip;
     }
 
-    public BasedNonButtonWidget.TooltipSupplier getOS2Tooltip() {
+    public BasedWidget.TooltipSupplier getOS2Tooltip() {
         return OS2Tooltip;
     }
 
-    public void setOS2Tooltip(BasedNonButtonWidget.TooltipSupplier OS2Tooltip) {
+    public void setOS2Tooltip(BasedWidget.TooltipSupplier OS2Tooltip) {
         this.OS2Tooltip = OS2Tooltip;
     }
 

@@ -28,7 +28,7 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @MINUTE: 36
  * @PROJECT_NAME: furtelcraft
  */
-public class BasedScollBlockWidget extends BasedNonButtonWidget {
+public class BasedScollBlockWidget extends BasedWidget {
     protected int ScollBlockWidth;
     protected int ScollBlockHeight;
     protected int iScollBlock;
@@ -39,7 +39,7 @@ public class BasedScollBlockWidget extends BasedNonButtonWidget {
     private Text message;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_scoll_block.png");
 
-    public BasedScollBlockWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier) {
+    public BasedScollBlockWidget(int x, int y, int width, int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
         super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

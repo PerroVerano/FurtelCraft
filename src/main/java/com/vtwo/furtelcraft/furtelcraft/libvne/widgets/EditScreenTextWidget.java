@@ -34,7 +34,7 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @MINUTE: 32
  * @PROJECT_NAME: furtelcraft
  */
-public class EditScreenTextWidget extends BasedNonButtonWidget {
+public class EditScreenTextWidget extends BasedWidget {
     protected int textureHeight;
     protected int TextPanelWidth;
     protected int TextPanelHeight;

@@ -29,7 +29,7 @@ import java.awt.*;
  * @MINUTE: 37
  * @PROJECT_NAME: furtelcraft
  */
-public class ExitButtonWidget extends BasedNonButtonWidget {
+public class ExitButtonWidget extends BasedWidget {
     protected int textureWidth;
     protected int textureHeight;
     protected int iButtonWidth;
@@ -40,7 +40,7 @@ public class ExitButtonWidget extends BasedNonButtonWidget {
     protected final TooltipSupplier tooltipSupplier;
     protected boolean isEnabled;
 
-    public ExitButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, boolean isEnabled) {
+    public ExitButtonWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier, boolean isEnabled) {
         super(x, y, width, height, textureWidth, textureHeight, message, textColor, onPress, tooltipSupplier);
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;

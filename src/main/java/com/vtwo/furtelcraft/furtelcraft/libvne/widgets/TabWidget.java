@@ -32,7 +32,7 @@ import java.awt.*;
  * @MINUTE: 11
  * @PROJECT_NAME: furtelcraft
  */
-public class TabWidget extends BasedNonButtonWidget {
+public class TabWidget extends BasedWidget {
     private int iTab;
     private int jTab;
     private @Deprecated int TabWidth;
@@ -43,7 +43,7 @@ public class TabWidget extends BasedNonButtonWidget {
     private TooltipSupplier tooltipSupplier;
     private boolean isEnabled;
 
-    public TabWidget(int x, int y, @Deprecated int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedNonButtonWidget.PressAction onPress, @Nullable BasedNonButtonWidget.TooltipSupplier tooltipSupplier, boolean isEnabled) {
+    public TabWidget(int x, int y, @Deprecated int width, @Deprecated int height, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier, boolean isEnabled) {
         super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.iTab = x;
         this.jTab = y;
