@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.LivingEntity;
@@ -41,7 +41,7 @@ public class CreativeEditVNStick extends Item {
                 buf.writeBoolean(true);
                 buf.writeInt(entity.getId());
                 buf.writeUuid(entity.getUuid());
-                ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_EDIT_SCREEN_ID, buf);
+                ClientPlayNetworking.send(FCNetPacks.CLIENT_OPEN_EDIT_SCREEN_ID, buf);
             }
         } else {
             return ActionResult.PASS;

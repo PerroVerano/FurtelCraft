@@ -1,8 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
-import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCScreens;
+import com.vtwo.furtelcraft.furtelcraft.init.FCTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -28,8 +27,8 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
     // 这个构造器是在服务器的 BlockEntity 中被调用的，无需先调用其他构造器，服务器知道容器的物品栏
     // 并直接将其作为参数传入。然后物品栏在客户端完成同步。
     public MagneticParticleProcessorScreenHandler(int synId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate){
-        super(ScreenInit.MAGNETIC_PARTICLE_PROCESSOR_SCREEN_HANDLER,synId);
-        checkSize(inventory,4);//物品栏有4格
+        super(FCScreens.MAGNETIC_PARTICLE_PROCESSOR_SCREEN_HANDLER, synId);
+        checkSize(inventory, 4);//物品栏有4格
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
@@ -40,13 +39,13 @@ public class MagneticParticleProcessorScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,0,31,35){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
         });
         this.addSlot(new Slot(this.inventory,1,54,35){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
         });
         this.addSlot(new Slot(this.inventory,2,109,35){

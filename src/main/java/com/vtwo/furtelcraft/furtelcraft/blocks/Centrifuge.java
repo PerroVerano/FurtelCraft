@@ -1,8 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
-import com.vtwo.furtelcraft.furtelcraft.blockentities.CentrifugeEntity;
-import com.vtwo.furtelcraft.furtelcraft.blockentities.MagneticParticleProcessorEntity;
-import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
+import com.vtwo.furtelcraft.furtelcraft.blocks.entity.CentrifugeEntity;
+import com.vtwo.furtelcraft.furtelcraft.init.FCBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -102,6 +101,6 @@ public class Centrifuge extends BlockWithEntity implements BlockEntityProvider{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockInit.CENTRIFUGE_ENTITY,CentrifugeEntity::tick);
+        return checkType(type, FCBlocks.CENTRIFUGE_ENTITY, CentrifugeEntity::tick);
     }
 }

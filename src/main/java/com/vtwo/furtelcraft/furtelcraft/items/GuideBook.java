@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +21,7 @@ public class GuideBook extends Item {
         if (world.isClient) {
             PacketByteBuf buf = PacketByteBufs.create();
             buf.writeBoolean(true);
-            ClientPlayNetworking.send(NetPackInit.CLIENT_OPEN_GUIDE_BOOK_SCREEN_ID, buf);
+            ClientPlayNetworking.send(FCNetPacks.CLIENT_OPEN_GUIDE_BOOK_SCREEN_ID, buf);
         }
         return TypedActionResult.success(user.getStackInHand(hand));
     }

@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.utils;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -9,17 +9,17 @@ public class NbtSequenceItemLists {
     //返回带有序列的样本试管
     public static ItemStack getSequenceNbtItemStack(ItemStack stack) {
         NbtCompound nbt = new NbtCompound();
-        ItemStack specimentube = ItemInit.SPECIMEN_TUBE.getDefaultStack();
-        if (stack.isOf(ItemInit.WOLF_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence",MammaliaLists.getWolfRandomSequence());
+        ItemStack specimentube = FCItems.SPECIMEN_TUBE.getDefaultStack();
+        if (stack.isOf(FCItems.WOLF_MEAT_SPECIMEN)) {
+            nbt.putString("Sequence", MammaliaLists.getWolfRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
-        } else if (stack.isOf(ItemInit.FOX_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence",MammaliaLists.getFoxRandomSequence());
+        } else if (stack.isOf(FCItems.FOX_MEAT_SPECIMEN)) {
+            nbt.putString("Sequence", MammaliaLists.getFoxRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
-        } else if (stack.isOf(ItemInit.ENDER_DRAGON_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence",SauropsidaLists.getDragonRandomSequence());
+        } else if (stack.isOf(FCItems.ENDER_DRAGON_MEAT_SPECIMEN)) {
+            nbt.putString("Sequence", SauropsidaLists.getDragonRandomSequence());
             specimentube.setNbt(nbt);
             return specimentube;
         }
@@ -29,8 +29,8 @@ public class NbtSequenceItemLists {
     public static NbtList setSequenceNbtList(ItemStack stack) {
         NbtList baseNbt = new NbtList();
         NbtCompound nbt = new NbtCompound();
-        if (stack.isOf(ItemInit.WOLF_MEAT_SPECIMEN)) {
-            nbt.putString("Sequence","WWF7");
+        if (stack.isOf(FCItems.WOLF_MEAT_SPECIMEN)) {
+            nbt.putString("Sequence", "WWF7");
             baseNbt.add(nbt);
         }
         return baseNbt;
@@ -41,19 +41,19 @@ public class NbtSequenceItemLists {
         assert nbtCompound != null;
         String nbt = nbtCompound.getString("Sequence");
         if (nbt.contains("WWFG")) {
-            ItemStack wolf = ItemInit.GRAY_WOLF_DNA_TUBE.getDefaultStack();
+            ItemStack wolf = FCItems.GRAY_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;
         } else if (nbt.contains("WFF")) {
-            ItemStack fox = ItemInit.FOX_DNA_TUBE.getDefaultStack();
+            ItemStack fox = FCItems.FOX_DNA_TUBE.getDefaultStack();
             fox.setNbt(nbtCompound);
             return fox;
         } else if (nbt.contains("GD")) {
-            ItemStack dragon = ItemInit.DRAGON_DNA_TUBE.getDefaultStack();
+            ItemStack dragon = FCItems.DRAGON_DNA_TUBE.getDefaultStack();
             dragon.setNbt(nbtCompound);
             return dragon;
         } else if (nbt.contains("WWFW")) {
-            ItemStack wolf = ItemInit.WHITE_WOLF_DNA_TUBE.getDefaultStack();
+            ItemStack wolf = FCItems.WHITE_WOLF_DNA_TUBE.getDefaultStack();
             wolf.setNbt(nbtCompound);
             return wolf;
         }

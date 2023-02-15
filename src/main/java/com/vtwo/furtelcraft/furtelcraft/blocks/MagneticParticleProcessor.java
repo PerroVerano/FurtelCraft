@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
-import com.vtwo.furtelcraft.furtelcraft.blockentities.MagneticParticleProcessorEntity;
-import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
+import com.vtwo.furtelcraft.furtelcraft.blocks.entity.MagneticParticleProcessorEntity;
+import com.vtwo.furtelcraft.furtelcraft.init.FCBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -106,6 +106,6 @@ public class MagneticParticleProcessor extends BlockWithEntity implements BlockE
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockInit.MAGNETIC_PARTICLE_PROCESSOR_ENTITY,MagneticParticleProcessorEntity::tick);
+        return checkType(type, FCBlocks.MAGNETIC_PARTICLE_PROCESSOR_ENTITY, MagneticParticleProcessorEntity::tick);
     }
 }

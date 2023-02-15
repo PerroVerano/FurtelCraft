@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,9 +35,9 @@ public class EmptyTube extends Item {
                     if (!user.getAbilities().creativeMode) {
                         user.getMainHandStack().setCount(user.getMainHandStack().getCount() - 1);
                     }
-                    user.swingHand(hand,true);
-                    user.giveItemStack(ItemInit.WATER_TUBE.getDefaultStack());
-                    user.playSound(SoundEvents.ITEM_BOTTLE_FILL,1.0F,1.0F);
+                    user.swingHand(hand, true);
+                    user.giveItemStack(FCItems.WATER_TUBE.getDefaultStack());
+                    user.playSound(SoundEvents.ITEM_BOTTLE_FILL, 1.0F, 1.0F);
                 }
             }
         }

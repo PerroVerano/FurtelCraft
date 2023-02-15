@@ -1,8 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
-import com.vtwo.furtelcraft.furtelcraft.blockentities.TubeHolderEntity;
-import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
+import com.vtwo.furtelcraft.furtelcraft.blocks.entity.TubeHolderEntity;
+import com.vtwo.furtelcraft.furtelcraft.init.FCBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -10,7 +9,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -26,14 +24,16 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
-    public static final IntProperty LEVEL = IntProperty.of("level",0,7);
+public class TubeHolder extends BlockWithEntity implements BlockEntityProvider {
+    public static final IntProperty LEVEL = IntProperty.of("level", 0, 7);
     public static final VoxelShape NORTH_SHAPE;
     public static final VoxelShape EAST_SHAPE;
+
     static {
-        NORTH_SHAPE = Block.createCuboidShape(1.0,0.0,5.0,15.0,9.0,11.0);
-        EAST_SHAPE = Block.createCuboidShape(5.0,0.0,1.0,11.0,9.0,15.0);
+        NORTH_SHAPE = Block.createCuboidShape(1.0, 0.0, 5.0, 15.0, 9.0, 11.0);
+        EAST_SHAPE = Block.createCuboidShape(5.0, 0.0, 1.0, 11.0, 9.0, 15.0);
     }
+
     public TubeHolder(Settings settings) {
         super(settings);
     }
@@ -45,7 +45,7 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING,LIT);
+        builder.add(FACING, LIT);
         builder.add(LEVEL);
     }
 
@@ -57,7 +57,7 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING,ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     //配合方块状态json文件代码
@@ -69,12 +69,11 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
         return BlockRenderType.MODEL;
     }
 
-    private VoxelShape getShape (BlockState state) {
+    private VoxelShape getShape(BlockState state) {
         Direction direction = state.get(FACING);
         if (direction == Direction.NORTH || direction == Direction.SOUTH) {
             return NORTH_SHAPE;
-        }
-        else {
+        } else {
             return EAST_SHAPE;
         }
     }
@@ -87,7 +86,7 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new TubeHolderEntity(pos,state);
+        return new TubeHolderEntity(pos, state);
     }
 
 
@@ -96,17 +95,17 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof TubeHolderEntity) {
-                ItemScatterer.spawn(world,pos, (Inventory) blockEntity);
-                world.updateComparators(pos,this);
+                ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
+                world.updateComparators(pos, this);
             }
-            super.onStateReplaced(state,world,pos,newState,moved);
+            super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof TubeHolderEntity tubeHolderEntity) {
-            tubeHolderEntity.use(state,world,pos,player);
+            tubeHolderEntity.use(state, world, pos, player);
         }
         return ActionResult.SUCCESS;
     }
@@ -114,6 +113,6 @@ public class TubeHolder extends BlockWithEntity implements BlockEntityProvider{
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockInit.TUBE_HOLDER_ENTITY,TubeHolderEntity::tick);
+        return checkType(type, FCBlocks.TUBE_HOLDER_ENTITY, TubeHolderEntity::tick);
     }
 }

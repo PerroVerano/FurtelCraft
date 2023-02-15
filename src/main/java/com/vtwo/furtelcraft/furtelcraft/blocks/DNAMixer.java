@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.blocks;
 
-import com.vtwo.furtelcraft.furtelcraft.blockentities.DNAMixerEntity;
-import com.vtwo.furtelcraft.furtelcraft.init.BlockInit;
+import com.vtwo.furtelcraft.furtelcraft.blocks.entity.DNAMixerEntity;
+import com.vtwo.furtelcraft.furtelcraft.init.FCBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -88,6 +88,6 @@ public class DNAMixer extends BlockWithEntity implements BlockEntityProvider {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, BlockInit.DNA_MIXER_ENTITY,DNAMixerEntity::tick);
+        return checkType(type, FCBlocks.DNA_MIXER_ENTITY, DNAMixerEntity::tick);
     }
 }

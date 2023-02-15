@@ -9,14 +9,14 @@ public class Furtelcraft implements ModInitializer {
     public static final String MOD_ID = "furtelcraft";
     @Override
     public void onInitialize() {
-        ItemInit.init();
-        BlockInit.init();
-        ScreenInit.init();
-        RecipeInit.init();
-        TagInit.init();
+        FCItems.init();
+        FCBlocks.init();
+        FCScreens.init();
+        FCRecipes.init();
+        FCTags.init();
         LootTableInject.init();
-        EntityInit.init();
-        NetPackInit.init();
+        FCEntities.init();
+        FCNetPacks.init();
 
         GeckoLib.initialize();
     }

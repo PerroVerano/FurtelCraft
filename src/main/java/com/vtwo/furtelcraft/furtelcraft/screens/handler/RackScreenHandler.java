@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCScreens;
+import com.vtwo.furtelcraft.furtelcraft.init.FCTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -21,8 +21,8 @@ public class RackScreenHandler extends ScreenHandler {
     }
 
     public RackScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ScreenInit.RACK_SCREEN_HANDLER,syncId);
-        checkSize(inventory,15);
+        super(FCScreens.RACK_SCREEN_HANDLER, syncId);
+        checkSize(inventory, 15);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
@@ -55,7 +55,7 @@ public class RackScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory, 8, 57, 29) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override
@@ -72,7 +72,7 @@ public class RackScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory, 11, 19, 44) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override
@@ -83,7 +83,7 @@ public class RackScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory, 12, 19, 14) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override
@@ -94,13 +94,13 @@ public class RackScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory, 13, 144, 53) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
         });
         this.addSlot(new Slot(this.inventory, 14, 176, 23) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
         });
         int i;

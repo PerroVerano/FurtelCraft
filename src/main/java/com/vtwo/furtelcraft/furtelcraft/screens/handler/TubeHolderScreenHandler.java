@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCScreens;
+import com.vtwo.furtelcraft.furtelcraft.init.FCTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -20,8 +20,8 @@ public class TubeHolderScreenHandler extends ScreenHandler {
     }
 
     public TubeHolderScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
-        super(ScreenInit.TUBE_HOLDER_SCREEN_HANDLER,syncId);
-        checkSize(inventory,3);
+        super(FCScreens.TUBE_HOLDER_SCREEN_HANDLER, syncId);
+        checkSize(inventory, 3);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
@@ -30,7 +30,7 @@ public class TubeHolderScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,0,44,33){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override
@@ -41,7 +41,7 @@ public class TubeHolderScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,1,80,33){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override
@@ -52,7 +52,7 @@ public class TubeHolderScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,2,116,33){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override

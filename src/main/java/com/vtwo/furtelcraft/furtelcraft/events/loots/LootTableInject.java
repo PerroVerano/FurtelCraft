@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.events.loots;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.LootPool;
@@ -21,7 +21,7 @@ public class LootTableInject {
             if (MC_FOX_LOOT_TABLE_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ItemInit.FOX_MEAT));
+                        .with(ItemEntry.builder(FCItems.FOX_MEAT));
                 supplier.pool(poolBuilder);
             }
         });
@@ -29,7 +29,7 @@ public class LootTableInject {
             if (MC_ENDER_DRAGON_LOOT_TABLE_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(14))
-                        .with(ItemEntry.builder(ItemInit.ENDER_DRAGON_MEAT));
+                        .with(ItemEntry.builder(FCItems.ENDER_DRAGON_MEAT));
                 supplier.pool(poolBuilder);
             }
         });
@@ -37,11 +37,11 @@ public class LootTableInject {
             if (MC_SPAWN_BONUS_CHEST_ID.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(2))
-                        .with(ItemEntry.builder(ItemInit.BUFFER_TUBE))
-                                .rolls(ConstantLootNumberProvider.create(2))
-                                .with(ItemEntry.builder(ItemInit.PROTEINASE_K_TUBE))
-                                        .rolls(ConstantLootNumberProvider.create(2))
-                                        .with(ItemEntry.builder(ItemInit.ABSOLUTE_ALCOHOL_TUBE));
+                        .with(ItemEntry.builder(FCItems.BUFFER_TUBE))
+                        .rolls(ConstantLootNumberProvider.create(2))
+                        .with(ItemEntry.builder(FCItems.PROTEINASE_K_TUBE))
+                        .rolls(ConstantLootNumberProvider.create(2))
+                        .with(ItemEntry.builder(FCItems.ABSOLUTE_ALCOHOL_TUBE));
                 supplier.pool(poolBuilder);
             }
         });
@@ -49,11 +49,11 @@ public class LootTableInject {
             if (MC_BURIED_TREASURE_CHEST.equals(id)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(2))
-                        .with(ItemEntry.builder(ItemInit.BUFFER_TUBE))
-                                .rolls(ConstantLootNumberProvider.create(2))
-                                .with(ItemEntry.builder(ItemInit.PROTEINASE_K_TUBE))
-                                        .rolls(ConstantLootNumberProvider.create(2))
-                                        .with(ItemEntry.builder(ItemInit.ABSOLUTE_ALCOHOL_TUBE));
+                        .with(ItemEntry.builder(FCItems.BUFFER_TUBE))
+                        .rolls(ConstantLootNumberProvider.create(2))
+                        .with(ItemEntry.builder(FCItems.PROTEINASE_K_TUBE))
+                        .rolls(ConstantLootNumberProvider.create(2))
+                        .with(ItemEntry.builder(FCItems.ABSOLUTE_ALCOHOL_TUBE));
                 supplier.pool(poolBuilder);
             }
         });
@@ -61,7 +61,7 @@ public class LootTableInject {
             if (MC_WOLF_LOOT_TABLE_ID.equals(id)) {
                 LootPool.Builder builder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ItemInit.WOLF_MEAT));
+                        .with(ItemEntry.builder(FCItems.WOLF_MEAT));
                 tableBuilder.pool(builder);
             }
         });

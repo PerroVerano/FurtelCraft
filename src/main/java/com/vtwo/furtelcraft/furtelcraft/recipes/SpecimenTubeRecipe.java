@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.recipes;
 
 import com.google.common.collect.Lists;
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCItems;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -24,10 +24,9 @@ public class SpecimenTubeRecipe extends SpecialCraftingRecipe {
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack stack = inventory.getStack(i);
             if (!stack.isEmpty()){
-                if (stack.getItem() == ItemInit.WOLF_MEAT) {
+                if (stack.getItem() == FCItems.WOLF_MEAT) {
                     list.add(stack);
-                }
-                else if (stack.getItem() == ItemInit.WATER_TUBE) {
+                } else if (stack.getItem() == FCItems.WATER_TUBE) {
                     list.add(stack);
                 }
             }
@@ -40,16 +39,15 @@ public class SpecimenTubeRecipe extends SpecialCraftingRecipe {
         int count = 0;
         boolean hasWolfMeat = false;
         boolean hasWaterTube = false;
-        ItemStack stack = new ItemStack(ItemInit.SPECIMEN_TUBE);
+        ItemStack stack = new ItemStack(FCItems.SPECIMEN_TUBE);
         NbtCompound nbt = new NbtCompound();
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack itemStack = inventory.getStack(i);
             if (!itemStack.isEmpty()) {
                 count++;
-                if (itemStack.getItem() == ItemInit.WOLF_MEAT) {
+                if (itemStack.getItem() == FCItems.WOLF_MEAT) {
                     hasWolfMeat = true;
-                }
-                else if (itemStack.getItem() == ItemInit.WATER_TUBE) {
+                } else if (itemStack.getItem() == FCItems.WATER_TUBE) {
                     hasWaterTube = true;
                 }
             }

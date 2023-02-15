@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.vne;
 
-import com.vtwo.furtelcraft.furtelcraft.libvne.VNScreen;
+import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.text.Text;
 
 /**

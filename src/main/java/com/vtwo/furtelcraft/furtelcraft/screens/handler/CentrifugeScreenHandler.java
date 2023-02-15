@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.handler;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ScreenInit;
-import com.vtwo.furtelcraft.furtelcraft.init.TagInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCScreens;
+import com.vtwo.furtelcraft.furtelcraft.init.FCTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -21,8 +21,8 @@ public class CentrifugeScreenHandler extends ScreenHandler {
     }
 
     public CentrifugeScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory,PropertyDelegate propertyDelegate) {
-        super(ScreenInit.CENTRIFUGE_SCREEN_HANDLER,syncId);
-        checkSize(inventory,4);
+        super(FCScreens.CENTRIFUGE_SCREEN_HANDLER, syncId);
+        checkSize(inventory, 4);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
@@ -64,7 +64,7 @@ public class CentrifugeScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inventory,3,79,43){
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.isIn(TagInit.TUBE_ITEM);
+                return stack.isIn(FCTags.TUBE_ITEM);
             }
 
             @Override

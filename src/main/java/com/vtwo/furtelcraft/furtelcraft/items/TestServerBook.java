@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.init.NetPackInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.LivingEntity;
@@ -48,7 +48,7 @@ public class TestServerBook extends Item {
         if (user.world.isClient) {
             PacketByteBuf byteBuf = PacketByteBufs.create();
             byteBuf.writeUuid(entity.getUuid());
-            ClientPlayNetworking.send(NetPackInit.AUTH_OPEN_VN_SCREEN_ID, byteBuf);
+            ClientPlayNetworking.send(FCNetPacks.AUTH_OPEN_VN_SCREEN_ID, byteBuf);
 
 
             /*PacketByteBuf buf = PacketByteBufs.create();

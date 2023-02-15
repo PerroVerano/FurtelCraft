@@ -1,6 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.items;
 
-import com.vtwo.furtelcraft.furtelcraft.init.ItemInit;
+import com.vtwo.furtelcraft.furtelcraft.init.FCItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -35,8 +35,8 @@ public class WaterTube extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user){
-        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
-        ItemStack last = new ItemStack(ItemInit.EMPTY_TUBE);
+        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
+        ItemStack last = new ItemStack(FCItems.EMPTY_TUBE);
         if (playerEntity instanceof ServerPlayerEntity) {
             Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, stack);
         }
@@ -62,12 +62,12 @@ public class WaterTube extends Item {
 
         if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
             if (stack.isEmpty()) {
-                return new ItemStack(ItemInit.EMPTY_TUBE);
+                return new ItemStack(FCItems.EMPTY_TUBE);
             }
 
             if (playerEntity != null) {
                 if (!playerEntity.getInventory().insertStack(last)){
-                    playerEntity.dropItem(ItemInit.EMPTY_TUBE);
+                    playerEntity.dropItem(FCItems.EMPTY_TUBE);
                 }
                 else {
                     playerEntity.getInventory().insertStack(last);
