@@ -11,10 +11,10 @@ FurtelCraft（暂定中文名：毛茸时代）是运行于Fabric上的一个Fur
 ###  **前置模组**
 1.18.2版本：  
 [`GeckoLib`3.0.80及以上版本 | MCMOD](https://www.mcmod.cn/class/3232.html)   
-[`LibGUI`5.4.2及以上版本 | GitHub](https://github.com/CottonMC/LibGui)  
+[`LibGUI`5.4.2及以上版本(自本模组V1.2.0-BETA2以后版本已弃用该前置模组) | GitHub](https://github.com/CottonMC/LibGui)  
 1.19.2版本：  
 [`GeckoLib`3.1.38及以上版本 | MCMOD](https://www.mcmod.cn/class/3232.html)   
-[`LibGUI`6.4.0及以上版本 | GitHub](https://github.com/CottonMC/LibGui)  
+[`LibGUI`6.4.0及以上版本(自本模组V1.2.0-BETA2以后版本已弃用该前置模组) | GitHub](https://github.com/CottonMC/LibGui)  
 ###  **模组玩法**
 - 剧情模式！跟随主线剧情来探索整个模组内容，或者开始一场高自由度的毛茸茸冒险，揭开尘封多年的秘史。  
 - 培养系统。在世界中探索以获取样本和独特的试剂，使用一系列工作台以提取出DNA序列并培养成个体。  
@@ -30,6 +30,7 @@ FurtelCraft（暂定中文名：毛茸时代）是运行于Fabric上的一个Fur
  _/序号顺序不代表开发顺序。/_  
  _/开发线有以下四种状态：同步进行、收尾阶段、已完成、跳票。/_  
  _/若当前更新主题下的开发线完成进度达成某个内定目标，模组即刻发布预览/测试/正式版发行包。/_  
+ _/开发重点为MC 1.18.2，MC 1.19.2版本则会在每次发行新模组发行版本之前进行代码Marge。/_  
 1. 序列系统-扩展（同步进行）
 2. 主线剧情第一章（同步进行）
 3. 世界结构-基础（同步进行）
