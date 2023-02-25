@@ -47,15 +47,18 @@ public class PerfacePage2 extends PageWidget {
 
     private void initWidget() {
         this.arthurEle = new FTextWidget(iPage + 1, jPage + 10 + ((this.pageHeight / 10) * 3), 114, 9,
-                new TranslatableText("text.furtelcraft.author").setStyle(Style.EMPTY.withBold(true)), Color.GRAY, true, false,
+                new TranslatableText("text.furtelcraft.author").setStyle(Style.EMPTY.withBold(true)), Color.GRAY, true, false, widget -> {
+        },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
         this.versionEle = new FTextWidget(iPage + 1, jPage + 10 + ((this.pageHeight / 10) * 4) - 3, 114, 9,
-                new TranslatableText("text.furtelcraft.version"), Color.LIGHT_GRAY, true, false,
+                new TranslatableText("text.furtelcraft.version"), Color.LIGHT_GRAY, true, false, widget -> {
+        },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
         this.tipEle = new FTextWidget(iPage - 1, jPage + 10 + ((this.pageHeight / 10) * 5) - 5, 116, 9,
-                new TranslatableText("text.furtelcraft.tip"), Color.BLACK, true, false,
+                new TranslatableText("text.furtelcraft.tip"), Color.BLACK, true, false, widget -> {
+        },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
     }

@@ -87,8 +87,6 @@ public class VNScreen extends Screen {
 
     private HistSideWidget HistSideEle;
     private ItemWidget ItemEle;
-    private ScollBarWidget ScollBarEle;
-    private ScollBarWidget ScollBlockEle;
     private NameBarWidget NameBarEle;
     private TextWidget TextEle;
     private OptionSelectWidget OS1Ele;
@@ -136,20 +134,18 @@ public class VNScreen extends Screen {
     protected void addWidgets() {
         this.HistSideEle = (HistSideWidget) this.addDrawableChild(WidgetList.get(1));
         this.ItemEle = (ItemWidget) this.addDrawableChild(WidgetList.get(2));
-        this.ScollBarEle = (ScollBarWidget) this.addDrawableChild(WidgetList.get(3));
-        this.ScollBlockEle = (ScollBarWidget) this.addDrawableChild(WidgetList.get(4));
-        this.NameBarEle = (NameBarWidget) this.addDrawableChild(WidgetList.get(5));
-        this.TextEle = (TextWidget) this.addDrawableChild(WidgetList.get(6));
-        this.OS1Ele = (OptionSelectWidget) this.addDrawableChild(WidgetList.get(7));
-        this.OS2Ele = (OptionSelectWidget) this.addDrawableChild(WidgetList.get(8));
-        this.EnabledSkipBtnEle = (SkipButtonWidget) this.addDrawableChild(WidgetList.get(9));
-        this.DisabledSkipBtnEle = (SkipButtonWidget) this.addDrawableChild(WidgetList.get(10));
-        this.EnabledAutoBtnEle = (AutoButtonWidget) this.addDrawableChild(WidgetList.get(11));
-        this.DisabledAutoBtnEle = (AutoButtonWidget) this.addDrawableChild(WidgetList.get(12));
-        this.EnabledHistBtnEle = (HistButtonWidget) this.addDrawableChild(WidgetList.get(13));
-        this.DisabledHistBtnEle = (HistButtonWidget) this.addDrawableChild(WidgetList.get(14));
-        this.EnabledExitBtnEle = (ExitButtonWidget) this.addDrawableChild(WidgetList.get(15));
-        this.DisabledExitBtnEle = (ExitButtonWidget) this.addDrawableChild(WidgetList.get(16));
+        this.NameBarEle = (NameBarWidget) this.addDrawableChild(WidgetList.get(3));
+        this.TextEle = (TextWidget) this.addDrawableChild(WidgetList.get(4));
+        this.OS1Ele = (OptionSelectWidget) this.addDrawableChild(WidgetList.get(5));
+        this.OS2Ele = (OptionSelectWidget) this.addDrawableChild(WidgetList.get(6));
+        this.EnabledSkipBtnEle = (SkipButtonWidget) this.addDrawableChild(WidgetList.get(7));
+        this.DisabledSkipBtnEle = (SkipButtonWidget) this.addDrawableChild(WidgetList.get(8));
+        this.EnabledAutoBtnEle = (AutoButtonWidget) this.addDrawableChild(WidgetList.get(9));
+        this.DisabledAutoBtnEle = (AutoButtonWidget) this.addDrawableChild(WidgetList.get(10));
+        this.EnabledHistBtnEle = (HistButtonWidget) this.addDrawableChild(WidgetList.get(11));
+        this.DisabledHistBtnEle = (HistButtonWidget) this.addDrawableChild(WidgetList.get(12));
+        this.EnabledExitBtnEle = (ExitButtonWidget) this.addDrawableChild(WidgetList.get(13));
+        this.DisabledExitBtnEle = (ExitButtonWidget) this.addDrawableChild(WidgetList.get(14));
     }
 
     private void initWidgetList() {
@@ -157,28 +153,24 @@ public class VNScreen extends Screen {
                 getNullWidget(),//0
                 getHistSideWidget(),//1
                 getItemWidget(),//2
-                getScollBarWidget(),//3
-                getScollBlockWidget(),//4
-                getNameBarWidget(),//5
-                getTextWidget(),//6
-                getOS1Widget(),//7
-                getOS2Widget(),//8
-                getEnabledSkipButtonWidget(),//9
-                getDisabledSkipButtonWidget(),//10
-                getEnabledAutoButtonWidget(),//11
-                getDisabledAutoButtonWidget(),//12
-                getEnabledHistButtonWidget(),//13
-                getDisabledHistButtonWidget(),//14
-                getEnabledExitButtonWidget(),//15
-                getDisabledExitButtonWidget()//16
+                getNameBarWidget(),//3
+                getTextWidget(),//4
+                getOS1Widget(),//5
+                getOS2Widget(),//6
+                getEnabledSkipButtonWidget(),//7
+                getDisabledSkipButtonWidget(),//8
+                getEnabledAutoButtonWidget(),//9
+                getDisabledAutoButtonWidget(),//10
+                getEnabledHistButtonWidget(),//11
+                getDisabledHistButtonWidget(),//12
+                getEnabledExitButtonWidget(),//13
+                getDisabledExitButtonWidget()//14
         );
     }
 
     private void updateWidgets() {
         this.HistSideEle.visible = this.isHistSideEnabled;
         this.ItemEle.visible = this.isItemEnabled;
-        this.ScollBarEle.visible = this.isScollEnabled;
-        this.ScollBlockEle.visible = this.isScollEnabled;
         this.NameBarEle.visible = this.isNameEnabled;
         this.TextEle.visible = this.isTextEnabled;
         this.OS1Ele.visible = this.isOS1Enabled;
@@ -252,52 +244,6 @@ public class VNScreen extends Screen {
                 Color.WHITE,
                 onPress,
                 tooltipSupplier
-        );
-    }
-
-    @Deprecated
-    private ScollBarWidget getScollBarWidget() {
-        int iBase = (width - textureWidth) / 2;
-        int jBase = (height - textureHeight - 1);
-        int iScollBar = iBase + 243;
-        int jScollBar = jBase + 5;
-        int scollBarWidth = 4;
-        int scollBarHeight = 54;
-        return new ScollBarWidget(
-                iScollBar,
-                jScollBar,
-                scollBarWidth,
-                scollBarHeight,
-                textureWidth,
-                textureHeight,
-                EMPTY,
-                null,
-                onPress,
-                tooltipSupplier,
-                false
-        );
-    }
-
-    @Deprecated
-    private ScollBarWidget getScollBlockWidget() {
-        int iBase = (width - textureWidth) / 2;
-        int jBase = (height - textureHeight - 1);
-        int iScollBlock = iBase + 243;
-        int jScollBlock = jBase + 5;
-        int scollWidth = 4;
-        int scollHeight = 10;
-        return new ScollBarWidget(
-                iScollBlock,
-                jScollBlock,
-                scollWidth,
-                scollHeight,
-                textureWidth,
-                textureHeight,
-                EMPTY,
-                null,
-                onPress,
-                tooltipSupplier,
-                true
         );
     }
 

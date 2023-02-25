@@ -1,15 +1,19 @@
 package com.vtwo.furtelcraft.furtelcraft.init;
 
+import com.vtwo.furtelcraft.furtelcraft.blocks.entity.TubeHolderEntity;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.file.EntityWordFiles;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -42,6 +46,7 @@ public class FCNetPacks {
     public static final Identifier EDIT_SCREEN_SAVE_ENTITY_WORD_ID = new Identifier(MOD_ID, "edit_screen_save_entity_word_id");
     public static final Identifier AUTH_OPEN_VN_SCREEN_ID = new Identifier(MOD_ID, "auth_open_vn_screen_id");
     public static final Identifier DEL_ENTITY_WORD_OS_ID = new Identifier(MOD_ID, "del_entity_word_os1_id");
+    public static final Identifier CLIENT_TUBE_HOLDER_HUD_RENDER_ID = new Identifier(MOD_ID, "client_tube_holder_hud_render_id");
 
     public static void init() {
         ServerPlayNetworking.registerGlobalReceiver(EDIT_SCREEN_ENTITY_NAME_ID, (server, player, handler, buf, responseSender) -> {
@@ -140,6 +145,20 @@ public class FCNetPacks {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            });
+        });
+
+        ServerPlayNetworking.registerGlobalReceiver(CLIENT_TUBE_HOLDER_HUD_RENDER_ID, (server, player, handler, buf, responseSender) -> {
+            BlockPos pos = buf.readBlockPos();
+            server.execute(() -> {
+                TubeHolderEntity entity = (TubeHolderEntity) player.getWorld().getBlockEntity(pos);
+                assert entity != null;
+                DefaultedList<ItemStack> items = entity.getItems();
+                PacketByteBuf byteBuf = PacketByteBufs.create();
+                for (ItemStack item : items) {
+                    byteBuf.writeItemStack(item);
+                }
+                ServerPlayNetworking.send(player, CLIENT_TUBE_HOLDER_HUD_RENDER_ID, byteBuf);
             });
         });
     }

@@ -1,9 +1,11 @@
 package com.vtwo.furtelcraft.furtelcraft.screens.hud;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.vtwo.furtelcraft.furtelcraft.blocks.entity.TubeHolderEntity;
 import com.vtwo.furtelcraft.furtelcraft.init.FCBlocks;
+import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -11,11 +13,14 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+
+import java.util.HashMap;
 
 import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
 
@@ -53,14 +58,16 @@ public class TubeHolderHud implements HudRenderCallback {
                 BlockState state = client.world.getBlockState(pos);
                 Block block = state.getBlock();
                 if (block.equals(FCBlocks.TUBE_HOLDER)) {
-                    TubeHolderEntity entity = new TubeHolderEntity(pos, state);
-                    this.render(matrixStack, client, entity);
+                    PacketByteBuf byteBuf = PacketByteBufs.create();
+                    byteBuf.writeBlockPos(pos);
+                    ClientPlayNetworking.send(FCNetPacks.CLIENT_TUBE_HOLDER_HUD_RENDER_ID, byteBuf);
+                    this.render(matrixStack, client);
                 }
             }
         }
     }
 
-    public void render(MatrixStack matrixStack, MinecraftClient client, TubeHolderEntity entity) {
+    public void render(MatrixStack matrixStack, MinecraftClient client) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
@@ -70,7 +77,9 @@ public class TubeHolderHud implements HudRenderCallback {
         int centerY = (client.getWindow().getScaledHeight() - backgroundHeight) / 2;
         TextRenderer textRenderer = client.textRenderer;
         DrawableHelper.drawTexture(matrixStack, centerX + (backgroundWidth / 2) + 6, centerY, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
-        NbtCompound nbtCompound = entity.toInitialChunkDataNbt();
-        System.out.println(nbtCompound);
+    }
+
+    private void initInfo(HashMap<Integer, ItemStack> map) {
+
     }
 }

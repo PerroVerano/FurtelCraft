@@ -105,11 +105,13 @@ public class GuideBookScreen extends Screen {
         this.leftPage = PageFactory.get(leftPageina);
         this.rightPage = PageFactory.get(rightPageina);
         this.leftpageinaEle = new FTextWidget(iBase + 10, jBase + 163, 114, 10,
-                new LiteralText(String.valueOf(leftPageina)), Color.BLACK, true, false,
+                new LiteralText(String.valueOf(leftPageina)), Color.BLACK, true, false, widget -> {
+        },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
         this.rightpageinaEle = new FTextWidget(iBase + 133, jBase + 163, 114, 10,
-                new LiteralText(String.valueOf(rightPageina)), Color.BLACK, true, false,
+                new LiteralText(String.valueOf(rightPageina)), Color.BLACK, true, false, widget -> {
+        },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
         this.leftTurnEle = new FPageTurnBtnWidget(iBase, jBase + 175,

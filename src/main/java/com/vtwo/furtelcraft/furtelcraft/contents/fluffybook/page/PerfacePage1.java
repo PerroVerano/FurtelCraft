@@ -57,6 +57,8 @@ public class PerfacePage1 extends PageWidget {
                 Color.YELLOW,
                 true,
                 true,
+                widget -> {
+                },
                 (widget, matrices, mouseX, mouseY) -> {
                 }
         );
@@ -65,10 +67,5 @@ public class PerfacePage1 extends PageWidget {
     private void addWidget() {
         this.addChild(this.footprintEle);
         this.addChild(this.onewordEle);
-    }
-
-    @Override
-    public void tick() {
-
     }
 }

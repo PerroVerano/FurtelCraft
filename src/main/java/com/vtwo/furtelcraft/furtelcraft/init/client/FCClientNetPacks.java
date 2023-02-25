@@ -6,10 +6,12 @@ import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -66,6 +68,16 @@ public class FCClientNetPacks {
                 screen.setTheName(new LiteralText(word.getString("NAME")));
                 screen.setTheTextList(word);
                 client.setScreen(screen);
+            });
+        });
+
+        ClientPlayNetworking.registerGlobalReceiver(FCNetPacks.CLIENT_TUBE_HOLDER_HUD_RENDER_ID, (client, handler, buf, responseSender) -> {
+            HashMap<Integer, ItemStack> items = new HashMap<>();
+            for (int i = 0; i < 3; i++) {
+                items.put(i, buf.readItemStack());
+            }
+            client.execute(() -> {
+
             });
         });
     }

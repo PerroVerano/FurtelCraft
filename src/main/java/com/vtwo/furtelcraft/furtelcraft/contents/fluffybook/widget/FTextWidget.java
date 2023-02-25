@@ -37,9 +37,10 @@ public class FTextWidget extends BasedWidget {
     private final boolean isCentered;
     private final boolean hasShadow;
     protected final TooltipSupplier tooltipSupplier;
+    protected final PressAction onPress;
 
-    public FTextWidget(int x, int y, int width, int height, Text message, Color textColor, boolean isCentered, boolean hasShadow, BasedWidget.TooltipSupplier tooltipSupplier) {
-        super(x, y, width, height, message, textColor, null, tooltipSupplier);
+    public FTextWidget(int x, int y, int width, int height, Text message, Color textColor, boolean isCentered, boolean hasShadow, PressAction onPress, BasedWidget.TooltipSupplier tooltipSupplier) {
+        super(x, y, width, height, message, textColor, onPress, tooltipSupplier);
         this.iText = x;
         this.jText = y;
         this.textWidth = width;
@@ -47,8 +48,8 @@ public class FTextWidget extends BasedWidget {
         this.textColor = textColor;
         this.isCentered = isCentered;
         this.hasShadow = hasShadow;
+        this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
-        this.setZOffset(10);
     }
 
     @Override
