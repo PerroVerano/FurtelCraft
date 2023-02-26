@@ -91,5 +91,6 @@
   "widget.furtelcraft.vn_edit_screen.singleline": "单线",
   "widget.furtelcraft.vn_edit_screen.multiline": "多线",
   "widget.furtelcraft.vn_edit_screen.hist": "全部",
-  "widget.furtelcraft.vn_edit_screen.multiline.osfield": "选项名称"
+  "widget.furtelcraft.vn_edit_screen.multiline.osfield": "选项名称",
+  "block.furtelcraft.tube_holder.hud.title": "方块物品栏"
 }

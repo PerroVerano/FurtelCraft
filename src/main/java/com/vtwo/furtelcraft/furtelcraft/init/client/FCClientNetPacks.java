@@ -4,6 +4,7 @@ import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.GuideBookScreen;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.EditScreen;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import com.vtwo.furtelcraft.furtelcraft.init.FCNetPacks;
+import com.vtwo.furtelcraft.furtelcraft.screens.hud.TubeHolderHud;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -77,7 +78,8 @@ public class FCClientNetPacks {
                 items.put(i, buf.readItemStack());
             }
             client.execute(() -> {
-
+                TubeHolderHud hud = TubeHolderHud.getInstance();
+                hud.setItems(items);
             });
         });
     }

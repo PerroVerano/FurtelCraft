@@ -9,12 +9,14 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.text.Style;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -43,6 +45,12 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  */
 public class TubeHolderHud implements HudRenderCallback {
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/hud/tooltiphud.png");
+    private static TubeHolderHud instance;
+    private HashMap<Integer, ItemStack> items = new HashMap<>();
+
+    public TubeHolderHud() {
+        instance = this;
+    }
 
     @Override
     public void onHudRender(MatrixStack matrixStack, float tickDelta) {
@@ -75,11 +83,26 @@ public class TubeHolderHud implements HudRenderCallback {
         int centerX = (client.getWindow().getScaledWidth() - backgroundWidth) / 2;
         int backgroundHeight = 48;
         int centerY = (client.getWindow().getScaledHeight() - backgroundHeight) / 2;
-        TextRenderer textRenderer = client.textRenderer;
         DrawableHelper.drawTexture(matrixStack, centerX + (backgroundWidth / 2) + 6, centerY, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
+        if (!this.items.isEmpty()) {
+            for (int i = 0; i < 3; i++) {
+                String name;
+                if (items.get(i).getName().getString().equals(ItemStack.EMPTY.getName().getString())) {
+                    name = "";
+                } else {
+                    name = items.get(i).getName().getString();
+                }
+                DrawableHelper.drawWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, new TranslatableText("block.furtelcraft.tube_holder.hud.title").setStyle(Style.EMPTY.withColor(Formatting.GOLD)).asOrderedText(), centerX + (backgroundWidth / 2) + 10, 4 + centerY, 16777215);
+                DrawableHelper.drawStringWithShadow(matrixStack, MinecraftClient.getInstance().textRenderer, name, centerX + (backgroundWidth / 2) + 10, 18 + centerY + i * 9, 16777215);
+            }
+        }
     }
 
-    private void initInfo(HashMap<Integer, ItemStack> map) {
+    public void setItems(HashMap<Integer, ItemStack> map) {
+        this.items = map;
+    }
 
+    public static TubeHolderHud getInstance() {
+        return instance;
     }
 }
