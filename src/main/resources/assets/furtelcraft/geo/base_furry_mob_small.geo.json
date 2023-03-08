@@ -1,0 +1,245 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.base_furry_mob_small",
+        "texture_width": 32,
+        "texture_height": 32,
+        "visible_bounds_width": 2,
+        "visible_bounds_height": 2.5,
+        "visible_bounds_offset": [
+          0,
+          0.75,
+          0
+        ]
+      },
+      "bones": [
+        {
+          "name": "rightleg",
+          "pivot": [
+            -1,
+            6,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -2,
+                0,
+                -1
+              ],
+              "size": [
+                2,
+                6,
+                2
+              ],
+              "uv": [
+                8,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "leftleg",
+          "pivot": [
+            1,
+            6,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                0,
+                0,
+                -1
+              ],
+              "size": [
+                2,
+                6,
+                2
+              ],
+              "uv": [
+                16,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "body",
+          "pivot": [
+            0,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -2,
+                6,
+                -1
+              ],
+              "size": [
+                4,
+                6,
+                2
+              ],
+              "uv": [
+                0,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "leftarm",
+          "pivot": [
+            3,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                2,
+                6,
+                -1
+              ],
+              "size": [
+                2,
+                6,
+                2
+              ],
+              "uv": [
+                0,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "rightarm",
+          "pivot": [
+            -3,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -4,
+                6,
+                -1
+              ],
+              "size": [
+                2,
+                6,
+                2
+              ],
+              "uv": [
+                12,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "name": "head",
+          "pivot": [
+            0,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -2,
+                12,
+                -2
+              ],
+              "size": [
+                4,
+                4,
+                4
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -1,
+                12,
+                -4
+              ],
+              "size": [
+                2,
+                1.5,
+                2
+              ],
+              "uv": [
+                16,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "name": "leftear",
+          "pivot": [
+            0,
+            16,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                1,
+                16,
+                0
+              ],
+              "size": [
+                1,
+                1,
+                1
+              ],
+              "uv": [
+                0,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "name": "rightear",
+          "pivot": [
+            0,
+            16,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -2,
+                16,
+                0
+              ],
+              "size": [
+                1,
+                1,
+                1
+              ],
+              "uv": [
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
