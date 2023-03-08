@@ -11,5 +11,6 @@ public class FCBlockTrans {
         BlockRenderLayerMap.INSTANCE.putBlock(FCBlocks.TUBE_HOLDER, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(FCBlocks.DNA_MIXER, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(FCBlocks.RACK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(FCBlocks.INCUBATOR, RenderLayer.getTranslucent());
     }
 }

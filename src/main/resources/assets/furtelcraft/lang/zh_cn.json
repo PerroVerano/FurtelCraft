@@ -43,6 +43,7 @@
   "block.furtelcraft.tube_holder": "试管架[BETA]",
   "block.furtelcraft.dna_mixer": "样品成型机",
   "block.furtelcraft.rack": "实验台",
+  "block.furtelcraft.incubator": "培养仓",
   "item.furtelcraft.time": "静置反应 ",
   "narrate.furtelcraft.widget": "%s控件",
   "text.furtelcraft.vne.skip.tooltip": "跳过此对话",

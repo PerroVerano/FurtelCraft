@@ -34,7 +34,7 @@ public class FCEntities {
             FabricEntityTypeBuilder.createLiving().spawnGroup(SpawnGroup.CREATURE)
                     .entityFactory(BaseFurryMobSmall::new)
                     .defaultAttributes(BaseFurryMobSmall::getAttribute)
-                    .dimensions(EntityDimensions.fixed(0.6f, 0.8f))
+                    .dimensions(EntityDimensions.fixed(0.5f, 1.0f))
                     .trackRangeBlocks(64)
                     .forceTrackedVelocityUpdates(true)
                     .trackedUpdateRate(3)
