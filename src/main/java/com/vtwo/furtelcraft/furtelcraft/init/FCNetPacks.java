@@ -47,6 +47,7 @@ public class FCNetPacks {
     public static final Identifier AUTH_OPEN_VN_SCREEN_ID = new Identifier(MOD_ID, "auth_open_vn_screen_id");
     public static final Identifier DEL_ENTITY_WORD_OS_ID = new Identifier(MOD_ID, "del_entity_word_os1_id");
     public static final Identifier CLIENT_TUBE_HOLDER_HUD_RENDER_ID = new Identifier(MOD_ID, "client_tube_holder_hud_render_id");
+    public static final Identifier OPEN_INCUBATOR_SCREEN_ID = new Identifier(MOD_ID, "open_incubator_screen_id");
 
     public static void init() {
         ServerPlayNetworking.registerGlobalReceiver(EDIT_SCREEN_ENTITY_NAME_ID, (server, player, handler, buf, responseSender) -> {

@@ -58,6 +58,7 @@ public class GuideBookScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.renderBackground(matrices);
         int iBase = (width - backgroundWidth) / 2;
         int jBase = (height - backgroundHeight) / 2;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);

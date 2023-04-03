@@ -1,9 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.screens;
 
-import com.vtwo.furtelcraft.furtelcraft.screens.handler.IncubatorScreenHandler;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 
 /**
@@ -23,13 +21,17 @@ import net.minecraft.text.Text;
  * @MINUTE: 50
  * @PROJECT_NAME: furtelcraft
  */
-public class IncubatorScreen extends HandledScreen<IncubatorScreenHandler> {
-    public IncubatorScreen(IncubatorScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, title);
+public class IncubatorScreen extends Screen {
+
+    public IncubatorScreen(Text title) {
+        super(title);
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.renderBackground(matrices);
+        int iBase = width / 2;
+        int jBase = height / 2;
+        super.render(matrices, mouseX, mouseY, delta);
     }
 }

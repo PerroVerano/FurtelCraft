@@ -13,8 +13,8 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.List;
 
@@ -116,6 +116,7 @@ public class VNScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.renderBackground(matrices);
         this.ScreenWidth = width;
         this.ScreenHeight = height;
         int iBase = (width - textureWidth) / 2;

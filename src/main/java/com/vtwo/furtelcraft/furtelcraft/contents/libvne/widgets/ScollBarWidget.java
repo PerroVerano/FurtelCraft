@@ -5,8 +5,8 @@ import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.awt.*;
 
 /**

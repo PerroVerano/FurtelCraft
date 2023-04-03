@@ -12,6 +12,5 @@ public class FCScreenClients {
         HandledScreens.register(FCScreens.DNA_MIXER_SCREEN_HANDLER, DNAMixerScreen::new);
         HandledScreens.register(FCScreens.TUBE_HOLDER_SCREEN_HANDLER, TubeHolderScreen::new);
         HandledScreens.register(FCScreens.RACK_SCREEN_HANDLER, RackScreen::new);
-        HandledScreens.register(FCScreens.INCUBATOR_SCREEN_HANDLER, IncubatorScreen::new);
     }
 }

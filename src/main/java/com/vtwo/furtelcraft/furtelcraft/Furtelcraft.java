@@ -3,7 +3,6 @@ package com.vtwo.furtelcraft.furtelcraft;
 import com.vtwo.furtelcraft.furtelcraft.events.loots.LootTableInject;
 import com.vtwo.furtelcraft.furtelcraft.init.*;
 import net.fabricmc.api.ModInitializer;
-import software.bernie.geckolib3.GeckoLib;
 
 public class Furtelcraft implements ModInitializer {
     public static final String MOD_ID = "furtelcraft";
@@ -18,6 +17,6 @@ public class Furtelcraft implements ModInitializer {
         FCEntities.init();
         FCNetPacks.init();
 
-        GeckoLib.initialize();
+//        GeckoLib.initialize();
     }
 }
