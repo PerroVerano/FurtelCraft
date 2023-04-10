@@ -1,7 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.page;
 
+import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.FGridPageWidget;
 import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.FTextWidget;
-import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.PageWidget;
 import net.minecraft.text.Style;
 import net.minecraft.text.TranslatableText;
 
@@ -24,7 +24,7 @@ import java.awt.*;
  * @MINUTE: 19
  * @PROJECT_NAME: furtelcraft
  */
-public class PerfacePage3 extends PageWidget {
+public class PerfacePage3 extends FGridPageWidget {
     private final int iPage;
     private final int jPage;
     private FTextWidget titleEle;
@@ -69,57 +69,57 @@ public class PerfacePage3 extends PageWidget {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.plotEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17)), 114, 9,
+        this.plotEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight), 114, 9,
                 new TranslatableText("text.furtelcraft.content.storymode").setStyle(Style.EMPTY.withBold(true)), Color.DARK_GRAY, true, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mainPlotEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 2), 40, 9,
+        this.mainPlotEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 2), 40, 9,
                 new TranslatableText("text.furtelcraft.content.storymode.mainplot"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.sidingPlotEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 3), 40, 9,
+        this.sidingPlotEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 3), 40, 9,
                 new TranslatableText("text.furtelcraft.content.storymode.sidingplot"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.characterPlotEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 4), 40, 9,
+        this.characterPlotEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 4), 40, 9,
                 new TranslatableText("text.furtelcraft.content.storymode.characterplot"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.worldPlotEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 5), 40, 9,
+        this.worldPlotEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 5), 40, 9,
                 new TranslatableText("text.furtelcraft.content.storymode.worldplot"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.guideModeEle = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 6), 114, 9,
+        this.guideModeEle = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 6), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode").setStyle(Style.EMPTY.withBold(true)), Color.DARK_GRAY, true, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mode1Ele = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 7), 114, 9,
+        this.mode1Ele = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 7), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode.makedna"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mode2Ele = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 8), 114, 9,
+        this.mode2Ele = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 8), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode.makefurriesmob"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mode3Ele = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 9), 114, 9,
+        this.mode3Ele = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 9), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode.cultivatefeeling"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mode4Ele = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 10), 114, 9,
+        this.mode4Ele = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 10), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode.transfur"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {
                 });
-        this.mode5Ele = new FTextWidget(iPage + 10, jPage + 13 + ((this.pageHeight / 17) * 11), 114, 9,
+        this.mode5Ele = new FTextWidget(iPage + 10, jPage + 13 + (this.gridHeight * 11), 114, 9,
                 new TranslatableText("text.furtelcraft.content.guidemode.multiblockstructure"), Color.GRAY, false, false, widget -> {
         },
                 (widget, matrices, mouseX, mouseY) -> {

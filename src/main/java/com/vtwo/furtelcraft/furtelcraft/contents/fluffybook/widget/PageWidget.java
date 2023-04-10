@@ -1,12 +1,15 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget;
 
 import com.google.common.collect.Lists;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.ParentElement;
 import net.minecraft.client.gui.Selectable;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -47,6 +50,12 @@ public class PageWidget implements Drawable, ParentElement, Selectable {
         for (Drawable drawable : this.drawables) {
             drawable.render(matrices, mouseX, mouseY, delta);
         }
+    }
+
+    public void renderTooltip(MatrixStack matrices, Text text, int x, int y) {
+        Screen screen = MinecraftClient.getInstance().currentScreen;
+        assert screen != null;
+        screen.renderTooltip(matrices, text, x, y);
     }
 
     public <T extends Element & Drawable & Selectable> void addChild(T child) {

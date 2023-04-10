@@ -1,7 +1,11 @@
 package com.vtwo.furtelcraft.furtelcraft.screens;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.text.Text;
 
 /**
@@ -22,6 +26,13 @@ import net.minecraft.text.Text;
  * @PROJECT_NAME: furtelcraft
  */
 public class IncubatorScreen extends Screen {
+
+    private static final LivingEntity entity;
+
+    static {
+        assert MinecraftClient.getInstance().world != null;
+        entity = new ZombieEntity(EntityType.ZOMBIE, MinecraftClient.getInstance().world);
+    }
 
     public IncubatorScreen(Text title) {
         super(title);
