@@ -48,7 +48,7 @@ public class ScollBarWidget extends BasedWidget {
         this.scollWidth = 6;
         this.scollHeight = height;
         this.blockHeight = blockHeight;
-        this.blockPos = 0;
+        this.blockPos = 0.0;
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
     }
@@ -74,7 +74,14 @@ public class ScollBarWidget extends BasedWidget {
     }
 
     public void setProgress(double progress) {
-        this.blockPos = progress * (scollHeight - blockHeight);
+        if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
+            this.blockPos = progress * (scollHeight - blockHeight);
+        }
+        if (blockPos <= 0) {
+            this.blockPos = 0;
+        } else if (blockPos >= scollHeight - blockHeight) {
+            this.blockPos = scollHeight - blockHeight;
+        }
     }
 
     private void scollSync() {
@@ -101,7 +108,7 @@ public class ScollBarWidget extends BasedWidget {
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
-            blockPos = mouseY - jScoll - (blockHeight / 2.0);
+            blockPos += deltaY;
         }
         if (blockPos <= 0) {
             blockPos = 0;

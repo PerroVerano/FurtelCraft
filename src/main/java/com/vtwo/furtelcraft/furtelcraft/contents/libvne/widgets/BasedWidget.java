@@ -50,7 +50,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
+public abstract class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -183,11 +183,11 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             this.renderWidget(matrices, mouseX, mouseY, delta);
-//            if (!this.drawables.isEmpty()) {
-            for (Drawable drawable : this.drawables) {
-                drawable.render(matrices, mouseX, mouseY, delta);
+            if (!this.drawables.isEmpty()) {
+                for (Drawable drawable : this.drawables) {
+                    drawable.render(matrices, mouseX, mouseY, delta);
+                }
             }
-//            }
             this.tick();
         }
     }
@@ -493,7 +493,7 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     public interface TooltipSupplier {
         void onTooltip(BasedWidget widget, MatrixStack matrices, int mouseX, int mouseY);
 
-        default void supply(Consumer<Text> consumer) {
+        default void supply(Consumer<Text> ignoredConsumer) {
         }
     }
 
