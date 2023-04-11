@@ -242,9 +242,7 @@ public class VNScreen extends Screen {
                 140,
                 236,
                 new LiteralText(HistText),
-                Color.WHITE,
-                onPress,
-                tooltipSupplier
+                Color.WHITE
         );
     }
 

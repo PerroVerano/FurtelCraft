@@ -68,8 +68,10 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     protected PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
-    private final List<? extends Element> children = Lists.newArrayList();
     private boolean dragging;
+    private final List<Drawable> drawables = Lists.newArrayList();
+    private final List<Element> elements = Lists.newArrayList();
+    private final List<Selectable> selectables = Lists.newArrayList();
 
     public BasedWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, Text message, Color textColor, PressAction onPress, TooltipSupplier tooltipSupplier) {
         this.x = x;
@@ -81,6 +83,19 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
         this.textureHeight = textureHeight;
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
+        this.textColor = textColor;
+    }
+
+    public BasedWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, Text message, Color textColor) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.message = message;
+        this.textureWidth = textureWidth;
+        this.textureHeight = textureHeight;
+        this.onPress = null;
+        this.tooltipSupplier = null;
         this.textColor = textColor;
     }
 
@@ -168,6 +183,11 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             this.renderWidget(matrices, mouseX, mouseY, delta);
+//            if (!this.drawables.isEmpty()) {
+            for (Drawable drawable : this.drawables) {
+                drawable.render(matrices, mouseX, mouseY, delta);
+            }
+//            }
             this.tick();
         }
     }
@@ -214,6 +234,18 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     }
 
     protected void renderBackground(MatrixStack matrices, MinecraftClient client, int mouseX, int mouseY) {
+    }
+
+    public <T extends Element & Drawable & Selectable> void addChild(T child) {
+        this.drawables.add(child);
+        this.elements.add(child);
+        this.selectables.add(child);
+    }
+
+    public void clearChild() {
+        this.drawables.clear();
+        this.elements.clear();
+        this.selectables.clear();
     }
 
     public static void drawEntity(int x, int y, int size, float mouseX, float mouseY, LivingEntity entity) {
@@ -278,7 +310,7 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
 
     @Override
     public List<? extends Element> children() {
-        return this.children;
+        return this.elements;
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

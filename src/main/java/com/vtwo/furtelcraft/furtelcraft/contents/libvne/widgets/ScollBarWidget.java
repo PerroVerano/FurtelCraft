@@ -33,17 +33,16 @@ public class ScollBarWidget extends BasedWidget {
     protected int scollHeight;
     protected int blockHeight;
     protected int blockPos;
-    private final PressAction onPress;
-    private final TooltipSupplier tooltipSupplier;
+    protected final PressAction onPress;
+    protected final TooltipSupplier tooltipSupplier;
     private static final Identifier TEXTURE;
-    private final BarBackground barBackground;
 
     static {
         TEXTURE = new Identifier(MOD_ID, "textures/screen/scolls.png");
     }
 
     public ScollBarWidget(int x, int y, int height, int blockHeight, PressAction onPress, TooltipSupplier tooltipSupplier) {
-        super(x, y, 6, height, onPress, tooltipSupplier);
+        super(x, y, 6, height);
         this.iScoll = x;
         this.jScoll = y;
         this.scollWidth = 6;
@@ -52,7 +51,8 @@ public class ScollBarWidget extends BasedWidget {
         this.blockPos = 0;
         this.onPress = onPress;
         this.tooltipSupplier = tooltipSupplier;
-        this.barBackground = new BarBackground();
+        ScollBlock scollBlockEle = new ScollBlock();
+        this.addChild(scollBlockEle);
     }
 
     @Override
@@ -60,38 +60,8 @@ public class ScollBarWidget extends BasedWidget {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        drawTexture(matrices, iScoll, jScoll + blockPos, 6, 0, scollWidth, blockHeight / 2);
-        drawTexture(matrices, iScoll, blockPos + jScoll + blockHeight / 2, 6, this.textureHeight - blockHeight / 2, scollWidth, blockHeight / 2);
-
-    }
-
-    @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
-            if (hasShiftDown()) {
-                amount *= 10;
-            }
-            blockPos -= amount;
-        }
-        if (blockPos <= -1) {
-            blockPos = 0;
-        } else if (blockPos >= scollHeight - blockHeight + 1) {
-            blockPos = scollHeight - blockHeight;
-        }
-        return super.mouseScrolled(mouseX, mouseY, amount);
-    }
-
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
-            blockPos -= deltaY;
-        }
-        if (blockPos <= -1) {
-            blockPos = 0;
-        } else if (blockPos >= scollHeight - blockHeight + 1) {
-            blockPos = scollHeight - blockHeight;
-        }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        drawTexture(matrices, iScoll, jScoll, 0, 0, scollWidth, scollHeight / 2);
+        drawTexture(matrices, iScoll, jScoll + blockHeight / 2, 0, this.textureHeight - scollHeight / 2, scollWidth, scollHeight / 2);
     }
 
     public int getBlockPos() {
@@ -102,13 +72,9 @@ public class ScollBarWidget extends BasedWidget {
         this.blockPos = blockPos;
     }
 
-    private boolean hasShiftDown() {
-        return InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 340) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 344);
-    }
-
-    class BarBackground extends BasedWidget {
-        public BarBackground() {
-            super(iScoll, jScoll, scollWidth, scollHeight);
+    class ScollBlock extends BasedWidget {
+        public ScollBlock() {
+            super(iScoll, jScoll, scollWidth, scollHeight, ScollBarWidget.this.onPress, ScollBarWidget.this.tooltipSupplier);
         }
 
         @Override
@@ -116,8 +82,41 @@ public class ScollBarWidget extends BasedWidget {
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.setShaderTexture(0, TEXTURE);
-            drawTexture(matrices, iScoll, jScoll, 0, 0, scollWidth, scollHeight / 2);
-            drawTexture(matrices, iScoll, jScoll, 0, this.textureHeight - scollHeight / 2, scollWidth, scollHeight / 2);
+            drawTexture(matrices, iScoll, jScoll + blockPos, 6, 0, scollWidth, blockHeight / 2);
+            drawTexture(matrices, iScoll, blockPos + jScoll + blockHeight / 2, 6, this.textureHeight - blockHeight / 2, scollWidth, blockHeight / 2);
+        }
+
+        @Override
+        public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+            if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
+                if (hasShiftDown()) {
+                    amount *= 10;
+                }
+                blockPos -= amount;
+            }
+            if (blockPos <= -1) {
+                blockPos = 0;
+            } else if (blockPos >= scollHeight - blockHeight + 1) {
+                blockPos = scollHeight - blockHeight;
+            }
+            return super.mouseScrolled(mouseX, mouseY, amount);
+        }
+
+        @Override
+        public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+            if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
+                blockPos -= deltaY;
+            }
+            if (blockPos <= -1) {
+                blockPos = 0;
+            } else if (blockPos >= scollHeight - blockHeight + 1) {
+                blockPos = scollHeight - blockHeight;
+            }
+            return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        }
+
+        private boolean hasShiftDown() {
+            return InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 340) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 344);
         }
     }
 }
