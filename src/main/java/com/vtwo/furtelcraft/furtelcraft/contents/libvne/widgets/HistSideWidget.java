@@ -62,7 +62,7 @@ public class HistSideWidget extends BasedWidget {
         this.textureHeight = textureHeight;
         this.textColor = textColor;
         this.TheList.add(this.getMessage().asOrderedText());
-        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, 226, 30, widget -> {
+        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, HistHeight - 8, HistHeight - 8, widget -> {
             System.out.println("test");
         }, (widget, matrices, mouseX, mouseY) -> {
             this.renderTooltip(matrices, new LiteralText("dsa"), mouseX, mouseY);
@@ -85,7 +85,7 @@ public class HistSideWidget extends BasedWidget {
         this.scollBarEle.visible = this.hasScollBar;
 
 
-        int m = (int) ((this.scollBarEle.getBlockPos() / 116.0F) * TheList.size());//dang qian hang shu
+        int m = (int) (this.scollBarEle.getProgress() * TheList.size());//dang qian hang shu
         int a = MathHelper.ceil(TheList.size() / 12.0F);//zong ye shu
         int p = (int) (m / 12.0F);//dang qian ye shu
         if (!TheList.isEmpty()) {
@@ -110,6 +110,7 @@ public class HistSideWidget extends BasedWidget {
                 }
                 textRenderer.drawWithShadow(matrices, TheList.get(n), iHistPanel + 7, 7 + jHistPanel + (i * 10), j);
             }
+            this.scollBarEle.updateScollHeight(10.0 / this.TheList.size());
         }
 
 
