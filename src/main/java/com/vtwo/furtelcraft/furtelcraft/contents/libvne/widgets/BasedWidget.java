@@ -27,6 +27,7 @@ import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -50,7 +51,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public abstract class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
+public class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -316,10 +317,22 @@ public abstract class BasedWidget extends DrawableHelper implements Drawable, Pa
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (this.active && this.visible) {
             if (this.isValidClickButton(button)) {
-                boolean bl = this.clicked(mouseX, mouseY);
-                if (bl) {
+                boolean clicked = this.clicked(mouseX, mouseY);
+                if (clicked) {
                     this.playDownSound(MinecraftClient.getInstance().getSoundManager());
                     this.onClick(mouseX, mouseY);
+                    Iterator<? extends Element> iterator = this.children().iterator();
+                    Element element;
+                    do {
+                        if (!iterator.hasNext()) {
+                            return true;
+                        }
+                        element = iterator.next();
+                    } while (!element.mouseClicked(mouseX, mouseY, button));
+                    this.setFocused(element);
+                    if (button == 0) {
+                        this.setDragging(true);
+                    }
                     return true;
                 }
             }
@@ -330,7 +343,8 @@ public abstract class BasedWidget extends DrawableHelper implements Drawable, Pa
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         if (this.isValidClickButton(button)) {
             this.onRelease(mouseX, mouseY);
-            return true;
+            this.setDragging(false);
+            return this.hoveredElement(mouseX, mouseY).filter((element) -> element.mouseReleased(mouseX, mouseY, button)).isPresent();
         } else {
             return false;
         }
@@ -430,13 +444,6 @@ public abstract class BasedWidget extends DrawableHelper implements Drawable, Pa
         this.focused = focused;
     }
 
-    public Selectable.SelectionType getType() {
-        if (this.focused) {
-            return SelectionType.FOCUSED;
-        } else {
-            return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
-        }
-    }
 
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
@@ -454,6 +461,15 @@ public abstract class BasedWidget extends DrawableHelper implements Drawable, Pa
             } else {
                 builder.put(NarrationPart.USAGE, new TranslatableText("narration.button.usage.hovered"));
             }
+        }
+    }
+
+    @Override
+    public SelectionType getType() {
+        if (this.focused) {
+            return SelectionType.FOCUSED;
+        } else {
+            return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
         }
     }
 

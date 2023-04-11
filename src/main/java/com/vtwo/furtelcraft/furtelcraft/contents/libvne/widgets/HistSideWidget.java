@@ -45,15 +45,12 @@ public class HistSideWidget extends BasedWidget {
     protected Color textColor;
     private double progress = 0.0;
     private final ScollBarWidget scollBarEle;
-
-
-    //    private int posBlock = 0;
     protected static final Identifier HIST_TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_hist.png");
 
     private List<OrderedText> TheList = Lists.newArrayList();
 
     public HistSideWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor) {
-        super(x - 10, y, width, height, textureWidth, textureHeight, message, textColor);
+        super(x, y, width, height, textureWidth, textureHeight, message, textColor);
         this.HistWidth = width;
         this.HistHeight = height;
         this.iHistPanel = x;
