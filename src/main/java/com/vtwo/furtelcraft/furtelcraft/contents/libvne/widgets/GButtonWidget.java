@@ -78,7 +78,7 @@ public class GButtonWidget extends BasedWidget {
             state = 0;
         } else if (isHovered) {
             state = 2;
-        } else if (this.clicked(mouseX, mouseY)) {
+        } else if (this.isMouseOver(mouseX, mouseY)) {
             state = 3;
         }
         return state;

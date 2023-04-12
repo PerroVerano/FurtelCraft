@@ -5,7 +5,6 @@ import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
@@ -43,7 +42,8 @@ public class TextWidget extends BasedWidget {
     protected Color textColor;
     protected final PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
-    private int posBlock = 0;
+    private double progress = 0.0;
+    private ScollBarWidget scollBarEle;
     private Text message;
 
     public TextWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor, @Nullable BasedWidget.PressAction onPress, @Nullable BasedWidget.TooltipSupplier tooltipSupplier) {
@@ -58,6 +58,8 @@ public class TextWidget extends BasedWidget {
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
         this.textColor = textColor;
+        this.scollBarEle = new ScollBarWidget(iTextPanel + 236, jTextPanel - 2, TextPanelHeight, TextPanelHeight);
+        this.addChild(scollBarEle);
     }
 
     @Override
@@ -75,10 +77,8 @@ public class TextWidget extends BasedWidget {
         drawTexture(matrices, iTextPanel, jTextPanel, 7, 7, TextPanelWidth - 9, TextPanelHeight, textureWidth, textureHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         List<OrderedText> cache = textRenderer.wrapLines(this.getMessage(), 236);
-        if (cache.size() > 5) {
-            addScollBar(matrices);
-        }
-        int m = (int) ((posBlock / 44.0F) * cache.size());
+        this.scollBarEle.visible = cache.size() > 5;
+        int m = (int) (this.scollBarEle.getProgress() * cache.size());
         int a = MathHelper.ceil(cache.size() / 5.0F);
         int p = (int) (m / 5.0F);
         if (!cache.isEmpty()) {
@@ -103,6 +103,7 @@ public class TextWidget extends BasedWidget {
                 }
                 textRenderer.drawWithShadow(matrices, cache.get(n), iTextPanel + 1, 1 + jTextPanel + (i * 10), j);
             }
+            this.scollBarEle.updateScollHeight(5.0 / cache.size());
         }
     }
 
@@ -112,53 +113,29 @@ public class TextWidget extends BasedWidget {
     }
 
 
-    private void addScollBar(MatrixStack matrices) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
-        drawTexture(matrices, iTextPanel + 236, jTextPanel - 2, 252, 0, 4, 54, textureWidth, textureHeight);
-        drawTexture(matrices, iTextPanel + 236, jTextPanel - 2 + posBlock, 252, 54, 4, 10, textureWidth, textureHeight);
-
-    }
-
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        if (posBlock >= 0 && posBlock <= 44) {
-            if (hasShiftDown()) {
-                amount *= 5;
-            }
-            posBlock -= amount;
+        if (progress >= 0.0 && progress <= 50.0) {
+            this.scollBarEle.setProgress((progress -= amount) / 50.0);
         }
-        if (posBlock <= -1) {
-            posBlock = 0;
-        } else if (posBlock >= 45) {
-            posBlock = 44;
+        if (progress < 0.0) {
+            progress = 0.0;
+        } else if (progress > 50.0) {
+            progress = 50.0;
         }
         return super.mouseScrolled(mouseX, mouseY, amount);
     }
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        int regionMinX = 236;
-        int regionMaxX = 240;
-        int regionMinY = -2 + posBlock;
-        int regionMaxY = 8 + posBlock;
-        if ((mouseX - iTextPanel) >= regionMinX && (mouseX - iTextPanel) <= regionMaxX) {
-            if ((mouseY - jTextPanel) >= regionMinY && (mouseY - jTextPanel) <= regionMaxY) {
-                posBlock = (int) (mouseY - jTextPanel - 3);
-            }
-        } else if (posBlock >= 0 && posBlock <= 44) {
-            posBlock -= deltaY;
+        if (progress >= 0.0 && progress <= 50.0) {
+            this.scollBarEle.setProgress((progress -= deltaY) / 50.0);
         }
-        if (posBlock <= -1) {
-            posBlock = 0;
-        } else if (posBlock >= 45) {
-            posBlock = 44;
+        if (progress < 0.0) {
+            progress = 0.0;
+        } else if (progress > 50.0) {
+            progress = 50.0;
         }
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
-    }
-
-    private boolean hasShiftDown() {
-        return InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 340) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 344);
     }
 }

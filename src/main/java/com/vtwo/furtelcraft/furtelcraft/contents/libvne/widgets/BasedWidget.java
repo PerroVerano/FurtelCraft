@@ -6,13 +6,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.Drawable;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -21,18 +20,15 @@ import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
 
@@ -54,7 +50,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedWidget extends AbstractParentElement implements Drawable, Selectable {
+public class BasedWidget extends DrawableHelper implements Drawable, Selectable, Element {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -66,8 +62,6 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
     protected Color textColor;
     public boolean active = true;
     public boolean visible = true;
-    @Nullable
-    private Element efocused;
     protected float alpha = 1.0F;
     protected PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
@@ -197,14 +191,6 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
     public void tick() {
     }
 
-    protected MutableText getNarrationMessage() {
-        return getNarrationMessage(this.getMessage());
-    }
-
-    public static MutableText getNarrationMessage(Text message) {
-        return new TranslatableText("narrate.furtelcraft.widget", message);
-    }
-
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         TextRenderer textRenderer = minecraftClient.textRenderer;
@@ -248,7 +234,7 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
         this.elements.clear();
     }
 
-    public static void drawEntity(int x, int y, int size, float mouseX, float mouseY, LivingEntity entity) {
+    public static void drawEntity(int x, int y, int size, float mouseX, float mouseY, @NotNull LivingEntity entity) {
         float f = (float) Math.atan(mouseX / 40.0F);
         float g = (float) Math.atan(mouseY / 40.0F);
         MatrixStack matrixStack = RenderSystem.getModelViewStack();
@@ -308,15 +294,15 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
     protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
     }
 
-    @Override
     public List<? extends Element> children() {
         return this.elements;
     }
 
+    @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (this.active && this.visible) {
             if (this.isValidClickButton(button)) {
-                boolean clicked = this.clicked(mouseX, mouseY);
+                boolean clicked = this.isMouseOver(mouseX, mouseY);
                 if (clicked) {
                     Iterator<? extends Element> iterator = this.children().iterator();
                     Element element;
@@ -327,17 +313,14 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
                             return true;
                         }
                         element = iterator.next();
-                        this.setFocused(element);
                     } while (!element.mouseClicked(mouseX, mouseY, button));
-                    if (button == 0) {
-                        this.setDragging(true);
-                    }
                 }
             }
         }
         return false;
     }
 
+    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
         if (this.active && this.visible) {
             if (this.isValidClickButton(button)) {
@@ -346,11 +329,9 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
                 do {
                     if (!iterator.hasNext()) {
                         this.onRelease(mouseX, mouseY);
-                        this.setDragging(false);
                         return true;
                     }
                     element = iterator.next();
-                    this.setFocused(element);
                 } while (!element.mouseReleased(mouseX, mouseY, button));
             }
         }
@@ -370,37 +351,35 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
                 return true;
             }
             element = iterator.next();
-            this.setFocused(element);
         } while (!element.mouseScrolled(mouseX, mouseY, amount));
         return false;
     }
 
+    @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         if (this.active && this.visible) {
             if (this.isValidClickButton(button)) {
-                Iterator<? extends Element> iterator = this.children().iterator();
-                Element element;
-                do {
-                    if (!iterator.hasNext()) {
-                        this.onDrag(mouseX, mouseY, deltaX, deltaY);
-                        return true;
-                    }
-                    element = iterator.next();
-                    this.setFocused(element);
-                } while (!element.mouseDragged(mouseX, mouseY, button, deltaX, deltaY));
+                if (this.isMouseOver(mouseX, mouseY)) {
+                    Iterator<? extends Element> iterator = this.children().iterator();
+                    Element element;
+                    do {
+                        if (!iterator.hasNext()) {
+                            return true;
+                        }
+                        element = iterator.next();
+                    } while (!element.mouseDragged(mouseX, mouseY, button, deltaX, deltaY));
+                    this.onDrag(mouseX, mouseY, deltaX, deltaY);
+                }
             }
         }
         return false;
-    }
-
-    protected boolean clicked(double mouseX, double mouseY) {
-        return this.active && this.visible && mouseX >= (double) this.x && mouseY >= (double) this.y && mouseX < (double) (this.x + this.width) && mouseY < (double) (this.y + this.height);
     }
 
     public boolean isHovered() {
         return this.hovered || this.focused;
     }
 
+    @Override
     public boolean changeFocus(boolean lookForwards) {
         if (this.active && this.visible) {
             this.focused = !this.focused;
@@ -414,6 +393,7 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
     protected void onFocusedChanged(boolean newFocused) {
     }
 
+    @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
         return this.active && this.visible && mouseX >= (double) this.x && mouseY >= (double) this.y && mouseX < (double) (this.x + this.width) && mouseY < (double) (this.y + this.height);
     }
@@ -435,10 +415,6 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
         this.width = width;
     }
 
-    public void setAlpha(float alpha) {
-        this.alpha = alpha;
-    }
-
     public void setMessage(Text message) {
         this.message = message;
     }
@@ -447,45 +423,19 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
         return this.message;
     }
 
-    public boolean isFocused() {
-        return this.focused;
-    }
-
+    @Override
     public boolean isNarratable() {
         return this.visible && this.active;
-    }
-
-    protected void setFocused(boolean focused) {
-        this.focused = focused;
     }
 
 
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
-        this.appendDefaultNarrations(builder);
-        if (this.tooltipSupplier != null) {
-            this.tooltipSupplier.supply((text) -> builder.put(NarrationPart.HINT, text));
-        }
-    }
-
-    private void appendDefaultNarrations(NarrationMessageBuilder builder) {
-        builder.put(NarrationPart.TITLE, this.getNarrationMessage());
-        if (this.active) {
-            if (this.isFocused()) {
-                builder.put(NarrationPart.USAGE, new TranslatableText("narration.button.usage.focused"));
-            } else {
-                builder.put(NarrationPart.USAGE, new TranslatableText("narration.button.usage.hovered"));
-            }
-        }
     }
 
     @Override
     public SelectionType getType() {
-        if (this.focused) {
-            return SelectionType.FOCUSED;
-        } else {
-            return this.hovered ? SelectionType.HOVERED : SelectionType.NONE;
-        }
+        return SelectionType.NONE;
     }
 
     public void onPress() {
@@ -494,7 +444,7 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
         }
     }
 
-
+    @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (this.active && this.visible) {
             if (keyCode != 257 && keyCode != 32 && keyCode != 335) {
@@ -509,23 +459,10 @@ public class BasedWidget extends AbstractParentElement implements Drawable, Sele
         }
     }
 
-    @Nullable
-    @Override
-    public Element getFocused() {
-        return this.efocused;
-    }
-
-    @Override
-    public void setFocused(@Nullable Element focused) {
-        this.efocused = focused;
-    }
-
     @Environment(EnvType.CLIENT)
     public interface TooltipSupplier {
         void onTooltip(BasedWidget widget, MatrixStack matrices, int mouseX, int mouseY);
 
-        default void supply(Consumer<Text> ignoredConsumer) {
-        }
     }
 
     @Environment(EnvType.CLIENT)

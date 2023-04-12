@@ -6,7 +6,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -44,14 +43,13 @@ public class HistSideWidget extends BasedWidget {
     protected int jHistPanel;
     protected Color textColor;
     private double progress = 0.0;
-    private final ScollBarWidget scollBarEle;
+    private ScollBarWidget scollBarEle;
     protected static final Identifier HIST_TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_hist.png");
 
     private List<OrderedText> TheList = Lists.newArrayList();
 
     public HistSideWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor) {
-        super(x, y, width, height, textureWidth, textureHeight, message, textColor, widget -> System.out.println("dasda"), (widget, matrices, mouseX, mouseY) -> {
-        });
+        super(x, y, width, height, textureWidth, textureHeight, message, textColor);
         this.HistWidth = width;
         this.HistHeight = height;
         this.iHistPanel = x;
@@ -60,7 +58,7 @@ public class HistSideWidget extends BasedWidget {
         this.textureHeight = textureHeight;
         this.textColor = textColor;
         this.TheList.add(this.getMessage().asOrderedText());
-        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, HistHeight - 8, HistHeight - 8, widget -> System.out.println("test"), (widget, matrices, mouseX, mouseY) -> this.renderTooltip(matrices, new LiteralText("dsa"), mouseX, mouseY));
+        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, HistHeight - 8, HistHeight - 8);
         this.addChild(this.scollBarEle);
     }
 
@@ -74,10 +72,7 @@ public class HistSideWidget extends BasedWidget {
         drawTexture(matrices, iHistPanel, jHistPanel, 0, 0, HistWidth, HistHeight, textureWidth, textureHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         TheList = textRenderer.wrapLines(this.getMessage(), 118);
-        //            addScollBar(matrices);
         this.scollBarEle.visible = TheList.size() > 10;
-
-
         int m = (int) (this.scollBarEle.getProgress() * TheList.size());//dang qian hang shu
         int a = MathHelper.ceil(TheList.size() / 12.0F);//zong ye shu
         int p = (int) (m / 12.0F);//dang qian ye shu
@@ -105,8 +100,6 @@ public class HistSideWidget extends BasedWidget {
             }
             this.scollBarEle.updateScollHeight(10.0 / this.TheList.size());
         }
-
-
     }
 
     @Override

@@ -33,24 +33,22 @@ public class ScollBarWidget extends BasedWidget {
     protected int scollHeight;
     protected int blockHeight;
     protected double blockPos;
-    protected final PressAction onPress;
-    protected final TooltipSupplier tooltipSupplier;
     private static final Identifier TEXTURE;
 
     static {
         TEXTURE = new Identifier(MOD_ID, "textures/screen/scolls.png");
     }
 
-    public ScollBarWidget(int x, int y, int height, int blockHeight, PressAction onPress, TooltipSupplier tooltipSupplier) {
-        super(x, y, 6, blockHeight, onPress, tooltipSupplier);
+    public ScollBarWidget(int x, int y, int height, int blockHeight) {
+        super(x, y, 6, blockHeight, widget -> {
+        }, (widget, matrices, mouseX, mouseY) -> {
+        });
         this.iScoll = x;
         this.jScoll = y;
         this.scollWidth = 6;
         this.scollHeight = height;
         this.blockHeight = blockHeight;
         this.blockPos = 0.0;
-        this.onPress = onPress;
-        this.tooltipSupplier = tooltipSupplier;
     }
 
     @Override
@@ -82,6 +80,10 @@ public class ScollBarWidget extends BasedWidget {
         } else if (blockPos >= scollHeight - blockHeight) {
             this.blockPos = scollHeight - blockHeight;
         }
+    }
+
+    public void resetProgress() {
+        blockPos = 0.0;
     }
 
     private void scollSync() {
