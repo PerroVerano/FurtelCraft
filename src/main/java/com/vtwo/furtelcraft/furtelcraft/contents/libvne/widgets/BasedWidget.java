@@ -6,7 +6,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.AbstractParentElement;
+import net.minecraft.client.gui.Drawable;
+import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
@@ -51,7 +54,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedWidget extends DrawableHelper implements Drawable, ParentElement, Selectable {
+public class BasedWidget extends AbstractParentElement implements Drawable, Selectable {
     protected boolean hovered;
     private boolean focused;
     protected int width;
@@ -69,10 +72,8 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     protected PressAction onPress;
     protected final TooltipSupplier tooltipSupplier;
     private Text message;
-    private boolean dragging;
     private final List<Drawable> drawables = Lists.newArrayList();
     private final List<Element> elements = Lists.newArrayList();
-    private final List<Selectable> selectables = Lists.newArrayList();
 
     public BasedWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, Text message, Color textColor, PressAction onPress, TooltipSupplier tooltipSupplier) {
         this.x = x;
@@ -237,24 +238,22 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     protected void renderBackground(MatrixStack matrices, MinecraftClient client, int mouseX, int mouseY) {
     }
 
-    public <T extends Element & Drawable & Selectable> void addChild(T child) {
+    public <T extends Element & Drawable> void addChild(T child) {
         this.drawables.add(child);
         this.elements.add(child);
-        this.selectables.add(child);
     }
 
     public void clearChild() {
         this.drawables.clear();
         this.elements.clear();
-        this.selectables.clear();
     }
 
     public static void drawEntity(int x, int y, int size, float mouseX, float mouseY, LivingEntity entity) {
-        float f = (float) Math.atan((double) (mouseX / 40.0F));
-        float g = (float) Math.atan((double) (mouseY / 40.0F));
+        float f = (float) Math.atan(mouseX / 40.0F);
+        float g = (float) Math.atan(mouseY / 40.0F);
         MatrixStack matrixStack = RenderSystem.getModelViewStack();
         matrixStack.push();
-        matrixStack.translate((double) x, (double) y, 1050.0);
+        matrixStack.translate(x, y, 1050.0);
         matrixStack.scale(1.0F, 1.0F, -1.0F);
         RenderSystem.applyModelViewMatrix();
         MatrixStack matrixStack2 = new MatrixStack();
@@ -319,21 +318,20 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
             if (this.isValidClickButton(button)) {
                 boolean clicked = this.clicked(mouseX, mouseY);
                 if (clicked) {
-                    this.playDownSound(MinecraftClient.getInstance().getSoundManager());
-                    this.onClick(mouseX, mouseY);
                     Iterator<? extends Element> iterator = this.children().iterator();
                     Element element;
                     do {
                         if (!iterator.hasNext()) {
+                            this.playDownSound(MinecraftClient.getInstance().getSoundManager());
+                            this.onClick(mouseX, mouseY);
                             return true;
                         }
                         element = iterator.next();
+                        this.setFocused(element);
                     } while (!element.mouseClicked(mouseX, mouseY, button));
-                    this.setFocused(element);
                     if (button == 0) {
                         this.setDragging(true);
                     }
-                    return true;
                 }
             }
         }
@@ -341,13 +339,22 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
     }
 
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        if (this.isValidClickButton(button)) {
-            this.onRelease(mouseX, mouseY);
-            this.setDragging(false);
-            return this.hoveredElement(mouseX, mouseY).filter((element) -> element.mouseReleased(mouseX, mouseY, button)).isPresent();
-        } else {
-            return false;
+        if (this.active && this.visible) {
+            if (this.isValidClickButton(button)) {
+                Iterator<? extends Element> iterator = this.children().iterator();
+                Element element;
+                do {
+                    if (!iterator.hasNext()) {
+                        this.onRelease(mouseX, mouseY);
+                        this.setDragging(false);
+                        return true;
+                    }
+                    element = iterator.next();
+                    this.setFocused(element);
+                } while (!element.mouseReleased(mouseX, mouseY, button));
+            }
         }
+        return false;
     }
 
     protected boolean isValidClickButton(int button) {
@@ -356,26 +363,34 @@ public class BasedWidget extends DrawableHelper implements Drawable, ParentEleme
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        return ParentElement.super.mouseScrolled(mouseX, mouseY, amount);
+        Iterator<? extends Element> iterator = this.children().iterator();
+        Element element;
+        do {
+            if (!iterator.hasNext()) {
+                return true;
+            }
+            element = iterator.next();
+            this.setFocused(element);
+        } while (!element.mouseScrolled(mouseX, mouseY, amount));
+        return false;
     }
 
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (this.isValidClickButton(button)) {
-            this.onDrag(mouseX, mouseY, deltaX, deltaY);
-            return true;
-        } else {
-            return false;
+        if (this.active && this.visible) {
+            if (this.isValidClickButton(button)) {
+                Iterator<? extends Element> iterator = this.children().iterator();
+                Element element;
+                do {
+                    if (!iterator.hasNext()) {
+                        this.onDrag(mouseX, mouseY, deltaX, deltaY);
+                        return true;
+                    }
+                    element = iterator.next();
+                    this.setFocused(element);
+                } while (!element.mouseDragged(mouseX, mouseY, button, deltaX, deltaY));
+            }
         }
-    }
-
-    @Override
-    public boolean isDragging() {
-        return this.dragging;
-    }
-
-    @Override
-    public void setDragging(boolean dragging) {
-        this.dragging = dragging;
+        return false;
     }
 
     protected boolean clicked(double mouseX, double mouseY) {

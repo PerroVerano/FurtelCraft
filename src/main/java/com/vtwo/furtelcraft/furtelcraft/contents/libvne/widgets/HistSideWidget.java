@@ -50,7 +50,8 @@ public class HistSideWidget extends BasedWidget {
     private List<OrderedText> TheList = Lists.newArrayList();
 
     public HistSideWidget(int x, int y, int width, int height, int textureWidth, int textureHeight, @Nullable Text message, @Nullable Color textColor) {
-        super(x, y, width, height, textureWidth, textureHeight, message, textColor);
+        super(x, y, width, height, textureWidth, textureHeight, message, textColor, widget -> System.out.println("dasda"), (widget, matrices, mouseX, mouseY) -> {
+        });
         this.HistWidth = width;
         this.HistHeight = height;
         this.iHistPanel = x;
