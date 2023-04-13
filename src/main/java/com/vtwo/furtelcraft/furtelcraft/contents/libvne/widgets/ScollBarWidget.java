@@ -111,6 +111,6 @@ public class ScollBarWidget extends BasedWidget {
         } else if (blockPos >= scollHeight - blockHeight) {
             blockPos = scollHeight - blockHeight;
         }
-        return true;
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 }

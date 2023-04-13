@@ -115,7 +115,7 @@ public class HistSideWidget extends BasedWidget {
         } else if (progress > 50.0) {
             progress = 50.0;
         }
-        return true;
+        return super.mouseScrolled(mouseX, mouseY, amount);
     }
 
     @Override
@@ -128,6 +128,6 @@ public class HistSideWidget extends BasedWidget {
         } else if (progress > 50.0) {
             progress = 50.0;
         }
-        return true;
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 }

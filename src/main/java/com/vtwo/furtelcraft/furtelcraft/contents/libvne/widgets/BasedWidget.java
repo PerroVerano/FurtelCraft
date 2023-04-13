@@ -9,7 +9,9 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -49,7 +51,7 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public abstract class BasedWidget extends AbstractParentElement implements Drawable {
+public abstract class BasedWidget extends AbstractParentElement implements Drawable, Selectable {
     protected boolean hovered;
     protected int width;
     protected int height;
@@ -309,11 +311,6 @@ public abstract class BasedWidget extends AbstractParentElement implements Drawa
         return false;
     }
 
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        return isHovered();
-    }
-
     protected boolean isValidClickButton(int button) {
         return button == 0;
     }
@@ -376,6 +373,16 @@ public abstract class BasedWidget extends AbstractParentElement implements Drawa
         } else {
             return false;
         }
+    }
+
+    @Override
+    public SelectionType getType() {
+        return SelectionType.NONE;
+    }
+
+    @Override
+    public void appendNarrations(NarrationMessageBuilder builder) {
+
     }
 
     @Environment(EnvType.CLIENT)
