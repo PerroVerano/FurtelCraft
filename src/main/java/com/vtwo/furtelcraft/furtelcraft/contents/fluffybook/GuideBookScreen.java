@@ -8,6 +8,7 @@ import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.FEmptyWidget;
 import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.FPageTurnBtnWidget;
 import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.FTextWidget;
 import com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget.PageWidget;
+import com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets.ScollBarWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -50,6 +51,7 @@ public class GuideBookScreen extends Screen {
     private int rightPageina = 2;
     private final int backgroundWidth = 256;
     private final int backgroundHeight = 174;
+    private ScollBarWidget scollBarEle;
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/screen/book.png");
 
     public GuideBookScreen(Text title) {
@@ -98,6 +100,7 @@ public class GuideBookScreen extends Screen {
         this.addDrawableChild(this.rightpageinaEle);
         this.addDrawableChild(this.leftTurnEle);
         this.addDrawableChild(this.rightTurnEle);
+        this.addDrawableChild(this.scollBarEle);
     }
 
     private void initWidgets() {
@@ -150,5 +153,7 @@ public class GuideBookScreen extends Screen {
                 },
                 false);
         this.safeProtect = new FEmptyWidget(iBase, jBase);
+        this.scollBarEle = new ScollBarWidget(iBase, 0, 252);
+        this.scollBarEle.updateScollHeight(0.3);
     }
 }

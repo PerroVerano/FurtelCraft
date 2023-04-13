@@ -63,8 +63,8 @@ public class GButtonWidget extends BasedWidget {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         TextRenderer textRenderer = minecraftClient.textRenderer;
         int pos = this.getPos(this.isHovered(), mouseX, mouseY);
-        drawTexture(matrices, this.iButton, this.jButton, 0, pos * 16, this.ButtonWidth / 2, this.ButtonHeight);
-        drawTexture(matrices, this.iButton + this.ButtonWidth / 2, this.jButton, this.textureWidth - this.ButtonWidth / 2, pos * 16, this.ButtonWidth / 2, this.ButtonHeight);
+        drawTexture(matrices, this.iButton, this.jButton, 0, pos, this.ButtonWidth / 2, this.ButtonHeight);
+        drawTexture(matrices, this.iButton + this.ButtonWidth / 2, this.jButton, this.textureWidth - this.ButtonWidth / 2, pos, this.ButtonWidth / 2, this.ButtonHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         drawCenteredText(matrices, textRenderer, this.getMessage(), this.iButton + this.ButtonWidth / 2, this.jButton + (this.ButtonHeight - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
         if (this.isHovered()) {
@@ -81,7 +81,7 @@ public class GButtonWidget extends BasedWidget {
         } else if (this.isMouseOver(mouseX, mouseY)) {
             state = 3;
         }
-        return state;
+        return state * ButtonHeight;
     }
 
     @Override

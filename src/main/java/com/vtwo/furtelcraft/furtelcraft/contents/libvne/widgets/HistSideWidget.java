@@ -43,7 +43,7 @@ public class HistSideWidget extends BasedWidget {
     protected int jHistPanel;
     protected Color textColor;
     private double progress = 0.0;
-    private ScollBarWidget scollBarEle;
+    private final ScollBarWidget scollBarEle;
     protected static final Identifier HIST_TEXTURE = new Identifier(MOD_ID, "textures/screen/vne_hist.png");
 
     private List<OrderedText> TheList = Lists.newArrayList();
@@ -58,7 +58,7 @@ public class HistSideWidget extends BasedWidget {
         this.textureHeight = textureHeight;
         this.textColor = textColor;
         this.TheList.add(this.getMessage().asOrderedText());
-        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, HistHeight - 8, HistHeight - 8);
+        this.scollBarEle = new ScollBarWidget(iHistPanel + 124, jHistPanel + 4, HistHeight - 8);
         this.addChild(this.scollBarEle);
     }
 
@@ -105,6 +105,9 @@ public class HistSideWidget extends BasedWidget {
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
         if (progress >= 0.0 && progress <= 50.0) {
+            if (this.hasShiftDown()) {
+                amount *= 10;
+            }
             this.scollBarEle.setProgress((progress -= amount) / 50.0);
         }
         if (progress < 0.0) {
@@ -112,7 +115,7 @@ public class HistSideWidget extends BasedWidget {
         } else if (progress > 50.0) {
             progress = 50.0;
         }
-        return super.mouseScrolled(mouseX, mouseY, amount);
+        return true;
     }
 
     @Override
@@ -125,6 +128,6 @@ public class HistSideWidget extends BasedWidget {
         } else if (progress > 50.0) {
             progress = 50.0;
         }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        return true;
     }
 }

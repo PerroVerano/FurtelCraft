@@ -6,17 +6,16 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.sound.SoundManager;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -50,9 +49,8 @@ import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
  * @PROJECT_NAME: furtelcraft
  */
 @Environment(EnvType.CLIENT)
-public class BasedWidget extends DrawableHelper implements Drawable, Selectable, Element {
+public abstract class BasedWidget extends AbstractParentElement implements Drawable {
     protected boolean hovered;
-    private boolean focused;
     protected int width;
     protected int height;
     protected int textureWidth;
@@ -179,16 +177,15 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
             this.renderWidget(matrices, mouseX, mouseY, delta);
-            if (!this.drawables.isEmpty()) {
-                for (Drawable drawable : this.drawables) {
-                    drawable.render(matrices, mouseX, mouseY, delta);
-                }
+            for (Drawable drawable : this.drawables) {
+                drawable.render(matrices, mouseX, mouseY, delta);
             }
             this.tick();
         }
     }
 
     public void tick() {
+
     }
 
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -206,7 +203,6 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
         if (this.isHovered()) {
             this.renderTooltip(matrices, mouseX, mouseY);
         }
-        this.renderBackground(matrices, minecraftClient, mouseX, mouseY);
         if (this.textColor != null) {
             int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
             drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
@@ -219,9 +215,6 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
         n += (g << 8);
         n += b;
         return n;
-    }
-
-    protected void renderBackground(MatrixStack matrices, MinecraftClient client, int mouseX, int mouseY) {
     }
 
     public <T extends Element & Drawable> void addChild(T child) {
@@ -284,14 +277,8 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
         screen.renderTooltip(matrices, text, x, y);
     }
 
-    public void onClick(double mouseX, double mouseY) {
+    public void onClick() {
         this.onPress();
-    }
-
-    public void onRelease(double mouseX, double mouseY) {
-    }
-
-    protected void onDrag(double mouseX, double mouseY, double deltaX, double deltaY) {
     }
 
     public List<? extends Element> children() {
@@ -309,11 +296,13 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
                     do {
                         if (!iterator.hasNext()) {
                             this.playDownSound(MinecraftClient.getInstance().getSoundManager());
-                            this.onClick(mouseX, mouseY);
+                            this.onClick();
                             return true;
                         }
                         element = iterator.next();
+                        this.setInitialFocus(element);
                     } while (!element.mouseClicked(mouseX, mouseY, button));
+                    this.setDragging(true);
                 }
             }
         }
@@ -321,81 +310,25 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
     }
 
     @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        if (this.active && this.visible) {
-            if (this.isValidClickButton(button)) {
-                Iterator<? extends Element> iterator = this.children().iterator();
-                Element element;
-                do {
-                    if (!iterator.hasNext()) {
-                        this.onRelease(mouseX, mouseY);
-                        return true;
-                    }
-                    element = iterator.next();
-                } while (!element.mouseReleased(mouseX, mouseY, button));
-            }
-        }
-        return false;
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+        return isHovered();
     }
 
     protected boolean isValidClickButton(int button) {
         return button == 0;
     }
 
-    @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        Iterator<? extends Element> iterator = this.children().iterator();
-        Element element;
-        do {
-            if (!iterator.hasNext()) {
-                return true;
-            }
-            element = iterator.next();
-        } while (!element.mouseScrolled(mouseX, mouseY, amount));
-        return false;
-    }
-
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (this.active && this.visible) {
-            if (this.isValidClickButton(button)) {
-                if (this.isMouseOver(mouseX, mouseY)) {
-                    Iterator<? extends Element> iterator = this.children().iterator();
-                    Element element;
-                    do {
-                        if (!iterator.hasNext()) {
-                            return true;
-                        }
-                        element = iterator.next();
-                    } while (!element.mouseDragged(mouseX, mouseY, button, deltaX, deltaY));
-                    this.onDrag(mouseX, mouseY, deltaX, deltaY);
-                }
-            }
-        }
-        return false;
-    }
-
     public boolean isHovered() {
-        return this.hovered || this.focused;
-    }
-
-    @Override
-    public boolean changeFocus(boolean lookForwards) {
-        if (this.active && this.visible) {
-            this.focused = !this.focused;
-            this.onFocusedChanged(this.focused);
-            return this.focused;
-        } else {
-            return false;
-        }
-    }
-
-    protected void onFocusedChanged(boolean newFocused) {
+        return this.hovered;
     }
 
     @Override
     public boolean isMouseOver(double mouseX, double mouseY) {
         return this.active && this.visible && mouseX >= (double) this.x && mouseY >= (double) this.y && mouseX < (double) (this.x + this.width) && mouseY < (double) (this.y + this.height);
+    }
+
+    public boolean hasShiftDown() {
+        return InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 340) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 344);
     }
 
     public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
@@ -405,6 +338,7 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
     }
 
     public void playDownSound(SoundManager soundManager) {
+
     }
 
     public int getWidth() {
@@ -421,21 +355,6 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
 
     public Text getMessage() {
         return this.message;
-    }
-
-    @Override
-    public boolean isNarratable() {
-        return this.visible && this.active;
-    }
-
-
-    @Override
-    public void appendNarrations(NarrationMessageBuilder builder) {
-    }
-
-    @Override
-    public SelectionType getType() {
-        return SelectionType.NONE;
     }
 
     public void onPress() {
@@ -462,7 +381,6 @@ public class BasedWidget extends DrawableHelper implements Drawable, Selectable,
     @Environment(EnvType.CLIENT)
     public interface TooltipSupplier {
         void onTooltip(BasedWidget widget, MatrixStack matrices, int mouseX, int mouseY);
-
     }
 
     @Environment(EnvType.CLIENT)

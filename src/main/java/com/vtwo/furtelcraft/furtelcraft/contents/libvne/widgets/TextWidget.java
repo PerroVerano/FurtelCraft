@@ -58,7 +58,7 @@ public class TextWidget extends BasedWidget {
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
         this.textColor = textColor;
-        this.scollBarEle = new ScollBarWidget(iTextPanel + 236, jTextPanel - 2, TextPanelHeight, TextPanelHeight);
+        this.scollBarEle = new ScollBarWidget(iTextPanel + 236, jTextPanel - 2, TextPanelHeight);
         this.addChild(scollBarEle);
     }
 

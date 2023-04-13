@@ -1,9 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -39,15 +37,13 @@ public class ScollBarWidget extends BasedWidget {
         TEXTURE = new Identifier(MOD_ID, "textures/screen/scolls.png");
     }
 
-    public ScollBarWidget(int x, int y, int height, int blockHeight) {
-        super(x, y, 6, blockHeight, widget -> {
-        }, (widget, matrices, mouseX, mouseY) -> {
-        });
+    public ScollBarWidget(int x, int y, int height) {
+        super(x, y, 6, height);
         this.iScoll = x;
         this.jScoll = y;
         this.scollWidth = 6;
         this.scollHeight = height;
-        this.blockHeight = blockHeight;
+        this.blockHeight = height;
         this.blockPos = 0.0;
     }
 
@@ -58,9 +54,18 @@ public class ScollBarWidget extends BasedWidget {
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, iScoll, jScoll, 0, 0, scollWidth, scollHeight / 2);
         drawTexture(matrices, iScoll, jScoll + (scollHeight / 2), 0, this.textureHeight - (scollHeight / 2), scollWidth, scollHeight / 2);
-        drawTexture(matrices, iScoll, (int) (jScoll + blockPos), 6, 0, scollWidth, blockHeight / 2);
-        drawTexture(matrices, iScoll, (int) (blockPos + jScoll + (blockHeight / 2)), 6, this.textureHeight - (blockHeight / 2), scollWidth, blockHeight / 2);
+        int imageY = this.getImageY(this.isHovered());
+        drawTexture(matrices, iScoll, (int) (jScoll + blockPos), imageY, 0, scollWidth, blockHeight / 2);
+        drawTexture(matrices, iScoll, (int) (blockPos + jScoll + (blockHeight / 2)), imageY, this.textureHeight - (blockHeight / 2), scollWidth, blockHeight / 2);
         this.scollSync();
+    }
+
+    private int getImageY(boolean hovered) {
+        int state = 1;
+        if (hovered) {
+            state = 2;
+        }
+        return state * scollWidth;
     }
 
     public double getProgress() {
@@ -68,6 +73,11 @@ public class ScollBarWidget extends BasedWidget {
     }
 
     public void updateScollHeight(double rate) {
+        if (rate > 1.0) {
+            rate = 1.0;
+        } else if (rate < 0.05) {
+            rate = 0.05;
+        }
         this.blockHeight = (int) (rate * scollHeight);
     }
 
@@ -92,22 +102,6 @@ public class ScollBarWidget extends BasedWidget {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
-        if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
-            if (hasShiftDown()) {
-                amount *= 10;
-            }
-            blockPos -= amount;
-        }
-        if (blockPos <= 0) {
-            blockPos = 0;
-        } else if (blockPos >= scollHeight - blockHeight) {
-            blockPos = scollHeight - blockHeight;
-        }
-        return super.mouseScrolled(mouseX, mouseY, amount);
-    }
-
-    @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
         if (blockPos >= 0 && blockPos <= scollHeight - blockHeight) {
             blockPos += deltaY;
@@ -117,10 +111,6 @@ public class ScollBarWidget extends BasedWidget {
         } else if (blockPos >= scollHeight - blockHeight) {
             blockPos = scollHeight - blockHeight;
         }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
-    }
-
-    private boolean hasShiftDown() {
-        return InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 340) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), 344);
+        return true;
     }
 }

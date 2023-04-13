@@ -54,7 +54,7 @@ public class EditScreenTextWidget extends BasedWidget {
         this.TextPanelHeight = height;
         this.message = message;
         this.textColor = textColor;
-        this.scollBarEle = new ScollBarWidget(iTextPanel + 160, jTextPanel, TextPanelHeight, TextPanelHeight);
+        this.scollBarEle = new ScollBarWidget(iTextPanel + 160, jTextPanel, TextPanelHeight);
         this.addChild(scollBarEle);
     }
 
