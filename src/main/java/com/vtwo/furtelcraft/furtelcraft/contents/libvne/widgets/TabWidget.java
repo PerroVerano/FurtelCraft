@@ -1,10 +1,8 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.EditScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -60,9 +58,7 @@ public class TabWidget extends BasedWidget {
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         TextRenderer textRenderer = minecraftClient.textRenderer;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, EditScreen.TEXTURE);
+        this.setRenderSystem(EditScreen.TEXTURE);
         if (isEnabled) {
             drawTexture(matrices, iTab, jTab, 0, 185, 32, 19);
         } else {

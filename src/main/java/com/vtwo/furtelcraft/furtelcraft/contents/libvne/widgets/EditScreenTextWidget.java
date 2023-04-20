@@ -1,9 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
@@ -65,9 +63,7 @@ public class EditScreenTextWidget extends BasedWidget {
 
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        this.setRenderSystem(TEXTURE);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         List<OrderedText> cache = textRenderer.wrapLines(this.getMessage(), 158);
         this.scollBarEle.visible = cache.size() > 6;

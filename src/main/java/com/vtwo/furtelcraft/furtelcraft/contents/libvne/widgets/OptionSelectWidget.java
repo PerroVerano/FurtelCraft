@@ -1,10 +1,8 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -67,9 +65,7 @@ public class OptionSelectWidget extends BasedWidget {
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         TextRenderer textRenderer = minecraftClient.textRenderer;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
+        this.setRenderSystem(VNScreen.TEXTURE);
         drawTexture(matrices, iOsPanel, jOsPanel, 0, 64, osWidth, osHeight, textureWidth, textureHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);

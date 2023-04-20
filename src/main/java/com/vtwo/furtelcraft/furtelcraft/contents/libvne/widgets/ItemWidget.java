@@ -1,9 +1,7 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -61,9 +59,7 @@ public class ItemWidget extends BasedWidget {
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
+        this.setRenderSystem(VNScreen.TEXTURE);
         drawTexture(matrices, iItem, jItem, 96, 64, ItemWidth, ItemHeight, textureWidth, textureHeight);
         ItemRenderer item = minecraftClient.getItemRenderer();
         item.renderInGui(this.itemStack, iItem + 2, jItem + 2);

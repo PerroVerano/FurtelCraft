@@ -1,10 +1,8 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
@@ -58,7 +56,7 @@ public class TextWidget extends BasedWidget {
         this.textureWidth = textureWidth;
         this.textureHeight = textureHeight;
         this.textColor = textColor;
-        this.scollBarEle = new ScollBarWidget(iTextPanel + 236, jTextPanel - 2, TextPanelHeight);
+        this.scollBarEle = new ScollBarWidget(iTextPanel + 234, jTextPanel - 2, TextPanelHeight);
         this.addChild(scollBarEle);
     }
 
@@ -71,9 +69,7 @@ public class TextWidget extends BasedWidget {
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         TextRenderer textRenderer = minecraftClient.textRenderer;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
+        this.setRenderSystem(VNScreen.TEXTURE);
         drawTexture(matrices, iTextPanel, jTextPanel, 7, 7, TextPanelWidth - 9, TextPanelHeight, textureWidth, textureHeight);
         int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
         List<OrderedText> cache = textRenderer.wrapLines(this.getMessage(), 236);

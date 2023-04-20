@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets.BasedWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -63,9 +62,7 @@ public class FImageWidget extends BasedWidget {
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         RenderSystem.enableBlend();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, this.image);
+        this.setRenderSystem(this.image);
         drawTexture(matrices, iImage, jImage, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
         if (this.hasTitle) {
             MinecraftClient minecraftClient = MinecraftClient.getInstance();

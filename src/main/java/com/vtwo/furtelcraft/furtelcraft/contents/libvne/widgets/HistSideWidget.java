@@ -118,16 +118,16 @@ public class HistSideWidget extends BasedWidget {
         return super.mouseScrolled(mouseX, mouseY, amount);
     }
 
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        if (progress >= 0.0 && progress <= 50.0) {
-            this.scollBarEle.setProgress((progress -= deltaY) / 50.0);
-        }
-        if (progress < 0.0) {
-            progress = 0.0;
-        } else if (progress > 50.0) {
-            progress = 50.0;
-        }
-        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
-    }
+//    @Override
+//    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+//        if (progress >= 0.0 && progress <= 50.0) {
+//            this.scollBarEle.setProgress((progress -= deltaY) / 50.0);
+//        }
+//        if (progress < 0.0) {
+//            progress = 0.0;
+//        } else if (progress > 50.0) {
+//            progress = 50.0;
+//        }
+//        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+//    }
 }

@@ -1,8 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.fluffybook.widget;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets.BasedWidget;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -50,9 +48,7 @@ public class FPageTurnBtnWidget extends BasedWidget {
 
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        this.setRenderSystem(TEXTURE);
         int pos = getPos(this.isHovered());
         if (this.isLeft) {
             drawTexture(matrices, this.iBtn, this.jBtn, 0, pos * 11, this.Btn, this.Btn);

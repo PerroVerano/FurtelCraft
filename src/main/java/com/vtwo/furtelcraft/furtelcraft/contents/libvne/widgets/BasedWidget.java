@@ -5,7 +5,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
@@ -22,7 +21,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.NotNull;
@@ -30,8 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.List;
-
-import static net.minecraft.client.gui.widget.ClickableWidget.WIDGETS_TEXTURE;
 
 /**
  * @PACKAGE_NAME: com.vtwo.furtelcraft.furtelcraft.vne.widgets
@@ -175,6 +172,7 @@ public abstract class BasedWidget extends AbstractParentElement implements Drawa
         return i;
     }
 
+    @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (this.visible) {
             this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
@@ -191,24 +189,7 @@ public abstract class BasedWidget extends AbstractParentElement implements Drawa
     }
 
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        TextRenderer textRenderer = minecraftClient.textRenderer;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, WIDGETS_TEXTURE);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
-        int i = this.getYImage(this.isHovered());
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.enableDepthTest();
-        this.drawTexture(matrices, this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height);
-        this.drawTexture(matrices, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
-        if (this.isHovered()) {
-            this.renderTooltip(matrices, mouseX, mouseY);
-        }
-        if (this.textColor != null) {
-            int j = RGB2DEC(this.textColor.getRed(), this.textColor.getGreen(), this.textColor.getBlue());
-            drawCenteredText(matrices, textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
-        }
+
     }
 
     protected int RGB2DEC(int r, int g, int b) {
@@ -279,10 +260,17 @@ public abstract class BasedWidget extends AbstractParentElement implements Drawa
         screen.renderTooltip(matrices, text, x, y);
     }
 
+    public void setRenderSystem(Identifier texture) {
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, texture);
+    }
+
     public void onClick() {
         this.onPress();
     }
 
+    @Override
     public List<? extends Element> children() {
         return this.elements;
     }

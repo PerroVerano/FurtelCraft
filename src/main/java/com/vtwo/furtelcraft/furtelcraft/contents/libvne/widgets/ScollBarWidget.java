@@ -1,7 +1,5 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -25,12 +23,12 @@ import static com.vtwo.furtelcraft.furtelcraft.Furtelcraft.MOD_ID;
  * @PROJECT_NAME: furtelcraft
  */
 public class ScollBarWidget extends BasedWidget {
-    protected int iScoll;
-    protected int jScoll;
-    protected int scollWidth;
-    protected int scollHeight;
-    protected int blockHeight;
-    protected double blockPos;
+    private final int iScoll;
+    private final int jScoll;
+    private final int scollWidth;
+    private final int scollHeight;
+    private int blockHeight;
+    private double blockPos;
     private static final Identifier TEXTURE;
 
     static {
@@ -49,9 +47,7 @@ public class ScollBarWidget extends BasedWidget {
 
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        this.setRenderSystem(TEXTURE);
         drawTexture(matrices, iScoll, jScoll, 0, 0, scollWidth, scollHeight / 2);
         drawTexture(matrices, iScoll, jScoll + (scollHeight / 2), 0, this.textureHeight - (scollHeight / 2), scollWidth, scollHeight / 2);
         int imageY = this.getImageY(this.isHovered());
@@ -75,8 +71,8 @@ public class ScollBarWidget extends BasedWidget {
     public void updateScollHeight(double rate) {
         if (rate > 1.0) {
             rate = 1.0;
-        } else if (rate < 0.05) {
-            rate = 0.05;
+        } else if (rate < 0.09) {
+            rate = 0.09;
         }
         this.blockHeight = (int) (rate * scollHeight);
     }
@@ -97,8 +93,8 @@ public class ScollBarWidget extends BasedWidget {
     }
 
     private void scollSync() {
-        this.y = (int) (jScoll + blockPos);
-        this.height = blockHeight;
+        y = (int) (jScoll + blockPos);
+        height = blockHeight;
     }
 
     @Override

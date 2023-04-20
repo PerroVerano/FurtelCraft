@@ -1,8 +1,6 @@
 package com.vtwo.furtelcraft.furtelcraft.contents.libvne.widgets;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.vtwo.furtelcraft.furtelcraft.contents.libvne.VNScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.client.util.math.MatrixStack;
@@ -56,17 +54,12 @@ public class HistButtonWidget extends BasedWidget {
 
     @Override
     public void renderWidget(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, VNScreen.TEXTURE);
-
+        this.setRenderSystem(VNScreen.TEXTURE);
         if (this.isEnabled) {
             drawTexture(matrices, iIButton, jButton, 179, 64, iButtonWidth, ButtonHeight, textureWidth, textureHeight);
         } else {
             drawTexture(matrices, iIButton, jButton, 179, 75, iButtonWidth, ButtonHeight, textureWidth, textureHeight);
         }
-
-
         if (this.isHovered()) {
             this.renderTooltip(matrices, mouseX, mouseY);
         }
