@@ -1,5 +1,5 @@
 ###  **  **:tw-26a0: 您正在浏览的是：适配Minecraft 1.19.2的版本 :tw-26a0:**  **   
-###  **  **:tw-26a0: 模组目前处于缓慢开发时期，作者正致力于开发[Cubure UI](https://gitee.com/perroverano/cubure-ui) ！:tw-26a0:**  **   
+###  **  **:tw-26a0: 由于现实事务缠身，此模组处于缓慢开发时期！:tw-26a0:**  **   
 ![logo](https://foruda.gitee.com/images/1671771125077561321/f320b53e_10954968.png "furtelcraft_logo.png")
 ###  **概述** 
 
@@ -55,7 +55,7 @@ FurtelCraft（暂定中文名：毛茸时代）是运行于Fabric上的一个Fur
 ###  **关于作者**
 夏柒枫（Perano，V2x5aHV2，VklaTFlDTFk），个人开发者。  
 策划/程序/美工/建模/音效/宣发：V2x5aHV2  
-Minecraft Java版ID：`VklaTFlDTFk`
+Minecraft Java版ID：`V2x5aHV2`
 ###  **宣发**
 [【百度贴吧】Furry向Minecraft模组开发记录](https://tieba.baidu.com/p/8185766908)
 ###  **加入我们或合作**
