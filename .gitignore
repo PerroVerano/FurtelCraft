@@ -1,0 +1,8 @@
+/.gradle/
+/buildSrc/.gradle/
+/buildSrc/build/
+/common/build/
+/fabric/.gradle/
+/fabric/build/
+/forge/build/
+/neoforge/build/
