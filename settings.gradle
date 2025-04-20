@@ -46,6 +46,8 @@ plugins {
 // This should match the folder name of the project, or else IDEA may complain (see https://youtrack.jetbrains.com/issue/IDEA-317606)
 rootProject.name = 'furtalcraft'
 include('common')
+include('luz-mml-processor-loader')
+include('luz-mml-processor-loader-handler')
 include('fabric')
 include('neoforge')
 include('forge')

@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/cn.luz.furtalcraft.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/cn.luz.furtalcraft.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/cn.luz.furtalcraft.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/cn.luz.furtalcraft.fabric.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/cn.luz.furtalcraft.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/cn.luz.furtalcraft.fabric.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/cn.luz.furtalcraft.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/cn.luz.furtalcraft.neoforge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/furtalcraft.iml" filepath="$PROJECT_DIR$/.idea/modules/furtalcraft.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/furtalcraft.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/furtalcraft.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/furtalcraft.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/furtalcraft.forge.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/furtalcraft.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/furtalcraft.forge.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/luz-mml-processor-loader-handler/furtalcraft.luz-mml-processor-loader-handler.main.iml" filepath="$PROJECT_DIR$/.idea/modules/luz-mml-processor-loader-handler/furtalcraft.luz-mml-processor-loader-handler.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/furtalcraft.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/furtalcraft.neoforge.main.iml" />
     </modules>
   </component>

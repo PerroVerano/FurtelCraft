@@ -36,4 +36,10 @@ neoForge {
     }
 }
 
+dependencies {
+    compileOnly project(":luz-mml-processor-loader")
+    implementation project(":luz-mml-processor-loader-handler")
+    annotationProcessor project(":luz-mml-processor-loader-handler")
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
