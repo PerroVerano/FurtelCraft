@@ -80,5 +80,11 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/groups/public'
+        }
+        maven {
+            url 'https://repository.hanbings.io/proxy'
+        }
     }
 }
