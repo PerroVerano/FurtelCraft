@@ -18,6 +18,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation("org.slf4j:slf4j-api:2.0.9")
     implementation(project(":luz-mml-processor-loader"))
+    implementation("com.palantir.javapoet:javapoet:0.7.0")
 }
 
 tasks.test {

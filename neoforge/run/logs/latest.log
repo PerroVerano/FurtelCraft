@@ -1,94 +1,109 @@
-[124月2025 20:30:06.585] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, 21.0.37-beta, --assetIndex, 17, --assetsDir, C:\Users\Luzove El\.gradle\caches\neoformruntime\assets, --gameDir, ., --fml.neoForgeVersion, 21.0.37-beta, --fml.fmlVersion, 4.0.6, --fml.mcVersion, 1.21, --fml.neoFormVersion, 20240613.152323]
-[124月2025 20:30:06.586] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Azul Systems, Inc. OpenJDK 64-Bit Server VM 21.0.6+7-LTS
-[124月2025 20:30:06.587] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.3+main.0f24dec3 starting: java version 21.0.6 by Azul Systems, Inc.; OS Windows 11 arch amd64 version 10.0
-[124月2025 20:30:06.695] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
-[124月2025 20:30:06.766] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
-[124月2025 20:30:06.864] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
-[124月2025 20:30:06.927] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Luzove%20El/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.13.4+mixin.0.8.5/8adf0cff1795a169141b9e16ad7b9f6e2527a990/sponge-mixin-0.13.4+mixin.0.8.5.jar%23131!/ Service=ModLauncher Env=CLIENT
-[124月2025 20:30:07.049] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: NVIDIA GeForce RTX 4080 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 572.83, NVIDIA Corporation
-[124月2025 20:30:07.203] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[124月2025 20:30:07.289] [main/INFO] [net.neoforged.fml.loading.FMLServiceProvider/CORE]: Loading coremod script-engine for [neoforge]
-[124月2025 20:30:08.295] [main/INFO] [mixin/]: Compatibility level set to JAVA_18
-[124月2025 20:30:08.296] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
-[124月2025 20:30:08.298] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, 21.0.37-beta, --gameDir, ., --assetsDir, C:\Users\Luzove El\.gradle\caches\neoformruntime\assets, --assetIndex, 17]
-[124月2025 20:30:08.349] [main/WARN] [mixin/]: Reference map 'furtalcraft.refmap.json' for furtalcraft.mixins.json could not be read. If this is a development environment you can ignore this message
-[124月2025 20:30:08.511] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.3.5).
-[124月2025 20:30:09.373] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 229 Datafixer optimizations took 228 milliseconds
-[124月2025 20:30:12.306] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[124月2025 20:30:12.308] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
-[124月2025 20:30:12.309] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[124月2025 20:30:12.310] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[124月2025 20:30:12.310] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[124月2025 20:30:12.378] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Projects/IDEA/Projects/furtel-craft/neoforge/build/moddev/artifacts/neoforge-21.0.37-beta-minecraft-merged.jar%23184!/assets/.mcassetsroot' uses unexpected schema
-[124月2025 20:30:12.378] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Projects/IDEA/Projects/furtel-craft/neoforge/build/moddev/artifacts/neoforge-21.0.37-beta-minecraft-merged.jar%23184!/data/.mcassetsroot' uses unexpected schema
-[124月2025 20:30:12.399] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[124月2025 20:30:12.404] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
-[124月2025 20:30:12.462] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
-[124月2025 20:30:12.598] [modloading-worker-0/INFO] [FurtalCraft/]: Hello NeoForge world!
-[124月2025 20:30:12.600] [modloading-worker-0/INFO] [FurtalCraft/]: Hello from Common init on NeoForge! we are currently in a development environment!
-[124月2025 20:30:12.600] [modloading-worker-0/INFO] [FurtalCraft/]: The ID for diamonds is minecraft:diamond
-[124月2025 20:30:12.601] [modloading-worker-0/INFO] [FurtalCraft/]: Hello to furtalcraft
-[124月2025 20:30:12.606] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.0.37-beta, for MC 1.21
-[124月2025 20:30:12.943] [Render thread/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [furtalcraft]
-[124月2025 20:30:13.003] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources, mod/furtalcraft, mod/neoforge
-[124月2025 20:30:13.109] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft common mixin!
-[124月2025 20:30:13.110] [Render thread/INFO] [FurtalCraft/]: MC Version: release
-[124月2025 20:30:13.127] [Worker-Main-30/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.1.05.hex, loading
-[124月2025 20:30:13.127] [Worker-Main-12/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-15.1.05.hex, loading
-[124月2025 20:30:13.613] [Worker-Main-9/WARN] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Exception loading blockstate definition: 'furtalcraft:blockstates/example-block.json' missing model for variant: 'furtalcraft:example-block#'
-[124月2025 20:30:14.073] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
-[124月2025 20:30:14.073] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
-[124月2025 20:30:14.172] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 扬声器 (EDIFIER M230)
-[124月2025 20:30:14.173] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
-[124月2025 20:30:14.244] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
-[124月2025 20:30:14.250] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
-[124月2025 20:30:14.250] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
-[124月2025 20:30:14.251] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
-[124月2025 20:30:14.251] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
-[124月2025 20:30:14.252] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
-[124月2025 20:30:14.252] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
-[124月2025 20:30:14.253] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
-[124月2025 20:30:14.253] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
-[124月2025 20:30:14.382] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[124月2025 20:30:14.383] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[124月2025 20:30:14.383] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
-[124月2025 20:30:14.383] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[124月2025 20:30:14.384] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
-[124月2025 20:30:14.397] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
-[124月2025 20:30:14.440] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
-[124月2025 20:30:14.440] [Render thread/INFO] [FurtalCraft/]: MC Version: release
-[124月2025 20:30:14.446] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
-[124月2025 20:30:14.446] [Render thread/INFO] [FurtalCraft/]: MC Version: release
-[124月2025 20:30:19.382] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 1290 recipes
-[124月2025 20:30:19.509] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1399 advancements
-[124月2025 20:30:19.717] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.21
-[124月2025 20:30:19.718] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
-[124月2025 20:30:19.844] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[124月2025 20:30:19.977] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
-[124月2025 20:30:20.023] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
-[124月2025 20:30:20.034] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 181 ms
-[124月2025 20:30:20.072] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
-[124月2025 20:30:20.073] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
-[124月2025 20:30:20.516] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:481a1fc5] logged in with entity id 28 at (8.5, -60.0, -8.5)
-[124月2025 20:30:20.559] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
-[124月2025 20:30:20.877] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 2 advancements
-[124月2025 20:35:24.125] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
-[124月2025 20:35:24.134] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[124月2025 20:35:24.143] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[124月2025 20:35:24.148] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[124月2025 20:35:24.828] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
-[124月2025 20:35:24.828] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
-[124月2025 20:35:24.836] [Server thread/INFO] [net.minecraft.server.network.ServerCommonPacketListenerImpl/]: Stopping singleplayer server as player logged out
-[124月2025 20:35:24.876] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[124月2025 20:35:24.876] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[124月2025 20:35:24.876] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[124月2025 20:35:24.991] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
-[124月2025 20:35:25.025] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
-[124月2025 20:35:25.029] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
-[124月2025 20:35:25.035] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
-[124月2025 20:35:25.035] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[124月2025 20:35:25.035] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[124月2025 20:35:25.035] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
-[124月2025 20:35:25.088] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
-[124月2025 20:35:25.088] [Render thread/INFO] [FurtalCraft/]: MC Version: release
-[124月2025 20:35:26.108] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!
+[224月2025 16:34:25.228] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, 21.0.37-beta, --assetIndex, 17, --assetsDir, C:\\Users\\Admin\\.gradle\\caches\\neoformruntime\\assets, --gameDir, ., --fml.neoForgeVersion, 21.0.37-beta, --fml.fmlVersion, 4.0.6, --fml.mcVersion, 1.21, --fml.neoFormVersion, 20240613.152323]
+[224月2025 16:34:25.232] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.5+9-LTS-239
+[224月2025 16:34:25.233] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.3+main.0f24dec3 starting: java version 21.0.5 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[224月2025 16:34:25.374] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: Loading ImmediateWindowProvider fmlearlywindow
+[224月2025 16:34:25.511] [main/INFO] [EARLYDISPLAY/]: Trying GL version 4.6
+[224月2025 16:34:25.692] [main/INFO] [EARLYDISPLAY/]: Requested GL version 4.6 got version 4.6
+[224月2025 16:34:25.818] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Admin/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.13.4+mixin.0.8.5/8adf0cff1795a169141b9e16ad7b9f6e2527a990/sponge-mixin-0.13.4+mixin.0.8.5.jar%23131!/ Service=ModLauncher Env=CLIENT
+[224月2025 16:34:25.967] [pool-2-thread-1/INFO] [EARLYDISPLAY/]: GL info: Intel(R) UHD Graphics 730 GL version 4.6.0 - Build 32.0.101.6129, Intel
+[224月2025 16:34:26.324] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[224月2025 16:34:26.668] [main/INFO] [net.neoforged.fml.loading.FMLServiceProvider/CORE]: Loading coremod script-engine for [neoforge]
+[224月2025 16:34:28.938] [main/INFO] [mixin/]: Compatibility level set to JAVA_18
+[224月2025 16:34:28.941] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[224月2025 16:34:28.944] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, 21.0.37-beta, --gameDir, ., --assetsDir, C:\Users\Admin\.gradle\caches\neoformruntime\assets, --assetIndex, 17]
+[224月2025 16:34:29.000] [main/WARN] [mixin/]: Reference map 'furtalcraft.refmap.json' for furtalcraft.mixins.json could not be read. If this is a development environment you can ignore this message
+[224月2025 16:34:29.212] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.3.5).
+[224月2025 16:34:30.819] [Datafixer Bootstrap/INFO] [com.mojang.datafixers.DataFixerBuilder/]: 229 Datafixer optimizations took 336 milliseconds
+[224月2025 16:34:36.084] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[224月2025 16:34:36.086] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[224月2025 16:34:36.091] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[224月2025 16:34:36.092] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[224月2025 16:34:36.094] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[224月2025 16:34:36.256] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/E:/Projects/Java/furtel-craft/neoforge/build/moddev/artifacts/neoforge-21.0.37-beta-minecraft-merged.jar%23184!/assets/.mcassetsroot' uses unexpected schema
+[224月2025 16:34:36.257] [Render thread/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/E:/Projects/Java/furtel-craft/neoforge/build/moddev/artifacts/neoforge-21.0.37-beta-minecraft-merged.jar%23184!/data/.mcassetsroot' uses unexpected schema
+[224月2025 16:34:36.304] [Render thread/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[224月2025 16:34:36.313] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Setting user: Dev
+[224月2025 16:34:36.430] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Backend library: LWJGL version 3.3.3+5
+[224月2025 16:34:36.713] [modloading-worker-0/INFO] [FurtalCraft/]: Hello NeoForge world!
+[224月2025 16:34:36.716] [modloading-worker-0/INFO] [FurtalCraft/]: Hello from Common init on NeoForge! we are currently in a development environment!
+[224月2025 16:34:36.716] [modloading-worker-0/INFO] [FurtalCraft/]: The ID for diamonds is minecraft:diamond
+[224月2025 16:34:36.717] [modloading-worker-0/INFO] [FurtalCraft/]: Hello to furtalcraft
+[224月2025 16:34:36.738] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.0.37-beta, for MC 1.21
+[224月2025 16:34:37.599] [Render thread/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [furtalcraft]
+[224月2025 16:34:37.856] [Render thread/INFO] [net.minecraft.server.packs.resources.ReloadableResourceManager/]: Reloading ResourceManager: vanilla, mod_resources, mod/furtalcraft, mod/neoforge
+[224月2025 16:34:38.030] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft common mixin!
+[224月2025 16:34:38.030] [Render thread/INFO] [FurtalCraft/]: MC Version: release
+[224月2025 16:34:38.063] [Worker-Main-13/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_all_no_pua-15.1.05.hex, loading
+[224月2025 16:34:38.117] [Worker-Main-1/INFO] [net.minecraft.client.gui.font.providers.UnihexProvider/]: Found unifont_jp_patch-15.1.05.hex, loading
+[224月2025 16:34:38.990] [Worker-Main-2/WARN] [net.minecraft.client.resources.model.BlockStateModelLoader/]: Exception loading blockstate definition: 'furtalcraft:blockstates/example-block.json' missing model for variant: 'furtalcraft:example-block#'
+[224月2025 16:34:38.992] [Worker-Main-2/WARN] [net.minecraft.client.resources.model.ModelBakery/]: Unable to load model: 'furtalcraft:item/example-block' referenced from: furtalcraft:item/example-block: java.io.FileNotFoundException: furtalcraft:models/item/example-block.json
+[224月2025 16:34:39.969] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:item.goat_horn.play
+[224月2025 16:34:39.969] [Render thread/WARN] [net.minecraft.client.sounds.SoundEngine/]: Missing sound for event: minecraft:entity.goat.screaming.horn_break
+[224月2025 16:34:40.043] [Render thread/INFO] [com.mojang.blaze3d.audio.Library/]: OpenAL initialized on device OpenAL Soft on 耳机 (ULT WEAR)
+[224月2025 16:34:40.043] [Render thread/INFO] [net.minecraft.client.sounds.SoundEngine/SOUNDS]: Sound engine started
+[224月2025 16:34:40.143] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[224月2025 16:34:40.675] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[224月2025 16:34:40.683] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[224月2025 16:34:40.700] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[224月2025 16:34:40.717] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[224月2025 16:34:40.850] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[224月2025 16:34:40.857] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[224月2025 16:34:40.860] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[224月2025 16:34:40.866] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[224月2025 16:34:41.044] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[224月2025 16:34:41.062] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[224月2025 16:34:41.066] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 256x128x0 minecraft:textures/atlas/mob_effects.png-atlas
+[224月2025 16:34:41.071] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[224月2025 16:34:41.074] [Render thread/INFO] [net.minecraft.client.renderer.texture.TextureAtlas/]: Created: 1024x512x0 minecraft:textures/atlas/gui.png-atlas
+[224月2025 16:34:41.383] [Render thread/WARN] [net.minecraft.client.renderer.ShaderInstance/]: Shader rendertype_entity_translucent_emissive could not find sampler named Sampler2 in the specified shader program.
+[224月2025 16:34:41.966] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
+[224月2025 16:34:41.966] [Render thread/INFO] [FurtalCraft/]: MC Version: release
+[224月2025 16:34:41.974] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
+[224月2025 16:34:41.975] [Render thread/INFO] [FurtalCraft/]: MC Version: release
+[224月2025 16:35:08.218] [Render thread/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 1290 recipes
+[224月2025 16:35:08.373] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1399 advancements
+[224月2025 16:35:08.763] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Starting integrated minecraft server version 1.21
+[224月2025 16:35:08.763] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[224月2025 16:35:09.132] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[224月2025 16:35:09.388] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: 准备生成区域中：0%
+[224月2025 16:35:09.514] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[224月2025 16:35:09.526] [progressListener/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 388 ms
+[224月2025 16:35:09.618] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing view distance to 12, from 10
+[224月2025 16:35:09.618] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Changing simulation distance to 12, from 0
+[224月2025 16:35:10.323] [Server thread/INFO] [net.minecraft.server.players.PlayerList/]: Dev[local:E:4f4f0a9d] logged in with entity id 30 at (8.5, -60.0, -8.5)
+[224月2025 16:35:10.414] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev加入了游戏
+[224月2025 16:35:10.618] [Render thread/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 2 advancements
+[224月2025 16:35:11.320] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[224月2025 16:35:11.379] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[224月2025 16:35:11.511] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[224月2025 16:35:11.727] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[224月2025 16:35:34.848] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: [Dev: 已将1个[block.furtalcraft.example-block]给予Dev]
+[224月2025 16:35:34.854] [Render thread/INFO] [net.minecraft.client.gui.components.ChatComponent/]: [System] [CHAT] 已将1个[block.furtalcraft.example-block]给予Dev
+[224月2025 16:35:38.119] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[224月2025 16:35:38.133] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[224月2025 16:35:38.260] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[224月2025 16:35:38.473] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[224月2025 16:35:46.168] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[224月2025 16:35:46.182] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[224月2025 16:35:46.307] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[224月2025 16:35:46.522] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[224月2025 16:35:49.218] [Server thread/INFO] [net.minecraft.client.server.IntegratedServer/]: Saving and pausing game...
+[224月2025 16:35:49.233] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[224月2025 16:35:49.315] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[224月2025 16:35:49.418] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[224月2025 16:35:52.822] [Server thread/INFO] [net.minecraft.server.network.ServerGamePacketListenerImpl/]: Dev lost connection: 连接中断
+[224月2025 16:35:52.822] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Dev退出了游戏
+[224月2025 16:35:52.851] [Server thread/INFO] [net.minecraft.server.network.ServerCommonPacketListenerImpl/]: Stopping singleplayer server as player logged out
+[224月2025 16:35:52.885] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[224月2025 16:35:52.886] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[224月2025 16:35:52.886] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[224月2025 16:35:53.033] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:overworld
+[224月2025 16:35:53.718] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_end
+[224月2025 16:35:53.752] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[新的世界]'/minecraft:the_nether
+[224月2025 16:35:53.819] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (新的世界): All chunks are saved
+[224月2025 16:35:53.819] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[224月2025 16:35:53.819] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[224月2025 16:35:53.819] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[224月2025 16:35:54.126] [Render thread/INFO] [FurtalCraft/]: This line is printed by the FurtalCraft mixin from NeoForge!
+[224月2025 16:35:54.126] [Render thread/INFO] [FurtalCraft/]: MC Version: release
+[224月2025 16:35:54.772] [Render thread/INFO] [net.minecraft.client.Minecraft/]: Stopping!

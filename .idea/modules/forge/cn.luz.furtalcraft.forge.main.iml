@@ -18,7 +18,7 @@
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="mappingFile" value="D:\Projects\IDEA\Projects\furtel-craft\forge\build\createMcpToSrg\output.tsrg" />
+    <option name="mappingFile" value="E:\Projects\Java\furtel-craft\forge\build\createMcpToSrg\output.tsrg" />
     <option name="mcpVersion" value="official_1.21" />
     <option name="minecraftVersion" value="1.21" />
     <option name="platformVersion" value="51.0.17" />

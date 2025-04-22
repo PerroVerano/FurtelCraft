@@ -1,12 +1,1 @@
-{
-  "stats": {
-    "minecraft:custom": {
-      "minecraft:time_since_rest": 11023,
-      "minecraft:leave_game": 3,
-      "minecraft:play_time": 11023,
-      "minecraft:time_since_death": 11023,
-      "minecraft:total_world_time": 11211
-    }
-  },
-  "DataVersion": 3953
-}
+{"stats":{"minecraft:used":{"furtalcraft:example-block":3},"minecraft:custom":{"minecraft:time_since_rest":11425,"minecraft:leave_game":4,"minecraft:play_time":11425,"minecraft:time_since_death":11425,"minecraft:total_world_time":12061}},"DataVersion":3953}

@@ -15,37 +15,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.SOURCE)
 public @interface EnableNeoForgeGeneratedReg {
     /**
-     * NeoForge的注册后方块引用对象
+     * 模组ID / 模组命名空间
      */
-    Class<?> deferredBlock();
-
-    /**
-     * MC原版的方块基类
-     */
-    Class<?> minecraftBlock();
-
-    /**
-     * NeoForge的引用注册类
-     */
-    Class<?> deferredRegister();
-
-    /**
-     * NeoForge的引用注册类中的内部方块类
-     */
-    Class<?> deferredRegisterBlock();
-
-    /**
-     * BlockBehavior.Properties
-     */
-    Class<?> properties();
-
-    /**
-     * ResourceKey
-     */
-    Class<?> resourceKey();
-
-    /**
-     * Registries
-     */
-    Class<?> registries();
+    String modId();
 }

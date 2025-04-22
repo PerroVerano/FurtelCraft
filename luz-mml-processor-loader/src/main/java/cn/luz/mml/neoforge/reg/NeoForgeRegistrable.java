@@ -20,11 +20,6 @@ public @interface NeoForgeRegistrable {
     NeoForgeRegistrableType type();
 
     /**
-     * 模组ID / 模组命名空间
-     */
-    String modId();
-
-    /**
      * 被注册物的资源键
      */
     String setId();
@@ -37,6 +32,7 @@ public @interface NeoForgeRegistrable {
      */
     enum NeoForgeRegistrableType {
         BLOCK,
+        BLOCK_WITHOUT_ITEM,
         ITEM,
         SCREEN
     }

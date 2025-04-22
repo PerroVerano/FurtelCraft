@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/cn.luz.furtalcraft.forge.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/neoforge/cn.luz.furtalcraft.neoforge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/neoforge/cn.luz.furtalcraft.neoforge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/fabric.furtalcraft.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/fabric.furtalcraft.fabric.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/fabric.furtalcraft.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/fabric.furtalcraft.fabric.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/forge.furtalcraft.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/forge.furtalcraft.forge.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/furtalcraft.iml" filepath="$PROJECT_DIR$/.idea/modules/furtalcraft.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/furtalcraft.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/furtalcraft.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/furtalcraft.fabric.main.iml" />
